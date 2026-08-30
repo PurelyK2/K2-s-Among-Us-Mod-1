@@ -1,8 +1,8 @@
 ﻿using MiraAPI.Colors;
-using UnityEngine;
 
 namespace K2AmongUs;
 
+/// <inheritdoc/>
 [RegisterCustomColors]
 public static class K2AmongUsPlayerColors
 {

@@ -59,21 +59,31 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
         int randRolesCount = (int)OptionGroupSingleton<GossipOptions>.Instance.GossipRoles;
 
         List<RoleBehaviour> allRoles = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().ToList();
-        allRoles.RemoveAll(role => CustomRoleUtils.CanSpawnOnCurrentMode(role) && !RoleManager.IsGhostRole(role.Role));
+        List<RoleBehaviour> possibleRoles = new List<RoleBehaviour>();
+        foreach(RoleBehaviour role in allRoles)
+        {
+            RoleManager.RoleAssignmentData roleData = CustomRoleUtils.GetAssignData(role.Role);
+            if(roleData.Chance > 0 && roleData.Count > 0 && CustomRoleUtils.CanSpawnOnCurrentMode(role))
+            {
+                possibleRoles.Add(role);
+            }
+        }
+
+        possibleRoles.RemoveAll(role => role.GetType() == player.GetRoleWhenAlive().GetType());
 
         List<RoleBehaviour> randomRolesList = new List<RoleBehaviour> { player.GetRoleWhenAlive() };
 
         for(int i = 0; i < randRolesCount; i++)
         {
-            if(allRoles.Count == 0)
+            if(possibleRoles.Count == 0)
             {
                 Error("No Roles For Gossip To Add");
                 break;
             }
 
-            RoleBehaviour newRole = allRoles[UnityEngine.Random.Range(0, allRoles.Count)];
+            RoleBehaviour newRole = possibleRoles[UnityEngine.Random.Range(0, possibleRoles.Count)];
 
-            allRoles.Remove(newRole);
+            possibleRoles.Remove(newRole);
             randomRolesList.Add(newRole);
         }
         randomRolesList.Shuffle();

@@ -40,7 +40,7 @@ public sealed class GossipOverhearModifier : BaseModifier
         }        
         
         GossipRole.GenerateGossip(Player);
-        Player.RemoveModifier(this);
+        Player.RemoveModifier<GossipOverhearModifier>();
     }
 
 }
