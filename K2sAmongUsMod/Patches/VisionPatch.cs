@@ -1,20 +1,9 @@
-using System;
-using System.Runtime.CompilerServices;
 using HarmonyLib;
 using K2AmongUs.Modifiers.Game.Universal;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
-using TownOfUs.Modifiers.Game.Alliance;
-using TownOfUs.Modifiers.Game.Crewmate;
-using TownOfUs.Modifiers.Impostor;
-using TownOfUs.Modules;
-using TownOfUs.Options.Maps;
-using TownOfUs.Options.Modifiers.Alliance;
-using TownOfUs.Roles;
 using TownOfUs.Utilities;
-using UnityEngine;
 using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
-using Il2CppSystem.Xml;
 
 namespace K2AmongUs.Patches;
 
@@ -38,7 +27,7 @@ public static class VisionPatch
 
         if(player.Object.HasModifier<BlindModifier>(null))
         {
-            __result *= (100f - (float)OptionGroupSingleton<BlindOptions>.Instance.BlindAmount) / 100f;
+            __result *= (100f - OptionGroupSingleton<BlindOptions>.Instance.BlindAmount) / 100f;
         }
 
         if(player.Object.HasModifier<HyperfocusModifier>() && Minigame.Instance != null)

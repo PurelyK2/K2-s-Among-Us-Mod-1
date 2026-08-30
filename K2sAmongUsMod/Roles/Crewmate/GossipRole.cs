@@ -1,5 +1,4 @@
 ﻿using Il2CppInterop.Runtime.Attributes;
-using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using TownOfUs.Assets;
@@ -7,11 +6,8 @@ using TownOfUs.Extensions;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
-using TownOfUs.Roles.Neutral;
-using TownOfUs.Roles.Other;
 using TownOfUs.Utilities;
 using UnityEngine;
-using System.Linq;
 using K2AmongUs.Options.Roles.Crewmate;
 using MiraAPI.GameOptions;
 

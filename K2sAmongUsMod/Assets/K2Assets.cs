@@ -1,10 +1,12 @@
 using MiraAPI.Utilities.Assets;
 using UnityEngine;
 
-namespace TouExtensionExample.Assets;
+namespace K2AmongUs.Assets;
 
-public static class ExampleAssets
+/// <inheritdoc/>
+public static class K2Assets
 {
-    private const string ShortPath = "TouExtensionExample.Resources";
+    private const string ShortPath = "K2AmongUsMod.Resources";
+    /// <inheritdoc/>
     public static LoadableAsset<Sprite> Banner { get; } = new LoadableResourceAsset($"{ShortPath}.ExampleBanner.png");
 }

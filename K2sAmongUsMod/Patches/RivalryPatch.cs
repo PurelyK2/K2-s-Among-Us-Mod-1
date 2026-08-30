@@ -1,20 +1,8 @@
-using System;
 using System.Runtime.CompilerServices;
 using HarmonyLib;
-using K2AmongUs.Modifiers.Game.Universal;
-using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
-using TownOfUs.Modifiers.Game.Alliance;
-using TownOfUs.Modifiers.Game.Crewmate;
 using TownOfUs.Modifiers.Impostor;
-using TownOfUs.Modules;
-using TownOfUs.Options.Maps;
-using TownOfUs.Options.Modifiers.Alliance;
-using TownOfUs.Roles;
 using TownOfUs.Utilities;
-using UnityEngine;
-using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
-using Il2CppSystem.Xml;
 using K2AmongUs.Modifiers.Game.Alliance;
 using Reactor.Utilities.Extensions;
 

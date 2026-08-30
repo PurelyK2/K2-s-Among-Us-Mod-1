@@ -1,4 +1,3 @@
-using AmongUs.GameOptions;
 using K2AmongUs.Modifiers.Crewmate;
 using K2AmongUs.Roles.Neutral;
 using MiraAPI.Events;

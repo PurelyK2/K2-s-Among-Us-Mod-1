@@ -178,6 +178,21 @@
         <member name="M:K2AmongUs.Events.Neutral.MimicGameEndEvent.GameEndEvent(MiraAPI.Events.Vanilla.Gameplay.GameEndEvent)">
             <inheritdoc/>
         </member>
+        <member name="T:K2AmongUs.K2AmongUsColors">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.K2AmongUsColors.Child">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.K2AmongUsColors.Scrubber">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.K2AmongUsColors.Mimic">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.K2AmongUsPlayerColors">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.K2AmongUsPlugin">
             <inheritdoc/>
         </member>

@@ -46,15 +46,15 @@ public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownO
     };
 
     /// <inheritdoc/>
-    public override bool CanUse(IUsable usable)
+    public override bool CanUse(IUsable console)
     {
-        if (!GameManager.Instance.LogicUsables.CanUse(usable, Player))
+        if (!GameManager.Instance.LogicUsables.CanUse(console, Player))
         {
             return false;
         }
 
-        var console = usable.TryCast<Console>()!;
-        return console == null || console.AllowImpostor;
+        var thisConsole = console.TryCast<Console>()!;
+        return thisConsole == null || thisConsole.AllowImpostor;
     }
 
     /// <inheritdoc/>

@@ -1,19 +1,9 @@
-﻿using AmongUs.GameOptions;
-using Il2CppInterop.Runtime.Attributes;
-using MiraAPI.GameOptions;
-using MiraAPI.Hud;
-using MiraAPI.LocalSettings;
-using MiraAPI.Patches.Stubs;
+﻿using Il2CppInterop.Runtime.Attributes;
 using MiraAPI.Roles;
-using MiraAPI.Utilities;
-using Reactor.Utilities;
-using TownOfUs;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
-using TownOfUs.Roles.Crewmate;
-using TownOfUs.Roles.Impostor;
 using TownOfUs.Utilities;
 using UnityEngine;
 

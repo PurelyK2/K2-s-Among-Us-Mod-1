@@ -1,23 +1,7 @@
-using System;
-using System.Runtime.CompilerServices;
 using K2AmongUs.Roles.Neutral;
-using MiraAPI.Events;
-using MiraAPI.GameOptions;
-using MiraAPI.Hud;
-using MiraAPI.Modifiers;
 using MiraAPI.Roles;
-using TownOfUs.Assets;
-using TownOfUs.Buttons.Impostor;
-using TownOfUs.Events.TouEvents;
-using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Game;
-using TownOfUs.Modules.Localization;
-using TownOfUs.Options;
-using TownOfUs.Options.Roles.Impostor;
-using TownOfUs.Patches;
 using TownOfUs.Utilities;
-using TownOfUs.Utilities.Appearances;
-using UnityEngine;
 
 namespace K2AmongUs.Modifiers.Crewmate;
     

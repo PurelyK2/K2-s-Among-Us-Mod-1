@@ -1,29 +1,12 @@
-﻿using AmongUs.GameOptions;
-using HarmonyLib;
-using Il2CppInterop.Runtime.Attributes;
-using K2AmongUs.Modifiers.Crewmate;
-using MiraAPI.Events.Vanilla.Player;
-using MiraAPI.GameOptions;
-using MiraAPI.Hud;
-using MiraAPI.LocalSettings;
-using MiraAPI.Modifiers;
+﻿using MiraAPI.Modifiers;
 using MiraAPI.Modifiers.Types;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
-using MiraAPI.Utilities;
-using Reactor.Utilities;
-using Rewired;
-using TownOfUs;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
-using TownOfUs.Modifiers.Game.Assailant;
 using TownOfUs.Modifiers.Game.Impostor;
-using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
-using TownOfUs.Roles.Crewmate;
-using TownOfUs.Roles.Neutral;
-using TownOfUs.Roles.Other;
 using TownOfUs.Utilities;
 using UnityEngine;
 
@@ -99,6 +82,8 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
             if(modifiers.Count == 0)
             {
 			    Error("No modifiers to give");
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("There Are No Modifiers Left To Give", Color.yellow, new Vector3(0f, 1f, -20f), null, null);
+
                 return;
             }
 
@@ -110,8 +95,6 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
                     modifier = modifiers[UnityEngine.Random.Range(0, modifiers.Count)];
                     modifiers.Remove(modifier);
                 } while (player.HasModifier(modifier.TypeId));
-                
-                Error("Added " + modifier.ModifierName + " to JOAR");
 
                 player.RpcAddModifier(modifier.TypeId, Array.Empty<object>());
             }

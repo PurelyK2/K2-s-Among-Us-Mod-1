@@ -1,27 +1,16 @@
-using System.Runtime.CompilerServices;
-using Il2CppMono.Security.Interface;
 using K2AmongUs.Modifiers.Crewmate;
 using MiraAPI.GameOptions;
-using MiraAPI.Hud;
 using MiraAPI.Keybinds;
 using MiraAPI.Modifiers;
-using MiraAPI.Networking;
 using MiraAPI.Utilities.Assets;
 using Reactor.Utilities;
-using Rewired;
 using K2AmongUs.Options.Roles.Crewmate;
 using K2AmongUs.Roles.Crewmate;
-using K2AmongUs.Roles.Neutral;
 using TownOfUs.Assets;
 using TownOfUs.Buttons;
 using TownOfUs.Extensions;
-using TownOfUs.Modifiers.Game;
-using TownOfUs.Modifiers.Game.Alliance;
-using TownOfUs.Modifiers.Game.Crewmate;
 using TownOfUs.Modules;
-using TownOfUs.Options.Modifiers.Alliance;
 using TownOfUs.Utilities;
-using TownOfUs.Utilities.Appearances;
 using UnityEngine;
 
 namespace K2AmongUs.Buttons.Crewmate;

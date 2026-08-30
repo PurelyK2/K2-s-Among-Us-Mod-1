@@ -1,5 +1,3 @@
-using System;
-using System.Runtime.CompilerServices;
 using K2AmongUs.Options.Roles.Crewmate;
 using MiraAPI.Events;
 using MiraAPI.GameOptions;
@@ -11,7 +9,6 @@ using TownOfUs.Events.TouEvents;
 using TownOfUs.Modifiers;
 using TownOfUs.Modules.Localization;
 using TownOfUs.Options;
-using TownOfUs.Options.Roles.Impostor;
 using TownOfUs.Patches;
 using TownOfUs.Utilities;
 using TownOfUs.Utilities.Appearances;

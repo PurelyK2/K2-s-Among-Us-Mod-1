@@ -1,17 +1,13 @@
-
-using System;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Player;
-using MiraAPI.Roles;
 using K2AmongUs.Roles.Crewmate;
-using TownOfUs;
 
 namespace K2AmongUs.Events.Crewmate
 {
+	/// <inheritdoc/>
 	public static class JackOfAllEvents
 	{
+		/// <inheritdoc/>
 		[RegisterEvent(0)]
 		public static void CompleteTaskEvent(CompleteTaskEvent @event)
 		{
