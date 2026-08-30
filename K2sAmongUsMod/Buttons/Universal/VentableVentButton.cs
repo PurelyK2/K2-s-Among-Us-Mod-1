@@ -10,7 +10,7 @@ using Reactor.Utilities.Extensions;
 using K2AmongUs.Modifiers.Game.Universal;
 using TownOfUs.Buttons;
 
-namespace TouExtensionExample.Buttons.Crewmate;
+namespace K2AmongUs.Buttons.Crewmate;
 
 ///  <inheritdoc/>
 public sealed class VentableVentButton : TownOfUsTargetButton<Vent>

@@ -12,7 +12,7 @@ using Reactor.Utilities;
 using TownOfUs;
 using UnityEngine;
 
-namespace TouExtensionExample;
+namespace K2AmongUs;
 
 /// <inheritdoc/>
 [BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.0")]
@@ -21,7 +21,7 @@ namespace TouExtensionExample;
 [BepInDependency(MiraApiPlugin.Id)]
 [BepInDependency(TownOfUsPlugin.Id)]
 [ReactorModFlags(ModFlags.RequireOnAllClients)]
-public partial class TouExtensionExamplePlugin : BasePlugin, IMiraPlugin
+public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 {
     /// <inheritdoc/>
     public static CultureInfo Culture => TownOfUs.TownOfUsPlugin.Culture;
@@ -61,7 +61,7 @@ public partial class TouExtensionExamplePlugin : BasePlugin, IMiraPlugin
         while(true)
         {
             await Task.Delay(100);
-            Logger<TownOfUsPlugin>.Instance.LogFatal(e);
+            Fatal(e);
             
             if(Time.deltaTime > 1) break;
         }

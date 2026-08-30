@@ -1,10 +1,10 @@
 using System;
 using System.Runtime.CompilerServices;
+using K2AmongUs.Options.Roles.Crewmate;
 using MiraAPI.Events;
 using MiraAPI.GameOptions;
 using MiraAPI.Hud;
 using MiraAPI.Modifiers;
-using TouExtensionExample.Options.Roles.Crewmate;
 using TownOfUs.Assets;
 using TownOfUs.Buttons.Impostor;
 using TownOfUs.Events.TouEvents;

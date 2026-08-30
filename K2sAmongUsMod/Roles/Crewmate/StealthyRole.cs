@@ -7,9 +7,6 @@ using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using Reactor.Utilities;
-using TouExtensionExample.Assets;
-using TouExtensionExample.Buttons.Crewmate;
-using TouExtensionExample.Options.Roles.Crewmate;
 using TownOfUs;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
@@ -20,7 +17,7 @@ using TownOfUs.Roles.Impostor;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace TouExtensionExample.Roles.Crewmate;
+namespace K2AmongUs.Roles.Crewmate;
 
 /// <inheritdoc/>
 public sealed class StealthyRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable

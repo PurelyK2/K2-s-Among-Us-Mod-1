@@ -12,6 +12,7 @@ using TownOfUs.Buttons;
 using TownOfUs.Options.Modifiers.Alliance;
 using TownOfUs.Utilities;
 using UnityEngine;
+using K2AmongUs;
 
 namespace TouExtensionExample.Buttons.Neutral;
 
@@ -20,7 +21,7 @@ public sealed class MimicKillButton : TownOfUsKillRoleButton<MimicRole, PlayerCo
 {
     public override string Name => TranslationController.Instance.GetStringWithDefault(StringNames.KillLabel, "Kill");
     public override BaseKeybind Keybind => Keybinds.PrimaryAction;
-    public override Color TextOutlineColor => TouExampleColors.Mimic;
+    public override Color TextOutlineColor => K2AmongUsColors.Mimic;
     public override float Cooldown => Math.Clamp(OptionGroupSingleton<MimicOptions>.Instance.KillCooldown + MapCooldown, 5f, 120f);
     public override LoadableAsset<Sprite> Sprite => ExampleNeutAssets.SentinelKillSprite;
 

@@ -2,7 +2,7 @@
 using MiraAPI.GameOptions;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
-using TouExtensionExample.Options.Roles.Crewmate;
+using K2AmongUs.Options.Roles.Crewmate;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Modules;
@@ -12,7 +12,7 @@ using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace TouExtensionExample.Roles.Neutral;
+namespace K2AmongUs.Roles.Neutral;
 
 /// <inheritdoc/>
 public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable

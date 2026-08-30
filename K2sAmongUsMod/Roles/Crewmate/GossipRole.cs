@@ -12,10 +12,10 @@ using TownOfUs.Roles.Other;
 using TownOfUs.Utilities;
 using UnityEngine;
 using System.Linq;
-using TouExtensionExample.Options.Roles.Crewmate;
+using K2AmongUs.Options.Roles.Crewmate;
 using MiraAPI.GameOptions;
 
-namespace TouExtensionExample.Roles.Crewmate;
+namespace K2AmongUs.Roles.Crewmate;
 
 /// <inheritdoc/>
 public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable

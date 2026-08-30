@@ -16,7 +16,7 @@ using UnityEngine;
 using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
 using Il2CppSystem.Xml;
 
-namespace TouExtensionExample.Patches;
+namespace K2AmongUs.Patches;
 
 /// <inheritdoc/>
 [HarmonyPriority(Priority.Last)]

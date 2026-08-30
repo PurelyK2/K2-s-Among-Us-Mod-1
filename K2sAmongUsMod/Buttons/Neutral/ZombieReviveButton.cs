@@ -1,33 +1,19 @@
-using MiraAPI.GameOptions;
-using MiraAPI.Hud;
 using MiraAPI.Keybinds;
-using MiraAPI.Networking;
 using MiraAPI.Utilities.Assets;
-using Reactor.Utilities;
-using TouExtensionExample.Assets;
-using TouExtensionExample.Options.Roles.Crewmate;
-using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Roles.Neutral;
-using TouExtensionExample.Roles.Crewmate;
-using TouExtensionExample.Roles.Neutral;
 using TownOfUs.Assets;
 using TownOfUs.Buttons;
-using TownOfUs.Options.Modifiers.Alliance;
 using TownOfUs.Utilities;
 using UnityEngine;
-using TownOfUs.Roles.Crewmate;
 using MiraAPI.Utilities;
-using TownOfUs.Modifiers.Game.Alliance;
 using MiraAPI.Modifiers;
 using TownOfUs.Modules;
 using MiraAPI.Roles;
-using TownOfUs.Modifiers;
-using K2AmongUs.Modifiers.Crewmate;
 using TownOfUs.Networking;
 using TownOfUs.Modifiers.Game.Crewmate;
 using K2AmongUs.Modifiers.Neutral;
 
-namespace TouExtensionExample.Buttons.Neutral;
+namespace K2AmongUs.Buttons.Neutral;
 
 /// <inheritdoc/>
 public class ZombieReviveButton : TownOfUsRoleButton<ZombieRole>

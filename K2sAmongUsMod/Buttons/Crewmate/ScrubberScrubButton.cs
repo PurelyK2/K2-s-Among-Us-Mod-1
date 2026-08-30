@@ -9,10 +9,9 @@ using MiraAPI.Networking;
 using MiraAPI.Utilities.Assets;
 using Reactor.Utilities;
 using Rewired;
-using TouExtensionExample.Assets;
-using TouExtensionExample.Options.Roles.Crewmate;
-using TouExtensionExample.Roles.Crewmate;
-using TouExtensionExample.Roles.Neutral;
+using K2AmongUs.Options.Roles.Crewmate;
+using K2AmongUs.Roles.Crewmate;
+using K2AmongUs.Roles.Neutral;
 using TownOfUs.Assets;
 using TownOfUs.Buttons;
 using TownOfUs.Extensions;
@@ -25,7 +24,7 @@ using TownOfUs.Utilities;
 using TownOfUs.Utilities.Appearances;
 using UnityEngine;
 
-namespace TouExtensionExample.Buttons.Crewmate;
+namespace K2AmongUs.Buttons.Crewmate;
 
 ///  <inheritdoc/>
 public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, PlayerControl>
@@ -35,7 +34,7 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
     /// <inheritdoc/>
     public override BaseKeybind Keybind => Keybinds.PrimaryAction;
     /// <inheritdoc/>
-    public override Color TextOutlineColor => TouExampleColors.Scrubber;
+    public override Color TextOutlineColor => K2AmongUsColors.Scrubber;
     /// <inheritdoc/>
     public override float Cooldown => Math.Clamp(OptionGroupSingleton<ScrubberOptions>.Instance.ScrubCooldown, 5f, 120f);
     /// <inheritdoc/>

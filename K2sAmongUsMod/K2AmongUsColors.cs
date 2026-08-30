@@ -1,11 +1,10 @@
 ﻿using MiraAPI.Utilities;
-using TouExtensionExample.Roles.Neutral;
 using TownOfUs;
 using UnityEngine;
 
-namespace TouExtensionExample;
+namespace K2AmongUs;
 
-public static class TouExampleColors
+public static class K2AmongUsColors
 {
     // Crew Colors
     public static Color Child => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(255, 127, 0, byte.MaxValue);

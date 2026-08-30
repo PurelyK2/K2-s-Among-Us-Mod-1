@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Player;
 using MiraAPI.Roles;
-using TouExtensionExample.Roles.Crewmate;
+using K2AmongUs.Roles.Crewmate;
 using TownOfUs;
 
 namespace K2AmongUs.Events.Crewmate

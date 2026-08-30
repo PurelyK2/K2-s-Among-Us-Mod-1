@@ -4,7 +4,7 @@ using BepInEx.Logging;
 using MiraAPI.Utilities;
 using TownOfUs.Modules.Localization;
 
-namespace TouExtensionExample.Modules;
+namespace K2AmongUs.Modules;
 
 public static class ExtensionLocale
 {

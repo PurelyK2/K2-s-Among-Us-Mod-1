@@ -9,7 +9,6 @@ using MiraAPI.GameEnd;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using TMPro;
-using TouExtensionExample.Roles.Crewmate;
 using TownOfUs;
 using TownOfUs.Interfaces;
 using TownOfUs.Modules;

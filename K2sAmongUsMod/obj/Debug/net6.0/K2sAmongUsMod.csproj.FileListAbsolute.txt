@@ -10,3 +10,4 @@ C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sA
 C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\refint\K2sAmongUsMod.dll
 C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\K2sAmongUsMod.xml
 C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\ref\K2sAmongUsMod.dll
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\K2sAmongUsMod.sourcelink.json

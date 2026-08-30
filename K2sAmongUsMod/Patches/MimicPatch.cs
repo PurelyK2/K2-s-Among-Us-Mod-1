@@ -26,7 +26,7 @@ using TownOfUs.Modifiers.Game.Assailant;
 using Il2CppSystem.Web.Util;
 using K2AmongUs.Modifiers.Crewmate;
 
-namespace TouExtensionExample.Patches;
+namespace K2AmongUs.Patches;
 
 /// <inheritdoc/>
 public static class MimicPatches

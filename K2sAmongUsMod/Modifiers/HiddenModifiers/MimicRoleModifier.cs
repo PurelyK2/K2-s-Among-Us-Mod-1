@@ -6,7 +6,6 @@ using MiraAPI.GameOptions;
 using MiraAPI.Hud;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
-using TouExtensionExample.Options.Roles.Crewmate;
 using TownOfUs.Assets;
 using TownOfUs.Buttons.Impostor;
 using TownOfUs.Events.TouEvents;

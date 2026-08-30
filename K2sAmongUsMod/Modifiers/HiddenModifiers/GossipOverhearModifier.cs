@@ -12,7 +12,7 @@ using MiraAPI.Modifiers.Types;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using Rewired;
-using TouExtensionExample.Roles.Crewmate;
+using K2AmongUs.Roles.Crewmate;
 using TownOfUs.Modifiers;
 using TownOfUs.Modules;
 using TownOfUs.Utilities;

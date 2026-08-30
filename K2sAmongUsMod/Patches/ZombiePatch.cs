@@ -29,7 +29,7 @@ using K2AmongUs.Modifiers.Neutral;
 using TownOfUs.Networking;
 using MiraAPI.Events.Vanilla.Meeting;
 
-namespace TouExtensionExample.Patches;
+namespace K2AmongUs.Patches;
 
 /// <inheritdoc/>
 public static class ZombiePatches
