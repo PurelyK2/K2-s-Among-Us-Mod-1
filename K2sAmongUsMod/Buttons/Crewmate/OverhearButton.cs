@@ -1,0 +1,85 @@
+using System.Runtime.CompilerServices;
+using Il2CppMono.Security.Interface;
+using K2AmongUs.Modifiers.Crewmate;
+using MiraAPI.GameOptions;
+using MiraAPI.Hud;
+using MiraAPI.Keybinds;
+using MiraAPI.Modifiers;
+using MiraAPI.Networking;
+using MiraAPI.Utilities.Assets;
+using Reactor.Utilities;
+using Rewired;
+using TouExtensionExample.Assets;
+using TouExtensionExample.Options.Roles.Crewmate;
+using TouExtensionExample.Roles.Crewmate;
+using TouExtensionExample.Roles.Neutral;
+using TownOfUs.Assets;
+using TownOfUs.Buttons;
+using TownOfUs.Extensions;
+using TownOfUs.Modifiers.Game;
+using TownOfUs.Modifiers.Game.Alliance;
+using TownOfUs.Modifiers.Game.Crewmate;
+using TownOfUs.Modules;
+using TownOfUs.Options.Modifiers.Alliance;
+using TownOfUs.Utilities;
+using TownOfUs.Utilities.Appearances;
+using UnityEngine;
+
+namespace TouExtensionExample.Buttons.Crewmate;
+
+///  <inheritdoc/>
+public sealed class OverhearButton : TownOfUsRoleButton<GossipRole, PlayerControl>
+{
+    /// <inheritdoc/>
+    public override string Name => "OVERHEAR";
+    /// <inheritdoc/>
+    public override BaseKeybind Keybind => Keybinds.PrimaryAction;
+    /// <inheritdoc/>
+    public override Color TextOutlineColor => Color.black;
+    /// <inheritdoc/>
+    public override float Cooldown => OptionGroupSingleton<GossipOptions>.Instance.GossipCooldown;
+    /// <inheritdoc/>
+    public override LoadableAsset<Sprite> Sprite => TouModifierIcons.Crewpostor;
+
+    /// <inheritdoc/>
+    public override void CreateButton(Transform parent)
+    {
+        base.CreateButton(parent);
+        Coroutines.Start(MiscUtils.CoMoveButtonIndex(this, false));
+    }
+
+    /// <inheritdoc/>
+    public override PlayerControl? GetTarget()
+    {
+        return PlayerControl.LocalPlayer.GetClosestLivingPlayer(true, Distance);
+    }
+
+    /// <inheritdoc/>
+    protected override void OnClick()
+    {
+        if (Target == null)
+        {
+            Error("Gossip Overhear: Target is null");
+            return;
+        }
+        
+        IDoomable? doomableRole = Target.GetRoleWhenAlive() as IDoomable;
+        if(doomableRole == null)
+        {
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("You can't overhear this person.", Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());
+        }
+
+        foreach(PlayerControl player in PlayerControl.AllPlayerControls)
+        {
+            if(player.HasModifier<GossipOverhearModifier>())
+            {
+                player.RemoveModifier<GossipOverhearModifier>();
+            }
+        }
+
+        Target.RpcAddModifier<GossipOverhearModifier>();
+
+        string notifyString = "You are overhearing someone's conversation.\nYou will tell everyone something about them next meeting.";
+        MiraAPI.Utilities.Helpers.CreateAndShowNotification(notifyString, Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());
+    }
+}

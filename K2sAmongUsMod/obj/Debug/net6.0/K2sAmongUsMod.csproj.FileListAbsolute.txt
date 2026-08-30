@@ -1,0 +1,12 @@
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\bin\Debug\net6.0\K2sAmongUsMod.deps.json
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\bin\Debug\net6.0\K2sAmongUsMod.dll
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\bin\Debug\net6.0\K2sAmongUsMod.xml
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\K2sAmongUsMod.csproj.AssemblyReference.cache
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\K2sAmongUsMod.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\K2sAmongUsMod.AssemblyInfoInputs.cache
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\K2sAmongUsMod.AssemblyInfo.cs
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\K2sAmongUsMod.csproj.CoreCompileInputs.cache
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\K2sAmongUsMod.dll
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\refint\K2sAmongUsMod.dll
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\K2sAmongUsMod.xml
+C:\Users\Kaiden\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\ref\K2sAmongUsMod.dll

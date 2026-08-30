@@ -1,0 +1,1172 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>K2sAmongUsMod</name>
+    </assembly>
+    <members>
+        <member name="T:TouExtensionExample.Buttons.Crewmate.OverhearButton">
+             <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.OverhearButton.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.OverhearButton.Keybind">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.OverhearButton.TextOutlineColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.OverhearButton.Cooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.OverhearButton.Sprite">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.OverhearButton.CreateButton(UnityEngine.Transform)">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.OverhearButton.GetTarget">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.OverhearButton.OnClick">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton">
+             <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton.Keybind">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton.TextOutlineColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton.Cooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton.Sprite">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton.CreateButton(UnityEngine.Transform)">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton.GetTarget">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton.ClickHandler">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton.UsesMode">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton.MaxUses">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton.CanUse">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.ScrubberScrubButton.OnClick">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Buttons.Crewmate.VentableVentButton">
+             <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.VentableVentButton.Name">
+             <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.VentableVentButton.Keybind">
+             <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.VentableVentButton.TextOutlineColor">
+             <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.VentableVentButton.Cooldown">
+             <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Crewmate.VentableVentButton.Sprite">
+             <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.VentableVentButton.Enabled(RoleBehaviour)">
+             <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.VentableVentButton.GetTarget">
+             <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.VentableVentButton.SetOutline(System.Boolean)">
+             <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.VentableVentButton.CanUse">
+             <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Crewmate.VentableVentButton.OnClick">
+             <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Buttons.Neutral.ZombieReviveButton">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.ZombieReviveButton.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.ZombieReviveButton.Keybind">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.ZombieReviveButton.TextOutlineColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.ZombieReviveButton.Cooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.ZombieReviveButton.ZeroIsInfinite">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.ZombieReviveButton.Sprite">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Neutral.ZombieReviveButton.CanUse">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Neutral.ZombieReviveButton.CanClick">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Neutral.ZombieReviveButton.OnClick">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Buttons.Neutral.ZombieLeaderReviveButton">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.ZombieLeaderReviveButton.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.ZombieLeaderReviveButton.Keybind">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.ZombieLeaderReviveButton.TextOutlineColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.ZombieLeaderReviveButton.Cooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.ZombieLeaderReviveButton.ZeroIsInfinite">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.ZombieLeaderReviveButton.Sprite">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Neutral.ZombieLeaderReviveButton.CanUse">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Neutral.ZombieLeaderReviveButton.CanClick">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Neutral.ZombieLeaderReviveButton.OnClick">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Neutral.ZombieLeaderReviveButton.SetZombieRole(PlayerControl,DeadBody)">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Options.Roles.Crewmate.VentableOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.VentableOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.VentableOptions.VentableCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.VentableOptions.VentableChance">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.VentableOptions.MaxVents">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Options.Roles.Crewmate.GossipOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.GossipOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.GossipOptions.GossipCooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.GossipOptions.GossipRoles">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Options.Roles.Crewmate.ScrubberOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.ScrubberOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.ScrubberOptions.ScrubCooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.ScrubberOptions.MaxScrubs">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Options.Roles.Crewmate.StealthyOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.StealthyOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.StealthyOptions.SneakCooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.StealthyOptions.SneakDuration">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.StealthyOptions.MaxSneaks">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Options.Roles.Crewmate.ForbearingOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.ForbearingOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.ForbearingOptions.RestlessCooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.ForbearingOptions.RestlessEveryMeeting">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.ForbearingOptions.RestlessMeetingDecrease">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Options.Roles.Crewmate.ForbearingOptions.RestlessCanVent">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Patches.MimicPatches">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Patches.MimicPatches.GameModifierValidityPatch">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Patches.MimicPatches.GameModifierValidityPatch.Postifx(PlayerControl@,System.UInt32@,System.Boolean@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Patches.MimicPatches.OnRoundStart(MiraAPI.Events.Vanilla.Gameplay.RoundStartEvent)">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Patches.RivalsChatPatch">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Patches.RivalsChatPatch.SendChatPatch(ChatController)">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Patches.VisionPatch">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Patches.VisionPatch.Postfix(ShipStatus,NetworkedPlayerInfo,System.Single@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Patches.ZombiePatches">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Patches.ZombiePatches.HandleVoteEvent(MiraAPI.Events.Vanilla.Meeting.Voting.HandleVoteEvent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Patches.ZombiePatches.OnRoundStart(MiraAPI.Events.Vanilla.Gameplay.RoundStartEvent)">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Roles.Crewmate.GossipRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.GossipRole.#ctor(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.GossipRole.DoomHintType">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.GossipRole.LocaleKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.GossipRole.RoleName">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.GossipRole.RoleDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.GossipRole.RoleLongDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.GossipRole.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.GossipRole.Abilities">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.GossipRole.GenerateGossip(PlayerControl)">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.GossipRole.RoleColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.GossipRole.Team">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.GossipRole.RoleAlignment">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.GossipRole.Configuration">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Roles.Crewmate.JackOfAllRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.JackOfAllRole.#ctor(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.JackOfAllRole.DoomHintType">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.JackOfAllRole.LocaleKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.JackOfAllRole.RoleName">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.JackOfAllRole.RoleDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.JackOfAllRole.RoleLongDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.JackOfAllRole.RoleAlignment">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.JackOfAllRole.RoleColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.JackOfAllRole.Team">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.JackOfAllRole.Configuration">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.JackOfAllRole.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.JackOfAllRole.Initialize(PlayerControl)">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.JackOfAllRole.CheckAddModifier(PlayerControl)">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.ScrubberRole.DoomHintType">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.ScrubberRole.LocaleKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.ScrubberRole.RoleName">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.ScrubberRole.RoleDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.ScrubberRole.RoleLongDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.ScrubberRole.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.ScrubberRole.Abilities">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.ScrubberRole.RoleColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.ScrubberRole.Team">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.ScrubberRole.RoleAlignment">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.ScrubberRole.Configuration">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.ScrubberRole.Initialize(PlayerControl)">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.ScrubberRole.Deinitialize(PlayerControl)">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.ScrubberRole.CanUse(IUsable)">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Roles.Crewmate.StealthyRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.StealthyRole.#ctor(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.StealthyRole.DoomHintType">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.StealthyRole.RoleName">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.StealthyRole.LocaleKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.StealthyRole.RoleDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.StealthyRole.RoleLongDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Crewmate.StealthyRole.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.StealthyRole.Abilities">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.StealthyRole.RoleColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.StealthyRole.Team">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.StealthyRole.RoleAlignment">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Crewmate.StealthyRole.Configuration">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Roles.Neutral.ForbearingRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Neutral.ForbearingRole.#ctor(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.ForbearingRole.DoomHintType">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.ForbearingRole.LocaleKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.ForbearingRole.RoleName">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.ForbearingRole.RoleDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.ForbearingRole.RoleLongDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Neutral.ForbearingRole.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.ForbearingRole.RoleColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.ForbearingRole.Team">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.ForbearingRole.RoleAlignment">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.ForbearingRole.Configuration">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Neutral.ForbearingRole.CanUse(IUsable)">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Neutral.ForbearingRole.OnVotingComplete">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Neutral.ForbearingRole.DidWin(GameOverReason)">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Roles.Neutral.RestlessRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Neutral.RestlessRole.#ctor(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.RestlessRole.DoomHintType">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.RestlessRole.RoleAlignment">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.RestlessRole.HasImpostorVision">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.RestlessRole.RoleName">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.RestlessRole.RoleDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.RestlessRole.RoleLongDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.RestlessRole.RoleColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.RestlessRole.Team">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.RestlessRole.Configuration">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Neutral.RestlessRole.OnVotingComplete">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.RestlessRole.IsDraftable">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.RestlessRole.AppearAs">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Roles.Neutral.RestlessRole.IsGuessable">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Neutral.RestlessRole.WinConditionMet">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Roles.Neutral.RestlessRole.DidWin(GameOverReason)">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.TouExtensionExamplePlugin">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.TouExtensionExamplePlugin.Culture">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.TouExtensionExamplePlugin.OptionsTitleText">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.TouExtensionExamplePlugin.IsDevBuild">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.TouExtensionExamplePlugin.GetConfigFile">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.TouExtensionExamplePlugin.Harmony">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.TouExtensionExamplePlugin.Load">
+            <inheritdoc/>
+        </member>
+        <member name="F:TouExtensionExample.TouExtensionExamplePlugin.Id">
+            <summary>
+            Id of the <see cref="T:TouExtensionExample.TouExtensionExamplePlugin"/>.
+            </summary>
+        </member>
+        <member name="P:TouExtensionExample.TouExtensionExamplePlugin.Name">
+            <summary>
+            Gets the name of the <see cref="T:TouExtensionExample.TouExtensionExamplePlugin"/>.
+            </summary>
+        </member>
+        <member name="P:TouExtensionExample.TouExtensionExamplePlugin.Version">
+            <summary>
+            Gets the version of the <see cref="T:TouExtensionExample.TouExtensionExamplePlugin"/>.
+            </summary>
+        </member>
+        <member name="T:K2AmongUs.Events.Neutral.MimicGameEndEvent">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Events.Neutral.MimicGameEndEvent.GameEndEvent(MiraAPI.Events.Vanilla.Gameplay.GameEndEvent)">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Modifiers.Game.Universal.BlindModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.BlindModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.BlindModifier.LocaleKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.BlindModifier.IntroInfo">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.BlindModifier.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.BlindModifier.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.BlindModifier.FactionType">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.BlindModifier.GetAssignmentChance">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.BlindModifier.IntroSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.BlindModifier.HideOnUi">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.BlindModifier.ModifierIcon">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.BlindModifier.GetAmountPerGame">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.BlindModifier.CustomAmount">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.BlindModifier.CustomChance">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.LocaleKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.IntroInfo">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.FactionType">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.GetAssignmentChance">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.IntroSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.HideOnUi">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.ModifierIcon">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.GetAmountPerGame">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.CustomAmount">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.CustomChance">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Modifiers.Game.Universal.UnstableModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.isUnstable">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.LocaleKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.IntroInfo">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.HideFromGuessing">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.FactionType">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.GetAssignmentChance">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.GetAmountPerGame">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.IntroSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.HideOnUi">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.ModifierIcon">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.CustomAmount">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.CustomChance">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.OnMeetingStart">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.Update">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.RandomlyTeleport">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Modifiers.Game.Universal.VentableModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.VentableModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.VentableModifier.LocaleKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.VentableModifier.HideFromGuessing">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.VentableModifier.IntroInfo">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.VentableModifier.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.VentableModifier.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.VentableModifier.FactionType">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.VentableModifier.GetAssignmentChance">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.VentableModifier.IsModifierValidOn(RoleBehaviour)">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.VentableModifier.CanVent">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.VentableModifier.IntroSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.VentableModifier.HideOnUi">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.VentableModifier.ModifierIcon">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.VentableModifier.GetAmountPerGame">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.VentableModifier.CustomAmount">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.VentableModifier.CustomChance">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.RivalsColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.HideOnUi">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.Symbol">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.LocaleKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.IntroInfo">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.ModifierIcon">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.CustomAmount">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.CustomChance">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.ForceDisableTasks">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.GetAllRivals">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.OnActivate">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.OnMeetingStart">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.GetAssignmentChance">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.GetAmountPerGame">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.RivalsString">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.WinConditionMet">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.DidWin(GameOverReason)">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.RpcSendRivalsChat(PlayerControl,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.AssignTargets">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier.HideOnUi">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier.OnMeetingStart">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier.HideOnUi">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier.GetAssignmentChance">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier.OnMeetingStart">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier.OnDeath(DeathReason)">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Modifiers.Crewmate.ScrubberScrubModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Crewmate.ScrubberScrubModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.ScrubberScrubModifier.OnMeetingStart">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier.Duration">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier.HideOnUi">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier.AutoStart">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier.VisibleToOthers">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier.VisualPriority">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier.GetVisualAppearance">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier.OnMeetingStart">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier.OnActivate">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier.OnDeactivate">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier.ChangeRoleResult">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier.ShownRole">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier.RevealRole">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier.Visible">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier.ExtraRoleText">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Options.Modifiers.UniversalModifierOptions.BlindOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.BlindOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.BlindOptions.BlindCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.BlindOptions.BlindChance">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.BlindOptions.BlindAmount">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Options.Modifiers.UniversalModifierOptions.HyperfocusOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.HyperfocusOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.HyperfocusOptions.HyperfocusCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.HyperfocusOptions.HyperfocusChance">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Options.Modifiers.UniversalModifierOptions.UnstableOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.UnstableOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.UnstableOptions.UnstableCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.UnstableOptions.UnstableChance">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.UnstableOptions.UnstableMinCooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.UnstableOptions.UnstableMaxCooldown">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions.RivalsChance">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions.RivalsCount">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Options.Roles.Crewmate.JackOfAllOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Crewmate.JackOfAllOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Crewmate.JackOfAllOptions.NumModifiers">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Crewmate.JackOfAllOptions.ModsFromTasks">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Crewmate.JackOfAllOptions.TasksPerMod">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Options.Roles.Neutral.MimicOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.MimicReflectsAbility">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.KillCooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.MimicGuess">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.ImpostorVision">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.CanVent">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Options.Roles.Neutral.ZombieOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.ZombieOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.ZombieOptions.ZombieShowsRole">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Patches.WinConditions.ZombieGameOver">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Patches.WinConditions.ZombieGameOver.VerifyCondition(PlayerControl,NetworkedPlayerInfo[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Patches.WinConditions.ZombieGameOver.AfterEndGameSetup(EndGameManager)">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Roles.Neutral.MimicRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.MimicRole.#ctor(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.RoleAlignment">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.DoomHintType">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.RoleName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.RoleDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.RoleLongDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.RoleColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.Team">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.Configuration">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.MimicRole.OnRoleSet">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.MimicRole.OpenPickingUI">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Roles.Neutral.ZombieRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.#ctor(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.RoleAlignment">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.RoleName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.RoleDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.RoleLongDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.RoleColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.Team">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.AppearAs">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.IsGuessable">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.IsDraftable">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.Configuration">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.OnRoleSet">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.DidWin(GameOverReason)">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.OnMeetingStart">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.OnVotingComplete">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Roles.Neutral.ZombieLeaderRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ZombieLeaderRole.#ctor(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.RoleAlignment">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.DoomHintType">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.RoleName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.RoleDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.RoleLongDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.RoleColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.Team">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.AppearAs">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.IsGuessable">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.Configuration">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ZombieLeaderRole.Update">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ZombieLeaderRole.OnDeath(DeathReason)">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ZombieLeaderRole.DidWin(GameOverReason)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

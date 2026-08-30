@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+    <!-- Player Colors -->
+    <string name="PlayerColorSpiderman">Spiderman</string>
+    <string name="PlayerColorSunburn">Sunburn</string>
+    <!-- Cause of Deaths -->
+    <string name="DiedToSentinel">Terminated</string>
+    <string name="DiedToSentinelExplosion">Disintegrated</string>
+    <!-- Sentinel - Neutral Killing -->
+    <string name="ExampleRoleSentinel">Sentinel</string>
+    <string name="ExampleRoleSentinelIntroBlurb">Eliminate those who stand in your path.</string>
+    <string name="ExampleRoleSentinelTabDescription">Kill players by using your dope abilities!\%nl\%Preferably, explode \%b\%only\%/b\% in a secluded area.</string>
+    <!-- Sentinel Wiki -->
+    <string name="ExampleRoleSentinelWikiDescription">The Sentinel is a Neutral Killing role that can explode themselves to kill anyone nearby. They may also kill normally, but where's the fun in that?</string>
+    <string name="ExampleRoleSentinelExplode">Explode</string>
+    <string name="ExampleRoleSentinelExplodeWikiDescription">Explode all players nearby.</string>
+    <!-- Sentinel Options -->
+    <string name="ExampleOptionSentinelKillCooldown">Kill Cooldown</string>
+    <string name="ExampleOptionSentinelExplodeCooldown">Explode Cooldown</string>
+    <string name="ExampleOptionSentinelExplosionRadius">Explosion Radius</string>
+    <string name="ExampleOptionSentinelCanVent">Sentinel Can Vent</string>
+    <string name="ExampleOptionSentinelImpostorVision">Sentinel Has Impostor Vision</string>
+</resources>
