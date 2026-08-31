@@ -3,7 +3,6 @@ using MiraAPI.Keybinds;
 using MiraAPI.Networking;
 using MiraAPI.Utilities.Assets;
 using Reactor.Utilities;
-using TouExtensionExample.Assets;
 using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Roles.Neutral;
 using TownOfUs.Buttons;
@@ -11,6 +10,8 @@ using TownOfUs.Options.Modifiers.Alliance;
 using TownOfUs.Utilities;
 using UnityEngine;
 using K2AmongUs;
+using TownOfUs.Assets;
+using TownOfUs.Buttons.Neutral;
 
 namespace TouExtensionExample.Buttons.Neutral;
 
@@ -27,7 +28,7 @@ public sealed class MimicKillButton : TownOfUsKillRoleButton<MimicRole, PlayerCo
     /// <inheritdoc/>
     public override float Cooldown => Math.Clamp(OptionGroupSingleton<MimicOptions>.Instance.KillCooldown + MapCooldown, 5f, 120f);
     /// <inheritdoc/>
-    public override LoadableAsset<Sprite> Sprite => ExampleNeutAssets.SentinelKillSprite;
+    public override LoadableAsset<Sprite> Sprite => TouNeutAssets.GlitchKillSprite;
 
     /// <inheritdoc/>
     public override void CreateButton(Transform parent)

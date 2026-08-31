@@ -51,7 +51,7 @@ public sealed class ScrubberRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfU
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IntroSound = TouAudio.DenySound,
+        IntroSound = TouAudio.JanitorCleanSound,
         Icon = TouRoleIcons.Amnesiac
     };
 

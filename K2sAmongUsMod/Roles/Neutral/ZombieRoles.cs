@@ -41,7 +41,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
-        Icon = TouRoleIcons.Haunter,
+        Icon = TouRoleIcons.Spectre,
         HideSettings = true,
         CanModifyChance = false,
         DefaultChance = 0,
@@ -109,7 +109,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.ScreamIntro,
-        Icon = TouRoleIcons.Haunter
+        Icon = TouCrewAssets.ReviveSprite
     };
 
     float timer;

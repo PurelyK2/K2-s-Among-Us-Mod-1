@@ -50,6 +50,6 @@ public sealed class StealthyRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfU
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.DenySound,
-        Icon = TouRoleIcons.Amnesiac
+        Icon = TouRoleIcons.Chameleon
     };
 }

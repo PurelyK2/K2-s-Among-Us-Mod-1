@@ -42,7 +42,7 @@ public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownO
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.SinisterIntro,
-        Icon = TouModifierIcons.Crewpostor
+        Icon = TouAssets.ActionSprite
     };
 
     /// <inheritdoc/>
@@ -70,7 +70,7 @@ public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownO
                 RoleColor,
                 new Vector3(0f, 1f, -20f),
                 null,
-                TouModifierIcons.Crewpostor.LoadAsset()
+                TouModifierIcons.Egotist.LoadAsset()
             );
         }
     }
@@ -129,7 +129,7 @@ public sealed class RestlessRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
                 RoleColor,
                 new Vector3(0f, 1f, -20f),
                 null,
-                TouModifierIcons.Crewpostor.LoadAsset()
+                TouModifierIcons.Egotist.LoadAsset()
             );
 
             if(OptionGroupSingleton<ForbearingOptions>.Instance.RestlessEveryMeeting)

@@ -4,10 +4,22 @@
         <name>K2sAmongUsMod</name>
     </assembly>
     <members>
-        <member name="T:TouExtensionExample.Patches.RivalsChatPatch">
+        <member name="T:K2AmongUs.Assets.K2Assets">
             <inheritdoc/>
         </member>
-        <member name="M:TouExtensionExample.Patches.RivalsChatPatch.SendChatPatch(ChatController)">
+        <member name="P:K2AmongUs.Assets.K2Assets.Banner">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Assets.ExampleNeutAssets">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Assets.ExampleNeutAssets.SentinelVentSprite">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Assets.K2RoleIcons">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Assets.K2RoleIcons.Sentinel">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Buttons.Crewmate.OverhearButton">
@@ -109,6 +121,72 @@
         <member name="M:K2AmongUs.Buttons.Crewmate.VentableVentButton.OnClick">
              <inheritdoc/>
         </member>
+        <member name="T:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.TextOutlineColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.Keybind">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.Cooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.EffectDuration">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.MaxUses">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.Sprite">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.ZeroIsInfinite">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.CanUse">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.OnClick">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.OnEffectEnd">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Buttons.Neutral.RestlessKillButton">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.Neutral.RestlessKillButton.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.Neutral.RestlessKillButton.Keybind">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.Neutral.RestlessKillButton.TextOutlineColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.Neutral.RestlessKillButton.Cooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Buttons.Neutral.RestlessKillButton.Sprite">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.CreateButton(UnityEngine.Transform)">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.SetDiseasedTimer(System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.GetTarget">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.OnClick">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.Buttons.Neutral.ZombieReviveButton">
             <inheritdoc/>
         </member>
@@ -170,6 +248,12 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Buttons.Neutral.ZombieLeaderReviveButton.SetZombieRole(PlayerControl,DeadBody)">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Events.Crewmate.JackOfAllEvents">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Events.Crewmate.JackOfAllEvents.CompleteTaskEvent(MiraAPI.Events.Vanilla.Player.CompleteTaskEvent)">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Events.Neutral.MimicGameEndEvent">
@@ -1187,6 +1271,42 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.ZombieLeaderRole.DidWin(GameOverReason)">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Buttons.Neutral.MimicKillButton">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.MimicKillButton.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.MimicKillButton.Keybind">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.MimicKillButton.TextOutlineColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.MimicKillButton.Cooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:TouExtensionExample.Buttons.Neutral.MimicKillButton.Sprite">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Neutral.MimicKillButton.CreateButton(UnityEngine.Transform)">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Neutral.MimicKillButton.SetDiseasedTimer(System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Neutral.MimicKillButton.GetTarget">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Buttons.Neutral.MimicKillButton.OnClick">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Patches.RivalsChatPatch">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Patches.RivalsChatPatch.SendChatPatch(ChatController)">
             <inheritdoc/>
         </member>
     </members>
