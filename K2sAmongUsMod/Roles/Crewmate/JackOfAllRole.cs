@@ -39,7 +39,7 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.DetectiveIntroSound,
-        Icon = TouRoleIcons.Amnesiac
+        Icon = TouRoleIcons.Agent
     };
 
 

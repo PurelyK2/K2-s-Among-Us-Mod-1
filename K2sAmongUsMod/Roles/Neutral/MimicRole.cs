@@ -34,7 +34,7 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.GlitchSound,
-        Icon = TouNeutAssets.MimicSprite
+        Icon = TouAssets.TerminologySprite
     };
 
     /// <inheritdoc/>

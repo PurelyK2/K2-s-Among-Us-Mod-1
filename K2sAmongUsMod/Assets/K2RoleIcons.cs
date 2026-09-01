@@ -8,9 +8,13 @@ public static class K2RoleIcons
 {
     // THIS FILE SHOULD ONLY HOLD ROLE ICONS
 
-    private const string ShortPath = "K2AmongUsMod.Resources";
+    private const string ShortPath = "K2sAmongUsMod/Resources";
 
     // Neutrals
     /// <inheritdoc/>
-    public static LoadableAsset<Sprite> Sentinel { get; } = new LoadableResourceAsset($"{ShortPath}.RoleIcons.Sentinel.png", 200);
+    public static LoadableAsset<Sprite> Gossip { get; } = new LoadableResourceAsset($"{ShortPath}/RoleIcons/Gossip.png");
+    /// <inheritdoc/>
+    public static LoadableAsset<Sprite> JackOfAll { get; } = new LoadableResourceAsset($"{ShortPath}/RoleIcons/JOAR.png");
+    /// <inheritdoc/>
+    public static LoadableAsset<Sprite> Scrubber { get; } = new LoadableResourceAsset($"{ShortPath}/RoleIcons/Scrubber.png");
 }

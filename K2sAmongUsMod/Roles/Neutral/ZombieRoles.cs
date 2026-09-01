@@ -41,7 +41,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
-        Icon = TouRoleIcons.Spectre,
+        Icon = TouRoleIcons.Altruist,
         HideSettings = true,
         CanModifyChance = false,
         DefaultChance = 0,

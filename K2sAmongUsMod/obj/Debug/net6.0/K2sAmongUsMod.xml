@@ -19,7 +19,13 @@
         <member name="T:K2AmongUs.Assets.K2RoleIcons">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Assets.K2RoleIcons.Sentinel">
+        <member name="P:K2AmongUs.Assets.K2RoleIcons.Gossip">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Assets.K2RoleIcons.JackOfAll">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Assets.K2RoleIcons.Scrubber">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Buttons.Crewmate.OverhearButton">
@@ -1142,6 +1148,39 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.RestlessRole.DidWin(GameOverReason)">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Roles.Neutral.HarborerRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.HarborerRole.#ctor(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.RoleAlignment">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.RoleName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.RoleDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.RoleLongDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.RoleColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.Team">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.Configuration">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.HarborerRole.OnRoleSet">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.HarborerRole.DidWin(GameOverReason)">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Roles.Neutral.MimicRole">

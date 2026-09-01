@@ -52,30 +52,6 @@ public sealed class ScrubberRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfU
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.JanitorCleanSound,
-        Icon = TouRoleIcons.Amnesiac
+        Icon = TouRoleIcons.Infestor
     };
-
-    /// <inheritdoc/>
-    public override void Initialize(PlayerControl player)
-    {
-        RoleBehaviourStubs.Initialize(this, player);
-    }
-
-    /// <inheritdoc/>
-    public override void Deinitialize(PlayerControl targetPlayer)
-    {
-        RoleBehaviourStubs.Deinitialize(this, targetPlayer);
-    }
-
-    /// <inheritdoc/>
-    public override bool CanUse(IUsable usable)
-    {
-        if (!GameManager.Instance.LogicUsables.CanUse(usable, Player))
-        {
-            return false;
-        }
-
-        var console = usable.TryCast<Console>()!;
-        return console == null || console.AllowImpostor;
-    }
 }

@@ -106,6 +106,6 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.DetectiveIntroSound,
-        Icon = TouModifierIcons.Crewpostor
+        Icon = TouModifierIcons.Colorblind
     };
 }
