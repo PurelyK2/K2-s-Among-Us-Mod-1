@@ -361,6 +361,33 @@
         <member name="P:K2AmongUs.Modifiers.Game.Universal.BlindModifier.CustomChance">
             <inheritdoc/>
         </member>
+        <member name="T:K2AmongUs.Modifiers.Game.Universal.LawyerTargetModifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.LawyerTargetModifier.#ctor(System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.LawyerTargetModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Modifiers.Game.Universal.ClientRevealModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.ClientRevealModifier.IsHiddenFromList">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.ClientRevealModifier.#ctor(RoleBehaviour)">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Universal.ClientRevealModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.ClientRevealModifier.OnActivate">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.ClientRevealModifier.FixedUpdate">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier">
             <inheritdoc/>
         </member>
@@ -817,6 +844,45 @@
         <member name="P:K2AmongUs.Options.Roles.Crewmate.ForbearingOptions.RestlessCanVent">
             <inheritdoc/>
         </member>
+        <member name="T:K2AmongUs.Options.Roles.Neutral.LawyerOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.LawyerOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.LawyerOptions.KillerClientChance">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.LawyerOptions.DieOnClientDeath">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Options.Roles.Neutral.LawyerOptions.OnClientDeathOptions">
+            <inheritdoc/>
+        </member>
+        <member name="F:K2AmongUs.Options.Roles.Neutral.LawyerOptions.OnClientDeathOptions.Die">
+            <inheritdoc/>
+        </member>
+        <member name="F:K2AmongUs.Options.Roles.Neutral.LawyerOptions.OnClientDeathOptions.Amnesiac">
+            <inheritdoc/>
+        </member>
+        <member name="F:K2AmongUs.Options.Roles.Neutral.LawyerOptions.OnClientDeathOptions.Survivor">
+            <inheritdoc/>
+        </member>
+        <member name="F:K2AmongUs.Options.Roles.Neutral.LawyerOptions.OnClientDeathOptions.Mercenary">
+            <inheritdoc/>
+        </member>
+        <member name="F:K2AmongUs.Options.Roles.Neutral.LawyerOptions.OnClientDeathOptions.Jester">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.LawyerOptions.OnClientDeath">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.LawyerOptions.GetVotedOutWithClient">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.LawyerOptions.CanSeeClientRole">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.Options.Roles.Neutral.MimicOptions">
             <inheritdoc/>
         </member>
@@ -1006,15 +1072,6 @@
         <member name="P:K2AmongUs.Roles.Crewmate.ScrubberRole.Configuration">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Roles.Crewmate.ScrubberRole.Initialize(PlayerControl)">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Crewmate.ScrubberRole.Deinitialize(PlayerControl)">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Crewmate.ScrubberRole.CanUse(IUsable)">
-            <inheritdoc/>
-        </member>
         <member name="T:K2AmongUs.Roles.Crewmate.StealthyRole">
             <inheritdoc/>
         </member>
@@ -1150,37 +1207,46 @@
         <member name="M:K2AmongUs.Roles.Neutral.RestlessRole.DidWin(GameOverReason)">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Roles.Neutral.HarborerRole">
+        <member name="T:K2AmongUs.Roles.Neutral.LawyerRole">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Roles.Neutral.HarborerRole.#ctor(System.IntPtr)">
+        <member name="M:K2AmongUs.Roles.Neutral.LawyerRole.#ctor(System.IntPtr)">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.RoleAlignment">
+        <member name="P:K2AmongUs.Roles.Neutral.LawyerRole.DoomHintType">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.RoleName">
+        <member name="P:K2AmongUs.Roles.Neutral.LawyerRole.Priority">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.RoleDescription">
+        <member name="P:K2AmongUs.Roles.Neutral.LawyerRole.RoleAlignment">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.RoleLongDescription">
+        <member name="P:K2AmongUs.Roles.Neutral.LawyerRole.RoleName">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.RoleColor">
+        <member name="P:K2AmongUs.Roles.Neutral.LawyerRole.RoleDescription">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.Team">
+        <member name="P:K2AmongUs.Roles.Neutral.LawyerRole.RoleLongDescription">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Neutral.HarborerRole.Configuration">
+        <member name="P:K2AmongUs.Roles.Neutral.LawyerRole.RoleColor">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Roles.Neutral.HarborerRole.OnRoleSet">
+        <member name="P:K2AmongUs.Roles.Neutral.LawyerRole.Team">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Roles.Neutral.HarborerRole.DidWin(GameOverReason)">
+        <member name="P:K2AmongUs.Roles.Neutral.LawyerRole.Configuration">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.LawyerRole.AssignTargets">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.LawyerRole.RpcSetLawyerClient(PlayerControl,PlayerControl)">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.LawyerRole.CheckClientDeath">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Roles.Neutral.MimicRole">

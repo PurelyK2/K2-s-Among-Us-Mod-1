@@ -4,7 +4,6 @@ using MiraAPI.GameOptions.Attributes;
 using MiraAPI.GameOptions.OptionTypes;
 using MiraAPI.Utilities;
 using TownOfUs.Extensions;
-using TownOfUs.Modules.Localization;
 
 namespace K2AmongUs.Options.Roles.Neutral;
 
