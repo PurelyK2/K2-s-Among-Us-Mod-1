@@ -11,11 +11,12 @@ using TownOfUs.Roles;
 using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
+using TownOfUs.Roles.Crewmate;
 
 namespace K2AmongUs.Roles.Neutral;
 
 /// <inheritdoc/>
-public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
+public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, ICrewVariant
 {
     /// <inheritdoc/>
     public DoomableType DoomHintType => DoomableType.Trickster;
@@ -44,6 +45,9 @@ public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownO
         IntroSound = TouAudio.SinisterIntro,
         Icon = TouRoleIcons.Jackal
     };
+
+    /// <inheritdoc/>
+    public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<SheriffRole>();
 
     /// <inheritdoc/>
     public override bool CanUse(IUsable console)
@@ -107,6 +111,9 @@ public sealed class RestlessRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
 
     /// <inheritdoc/>
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
+
+    /// <inheritdoc/>
+    public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<SheriffRole>();
 
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)

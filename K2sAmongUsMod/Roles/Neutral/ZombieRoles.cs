@@ -11,6 +11,7 @@ using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Networking;
 using TownOfUs.Roles;
+using TownOfUs.Roles.Crewmate;
 using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
@@ -55,6 +56,9 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     {
         Player.AddModifier<ZombieRevealedModifier>();
     }
+    
+    /// <inheritdoc/>
+    public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<AltruistRole>();
 
     /// <inheritdoc/>
     public override bool DidWin(GameOverReason gameOverReason)
@@ -85,7 +89,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
 }
 
 /// <inheritdoc/>
-public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, IUnguessable
+public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, IUnguessable, ICrewVariant
 {
     /// <inheritdoc/>
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralEvil;
@@ -111,6 +115,10 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         IntroSound = TouAudio.ScreamIntro,
         Icon = TouCrewAssets.ReviveSprite
     };
+
+    /// <inheritdoc/>
+    public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<AltruistRole>();
+
 
     float timer;
     /// <inheritdoc/>

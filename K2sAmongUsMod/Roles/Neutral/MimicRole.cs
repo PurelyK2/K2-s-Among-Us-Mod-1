@@ -7,6 +7,7 @@ using TownOfUs.Extensions;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
+using TownOfUs.Roles.Crewmate;
 using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
@@ -14,7 +15,7 @@ using UnityEngine;
 namespace K2AmongUs.Roles.Neutral;
 
 /// <inheritdoc/>
-public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
+public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, ICrewVariant
 {
     /// <inheritdoc/>
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
@@ -30,6 +31,10 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
     public Color RoleColor => Color.green;
     /// <inheritdoc/>
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
+
+    /// <inheritdoc/>
+    public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<ImitatorRole>();
+
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {

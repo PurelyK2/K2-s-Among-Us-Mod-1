@@ -8,7 +8,7 @@ using K2AmongUs.Roles.Neutral;
 using TownOfUs.Extensions;
 using TownOfUs.Modules.Localization;
 
-namespace K2AmongUs.Options.Roles.Crewmate;
+namespace K2AmongUs.Options.Modifiers.Game.Universal;
 
 /// <inheritdoc/>
 public sealed class VentableOptions : AbstractOptionGroup<VentableModifier>
