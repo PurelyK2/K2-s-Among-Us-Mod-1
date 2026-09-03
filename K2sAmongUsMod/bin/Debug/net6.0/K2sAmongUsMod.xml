@@ -1166,9 +1166,6 @@
         <member name="P:K2AmongUs.Roles.Neutral.ForbearingRole.Configuration">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Roles.Neutral.ForbearingRole.CanUse(IUsable)">
-            <inheritdoc/>
-        </member>
         <member name="M:K2AmongUs.Roles.Neutral.ForbearingRole.OnVotingComplete">
             <inheritdoc/>
         </member>
@@ -1229,6 +1226,9 @@
         <member name="M:K2AmongUs.Roles.Neutral.RestlessRole.DidWin(GameOverReason)">
             <inheritdoc/>
         </member>
+        <member name="M:K2AmongUs.Roles.Neutral.RestlessRole.CanUse(IUsable)">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.Roles.Neutral.MimicRole">
             <inheritdoc/>
         </member>
@@ -1266,6 +1266,9 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.MimicRole.OpenPickingUI">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.MimicRole.CanUse(IUsable)">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Roles.Neutral.ZombieRole">
@@ -1322,6 +1325,9 @@
         <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.OnVotingComplete">
             <inheritdoc/>
         </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.CanUse(IUsable)">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.Roles.Neutral.ZombieLeaderRole">
             <inheritdoc/>
         </member>
@@ -1368,6 +1374,9 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.ZombieLeaderRole.DidWin(GameOverReason)">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ZombieLeaderRole.CanUse(IUsable)">
             <inheritdoc/>
         </member>
         <member name="T:TouExtensionExample.Buttons.Neutral.MimicKillButton">

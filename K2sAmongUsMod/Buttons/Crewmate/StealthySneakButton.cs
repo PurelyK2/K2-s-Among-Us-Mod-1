@@ -47,6 +47,15 @@ public sealed class StealthySwoopButton : TownOfUsRoleButton<StealthyRole>
     /// <inheritdoc/>
 	protected override void OnClick()
 	{
+		if(EffectActive)
+		{
+			ResetCooldownAndOrEffect();
+			OnEffectEnd();
+			EffectActive = false;
+			Timer = 0.001f;
+			return;
+		}
+
 		EffectActive = true;
 		PlayerControl.LocalPlayer.RpcAddModifier<StealthySwoopModifier>();
 
@@ -67,6 +76,7 @@ public sealed class StealthySwoopButton : TownOfUsRoleButton<StealthyRole>
     {
 		Timer = Cooldown;
 		EffectActive = false;
-		PlayerControl.LocalPlayer.RpcRemoveModifier<StealthySwoopModifier>(null);
+		if(PlayerControl.LocalPlayer.HasModifier<StealthySwoopModifier>())
+			PlayerControl.LocalPlayer.RpcRemoveModifier<StealthySwoopModifier>();
     }
 }
