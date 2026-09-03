@@ -25,6 +25,6 @@ public sealed class VentableOptions : AbstractOptionGroup<VentableModifier>
     public float VentableChance { get; set; } = 50f;
 
     /// <inheritdoc/>
-    [ModdedNumberOption("Max Vents", 0f, 100f, 1f)]
+    [ModdedNumberOption("Max Vents", 0f, 100f, 1f, MiraNumberSuffixes.None, null, true)]
     public float MaxVents { get; set; } = 0f;
 }

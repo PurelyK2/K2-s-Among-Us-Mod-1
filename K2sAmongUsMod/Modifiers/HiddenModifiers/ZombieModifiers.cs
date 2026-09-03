@@ -1,4 +1,5 @@
 using K2AmongUs.Options.Roles.Neutral;
+using K2AmongUs.Roles.Neutral;
 using MiraAPI.GameOptions;
 using TownOfUs.Modifiers;
 using TownOfUs.Modules;
@@ -14,10 +15,15 @@ public sealed class ZombieRevealedModifier : BaseRevealModifier
     public override ChangeRoleResult ChangeRoleResult { get; set; } = ChangeRoleResult.Nothing;
     /// <inheritdoc/>
     public override RoleBehaviour ShownRole => Player.GetRoleWhenAlive();
+
+    static bool shouldShow =
+        OptionGroupSingleton<ZombieOptions>.Instance.ZombieShowsRole
+        || PlayerControl.LocalPlayer.GetRoleWhenAlive() is ZombieLeaderRole
+        || PlayerControl.LocalPlayer.GetRoleWhenAlive() is ZombieRole;
     /// <inheritdoc/>
-    public override bool RevealRole => OptionGroupSingleton<ZombieOptions>.Instance.ZombieShowsRole;
+    public override bool RevealRole => shouldShow;
     /// <inheritdoc/>
-    public override bool Visible => true;
+    public override bool Visible => shouldShow;
     /// <inheritdoc/>
     public override string ExtraRoleText => string.Empty;
 }

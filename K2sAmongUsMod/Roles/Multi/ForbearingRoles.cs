@@ -16,7 +16,7 @@ using TownOfUs.Roles.Crewmate;
 namespace K2AmongUs.Roles.Neutral;
 
 /// <inheritdoc/>
-public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, ICrewVariant
+public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
     /// <inheritdoc/>
     public DoomableType DoomHintType => DoomableType.Trickster;
@@ -45,21 +45,6 @@ public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownO
         IntroSound = TouAudio.SinisterIntro,
         Icon = TouRoleIcons.Jackal
     };
-
-    /// <inheritdoc/>
-    public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<SheriffRole>();
-
-    /// <inheritdoc/>
-    public override bool CanUse(IUsable console)
-    {
-        if (!GameManager.Instance.LogicUsables.CanUse(console, Player))
-        {
-            return false;
-        }
-
-        var thisConsole = console.TryCast<Console>()!;
-        return thisConsole == null || thisConsole.AllowImpostor;
-    }
 
     /// <inheritdoc/>
     public override void OnVotingComplete()
@@ -123,7 +108,8 @@ public sealed class RestlessRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
         CanModifyChance = false,
         DefaultChance = 0,
         MaxRoleCount = 0,
-        CanUseVent = OptionGroupSingleton<ForbearingOptions>.Instance.RestlessCanVent
+        CanUseVent = OptionGroupSingleton<ForbearingOptions>.Instance.RestlessCanVent,
+        TasksCountForProgress = false
     };
 
     /// <inheritdoc/>
@@ -164,5 +150,16 @@ public sealed class RestlessRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     {
         return WinConditionMet();
     }
+    
+    /// <inheritdoc/>
+    public override bool CanUse(IUsable usable)
+    {
+        if (!GameManager.Instance.LogicUsables.CanUse(usable, Player))
+        {
+            return false;
+        }
 
+        var console = usable.TryCast<Console>()!;
+        return console == null || console.AllowImpostor;
+    }
 }

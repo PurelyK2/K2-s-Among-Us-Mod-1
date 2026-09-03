@@ -1,11 +1,14 @@
 ﻿using K2AmongUs.Modifiers.Neutral;
+using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Patches.WinConditions;
 using MiraAPI.GameEnd;
+using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
+using TownOfUs.Interfaces;
 using TownOfUs.Modifiers;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
@@ -19,7 +22,7 @@ using UnityEngine;
 namespace K2AmongUs.Roles.Neutral;
 
 /// <inheritdoc/>
-public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IUnguessable
+public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IUnguessable, IContinuesGame
 {
     /// <inheritdoc/>
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralEvil;
@@ -48,6 +51,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
         DefaultChance = 0,
         DefaultRoleCount = 0,
         MaxRoleCount = 0,
+        TasksCountForProgress = false,
     };
 
 
@@ -59,6 +63,11 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     
     /// <inheritdoc/>
     public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<AltruistRole>();
+
+    /// <inheritdoc/>
+    public bool ContinuesGame =>
+        PlayerControl.AllPlayerControls.ToArray().Any(p => p.GetRoleWhenAlive() is ZombieRole)
+        || MiraAPI.Utilities.Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.GetTruePosition(), 100000, Helpers.CreateFilter(Constants.NotShipMask)).Count > 0;
 
     /// <inheritdoc/>
     public override bool DidWin(GameOverReason gameOverReason)
@@ -84,6 +93,18 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     {
         if(Helpers.GetAlivePlayers().Any(p => p.GetRoleWhenAlive() is ZombieLeaderRole))
             Player.RpcBasicRevive();
+    }
+    
+    /// <inheritdoc/>
+    public override bool CanUse(IUsable usable)
+    {
+        if (!GameManager.Instance.LogicUsables.CanUse(usable, Player))
+        {
+            return false;
+        }
+
+        var console = usable.TryCast<Console>()!;
+        return console == null || console.AllowImpostor;
     }
 
 }
@@ -113,7 +134,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.ScreamIntro,
-        Icon = TouCrewAssets.ReviveSprite
+        Icon = TouNeutAssets.PestKillSprite
     };
 
     /// <inheritdoc/>
@@ -137,7 +158,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 
                 player.RpcBasicRevive();
                 bodiesInRange[0].ClearBody();
-                timer = 5;
+                timer = OptionGroupSingleton<ZombieOptions>.Instance.ZombieReviveTimer;
             }
             else
             {
@@ -146,13 +167,13 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         }
         else
         {
-            timer = 5;
+            timer = OptionGroupSingleton<ZombieOptions>.Instance.ZombieReviveTimer;
         }
 
         if(!Helpers.GetAlivePlayers().Any(p => !(p.GetRoleWhenAlive() is ZombieRole || p.GetRoleWhenAlive() is ZombieLeaderRole)))
         {
             Info("Should Win!");
-            NetworkedPlayerInfo[] winners = PlayerControl.AllPlayerControls.ToArray().Where(p => !(p.GetRoleWhenAlive() is ZombieRole || p.GetRoleWhenAlive() is ZombieLeaderRole)).Select(p => p.Data).ToArray();
+            NetworkedPlayerInfo[] winners = PlayerControl.AllPlayerControls.ToArray().Where(p => p.GetRoleWhenAlive() is ZombieRole || p.GetRoleWhenAlive() is ZombieLeaderRole).Select(p => p.Data).ToArray();
 		    CustomGameOver.Trigger<ZombieGameOver>(winners);
         }
     }
@@ -190,5 +211,17 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         {
             return !Helpers.GetAlivePlayers().Any(p => !(p.GetRoleWhenAlive() is ZombieRole || p.GetRoleWhenAlive() is ZombieLeaderRole));
         }
+    }
+    
+    /// <inheritdoc/>
+    public override bool CanUse(IUsable usable)
+    {
+        if (!GameManager.Instance.LogicUsables.CanUse(usable, Player))
+        {
+            return false;
+        }
+
+        var console = usable.TryCast<Console>()!;
+        return console == null || console.AllowImpostor;
     }
 }

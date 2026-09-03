@@ -20,7 +20,7 @@ namespace K2AmongUs.Modifiers.Crewmate;
 public sealed class StealthySwoopModifier : ConcealedModifier, IVisualAppearance
 {
     /// <inheritdoc/>
-    public override string ModifierName => "Sneaky";
+    public override string ModifierName => "Stealthy";
     /// <inheritdoc/>
     public override float Duration => OptionGroupSingleton<StealthyOptions>.Instance.SneakDuration;
     /// <inheritdoc/>

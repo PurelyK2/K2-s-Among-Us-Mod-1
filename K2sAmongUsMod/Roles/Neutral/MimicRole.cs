@@ -39,7 +39,8 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.GlitchSound,
-        Icon = TouAssets.TerminologySprite
+        Icon = TouAssets.TerminologySprite,
+        TasksCountForProgress = false,
     };
 
     /// <inheritdoc/>
@@ -60,12 +61,12 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
         playerMenu.Begin(delegate(PlayerControl plr)
         {
             return !plr.AmOwner;
-        }, delegate (PlayerControl plr)
+        }, delegate (PlayerControl? plr)
         {
             playerMenu.ForceClose();
             if (plr != null)
             {
-                Mimic(plr);
+                MimicPlayer(plr);
             }
         });
         foreach (ShapeshifterPanel panel in playerMenu.potentialVictims)
@@ -79,11 +80,23 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
         }
     }
 
-    void Mimic(PlayerControl player)
+    void MimicPlayer(PlayerControl player)
     {
         Player.RpcChangeRole(RoleId.Get(player.GetRoleWhenAlive().GetType()));
 
         if(!Player.HasModifier<MimicRoleModifier>())
             Player.AddModifier<MimicRoleModifier>();
+    }
+    
+    /// <inheritdoc/>
+    public override bool CanUse(IUsable usable)
+    {
+        if (!GameManager.Instance.LogicUsables.CanUse(usable, Player))
+        {
+            return false;
+        }
+
+        var console = usable.TryCast<Console>()!;
+        return console == null || console.AllowImpostor;
     }
 }

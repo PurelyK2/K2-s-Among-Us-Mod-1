@@ -1,4 +1,6 @@
-﻿using MiraAPI.Modifiers;
+﻿using K2AmongUs.Options.Roles.Crewmate;
+using MiraAPI.GameOptions;
+using MiraAPI.Modifiers;
 using MiraAPI.Modifiers.Types;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
@@ -15,6 +17,8 @@ namespace K2AmongUs.Roles.Crewmate;
 /// <inheritdoc/>
 public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
+    public int NumTasksUntilMod = (int)OptionGroupSingleton<JackOfAllOptions>.Instance.TasksPerMod;
+
     /// <inheritdoc/>
     public DoomableType DoomHintType => DoomableType.Perception;
     /// <inheritdoc/>
@@ -55,7 +59,7 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
         {
             try
             {
-                GiveRandModifiers(5 - player.GetModifiers<BaseModifier>().Count(), player); //Modifiers count from options
+                GiveRandModifiers((int)OptionGroupSingleton<JackOfAllOptions>.Instance.NumModifiers - player.GetModifiers<BaseModifier>().Count(), player);
             }
             catch(System.Exception e)
             {

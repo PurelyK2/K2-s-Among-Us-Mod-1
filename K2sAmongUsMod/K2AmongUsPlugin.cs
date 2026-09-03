@@ -67,3 +67,5 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
         }
     }
 }
+
+// Mimic And Zombie Leader Can Do Tasks

@@ -49,7 +49,7 @@ public sealed class StealthyRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfU
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IntroSound = TouAudio.DenySound,
+        IntroSound = TouAudio.SwooperActivateSound,
         Icon = TouRoleIcons.Chameleon
     };
 }

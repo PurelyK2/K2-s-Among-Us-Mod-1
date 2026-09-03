@@ -5,8 +5,8 @@ using TownOfUs.Modifiers.Game;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Utilities;
 using UnityEngine;
-using K2AmongUs.Options.Roles.Crewmate;
 using TownOfUs.Modifiers;
+using K2AmongUs.Options.Modifiers.Game.Universal;
 
 namespace K2AmongUs.Modifiers.Game.Universal;
 

@@ -1,6 +1,9 @@
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Player;
 using K2AmongUs.Roles.Crewmate;
+using TownOfUs.Modules;
+using MiraAPI.GameOptions;
+using K2AmongUs.Options.Roles.Crewmate;
 
 namespace K2AmongUs.Events.Crewmate
 {
@@ -12,7 +15,18 @@ namespace K2AmongUs.Events.Crewmate
 		public static void CompleteTaskEvent(CompleteTaskEvent @event)
 		{
 			Info("Completed Task");
-			JackOfAllRole.CheckAddModifier(@event.Player);
+			if(@event.Player.GetRoleWhenAlive() is JackOfAllRole jackOfAllRole)
+			{
+				if(jackOfAllRole.NumTasksUntilMod == 0)
+				{
+					JackOfAllRole.CheckAddModifier(@event.Player);
+					jackOfAllRole.NumTasksUntilMod = (int)OptionGroupSingleton<JackOfAllOptions>.Instance.TasksPerMod;
+				}
+				else
+				{
+					jackOfAllRole.NumTasksUntilMod -= 1;
+				}
+			}
 		}
 	}
 }

@@ -13,6 +13,10 @@ using HarmonyLib;
 using TownOfUs.Roles.Crewmate;
 using MiraAPI.Roles;
 using TownOfUs.Roles.Neutral;
+using Il2CppSystem.Web.Util;
+using AmongUs.GameOptions;
+using TownOfUs.Roles;
+using TownOfUs.Buttons.Crewmate;
 
 namespace K2AmongUs.Modifiers.Game.Universal;
 
@@ -61,38 +65,79 @@ public sealed class SlyModifier : TouGameModifier, IWikiDiscoverable
     public override int CustomAmount => (int)OptionGroupSingleton<SlyOptions>.Instance.SlyCount;
     /// <inheritdoc/>
     public override int CustomChance => (int)OptionGroupSingleton<SlyOptions>.Instance.SlyChance;
-    /// <inheritdoc/>
-    public override void Update()
-    {
-        base.Update();
 
-        if(Player.HasModifier<SeerEvilRevealModifier>())
+    /// <inheritdoc/>
+    public override bool IsModifierValidOn(RoleBehaviour role)
+    {
+        return (!role.IsCrewmate() || role.Player.HasModifier<AllianceGameModifier>())
+            && !(role is JesterRole);
+    }
+
+
+    /// =========================== PATCHES ===========================
+    
+    /// <inheritdoc/>
+    [HarmonyPatch(typeof(SeerRevealButton), "IsEvil", [typeof(PlayerControl)])]
+    public static class OnSeerCheckEvil
+    {
+        /// <inheritdoc/>
+        public static void Postfix(ref bool __result, PlayerControl target)
         {
-            Player.RemoveModifier<SeerEvilRevealModifier>();
-            Player.AddModifier<SeerGoodRevealModifier>();
+            if(target.HasModifier<SlyModifier>())
+                __result = false;
         }
     }
-        /// <inheritdoc/>
+
+    /// <inheritdoc/>
     [HarmonyPatch(typeof(TrapperRole), "Report")]
-    public static class OnTrapperRoleReport
+    public static class OnTrapperReport
     {
         /// <inheritdoc/>
-        public static void Prefix(TrapperRole __instance)
+        public static void Prefix(ref TrapperRole __instance)
         {
-            List<RoleBehaviour> trappedPlayers = new List<RoleBehaviour>();
-            foreach(RoleBehaviour role in __instance.TrappedPlayers)
+            for(int i = 0; i < __instance.TrappedPlayers.Count; i++)
             {
-                if(role.Player.HasModifier<SlyModifier>())
+                PlayerControl? trappedPlayer = __instance.TrappedPlayers[i].Player;
+
+                if(trappedPlayer == null)
                 {
-                    trappedPlayers.Add((RoleBehaviour)RoleId.Get<SurvivorRole>());
+                    Error("Trapped Player Doesn't Have An Attached PlayerControl");
+                    continue;
                 }
-                else
+
+                if(trappedPlayer.HasModifier<SlyModifier>())
                 {
-                    trappedPlayers.Add(role);
+                    __instance.TrappedPlayers[i] = DestroyableSingleton<RoleManager>.Instance.GetRole(0);
                 }
             }
+        }
+    }
+    
+    /// <inheritdoc/>
+    [HarmonyPatch(typeof(LookoutWatchedModifier), "OnMeetingStart")]
+    public static class OnLookoutWatch
+    {
+        /// <inheritdoc/>
+        public static void Prefix(ref LookoutWatchedModifier __instance)
+        {
+            foreach (KeyValuePair<PlayerControl, RoleBehaviour> kvp in __instance.SeenPlayers)
+            {
+                if(kvp.Value.Player.HasModifier<SlyModifier>())
+                {
+                    __instance.SeenPlayers[kvp.Key] = DestroyableSingleton<RoleManager>.Instance.GetRole(0);
+                }
+            }
+        }
+    }
 
-            __instance.TrappedPlayers = trappedPlayers;
+    /// <inheritdoc/>
+    [HarmonyPatch(typeof(AurialRole), "RpcSense", [typeof(PlayerControl)])]
+    public static class OnAurialSense
+    {
+        /// <inheritdoc/>
+        public static bool Prefix(PlayerControl player)
+        {
+            return player.HasModifier<SlyModifier>();
         }
     }
 }

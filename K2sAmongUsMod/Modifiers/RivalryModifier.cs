@@ -13,6 +13,7 @@ using TownOfUs.Modifiers.Neutral;
 using TownOfUs.Roles.Other;
 using System.Runtime.CompilerServices;
 using Reactor.Utilities.Extensions;
+using Rewired;
 
 namespace K2AmongUs.Modifiers.Game.Alliance;
 
@@ -124,7 +125,7 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
     }
 
     /// <inheritdoc/>
-    public static bool WinConditionMet()
+    public override bool? DidWin(GameOverReason reason)
     {
         if(Helpers.GetAlivePlayers().Count((PlayerControl x) => x.HasModifier<RivalryModifier>() && !x.HasDied()) > 1)
             return false;
@@ -132,13 +133,7 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
         if(!Helpers.GetAlivePlayers().Any((PlayerControl x) => x.HasModifier<RivalryModifier>()))
             return false;
 
-        return true;
-    }
-
-    /// <inheritdoc/>
-    public override bool? DidWin(GameOverReason reason)
-    {
-        return WinConditionMet();
+        return !Player.Data.IsDead;
     }
 
     /// <inheritdoc/>
