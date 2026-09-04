@@ -20,7 +20,7 @@ public sealed class HyperfocusOptions : AbstractOptionGroup<HyperfocusModifier>
     public override string GroupName => "Hyperfocus Options";
 
     /// <inheritdoc/>
-    [ModdedNumberOption("Hyperfocus Count", 0f, 15f, 1f)]
+    [ModdedNumberOption("Hyperfocus Count", 0f, 5f, 1f)]
     public float HyperfocusCount { get; set; } = 1f;
     
     /// <inheritdoc/>

@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kaiden\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\K2sAmongUsMod\\K2sAmongUsMod.csproj": {}
+    "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\K2sAmongUsMod\\K2sAmongUsMod.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kaiden\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\K2sAmongUsMod\\K2sAmongUsMod.csproj": {
+    "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\K2sAmongUsMod\\K2sAmongUsMod.csproj": {
       "version": "1.0.0-dev",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kaiden\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\K2sAmongUsMod\\K2sAmongUsMod.csproj",
+        "projectUniqueName": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\K2sAmongUsMod\\K2sAmongUsMod.csproj",
         "projectName": "K2sAmongUsMod",
-        "projectPath": "C:\\Users\\Kaiden\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\K2sAmongUsMod\\K2sAmongUsMod.csproj",
-        "packagesPath": "C:\\Users\\Kaiden\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kaiden\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\K2sAmongUsMod\\obj\\",
+        "projectPath": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\K2sAmongUsMod\\K2sAmongUsMod.csproj",
+        "packagesPath": "C:\\Users\\K2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\K2sAmongUsMod\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Kaiden\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\NuGet.Config",
-          "C:\\Users\\Kaiden\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\NuGet.Config",
+          "C:\\Users\\K2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -28,7 +28,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Users\\Kaiden\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\packages.local\\": {},
+          "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\packages.local\\": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://nuget.bepinex.dev/v3/index.json": {},
           "https://nuget.reactor.gg/v3/index.json": {},

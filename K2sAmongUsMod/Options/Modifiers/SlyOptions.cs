@@ -17,7 +17,7 @@ public sealed class SlyOptions : AbstractOptionGroup<SlyModifier>
     public override string GroupName => "Sly Options";
     
     /// <inheritdoc/>
-    [ModdedNumberOption("Sly Count", 0f, 15f, 1f)]
+    [ModdedNumberOption("Sly Count", 0f, 5f, 1f)]
     public float SlyCount { get; set; } = 1f;
 
     /// <inheritdoc/>

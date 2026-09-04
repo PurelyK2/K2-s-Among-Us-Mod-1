@@ -470,12 +470,6 @@
         <member name="M:K2AmongUs.Modifiers.Game.Universal.SlyModifier.OnLookoutWatch.Prefix(TownOfUs.Modifiers.Crewmate.LookoutWatchedModifier@)">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Modifiers.Game.Universal.SlyModifier.OnAurialSense">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Game.Universal.SlyModifier.OnAurialSense.Prefix(PlayerControl)">
-            <inheritdoc/>
-        </member>
         <member name="T:K2AmongUs.Modifiers.Game.Universal.UnstableModifier">
             <inheritdoc/>
         </member>
@@ -531,6 +525,9 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.RandomlyTeleport">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Universal.UnstableModifier.OnDeath(DeathReason)">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Modifiers.Game.Universal.VentableModifier">
@@ -653,13 +650,28 @@
         <member name="T:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier">
             <inheritdoc/>
         </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier.#ctor(System.Collections.Generic.List{RoleBehaviour})">
+            <inheritdoc/>
+        </member>
+        <member name="F:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier.GossipRoles">
+            <inheritdoc/>
+        </member>
         <member name="P:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier.ModifierName">
             <inheritdoc/>
         </member>
         <member name="P:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier.HideOnUi">
             <inheritdoc/>
         </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier.OnActivate">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier.OnDeath(DeathReason)">
+            <inheritdoc/>
+        </member>
         <member name="M:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier.OnMeetingStart">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier.GenerateGossipRoles(PlayerControl)">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier">
@@ -743,6 +755,12 @@
         <member name="P:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier.ExtraRoleText">
             <inheritdoc/>
         </member>
+        <member name="T:K2AmongUs.Modifiers.Neutral.ZombieArrowModifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Neutral.ZombieArrowModifier.#ctor(DeadBody,UnityEngine.Color)">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.Options.Modifiers.UniversalModifierOptions.BlindOptions">
             <inheritdoc/>
         </member>
@@ -798,6 +816,12 @@
             <inheritdoc/>
         </member>
         <member name="P:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions.RivalsCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions.RivalsChatOff">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions.RivalsKnowOthers">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Options.Modifiers.Game.Universal.VentableOptions">
@@ -929,6 +953,9 @@
         <member name="P:K2AmongUs.Options.Roles.Neutral.ZombieOptions.ZombieShowsRole">
             <inheritdoc/>
         </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.ZombieOptions.ZombieArrows">
+            <inheritdoc/>
+        </member>
         <member name="P:K2AmongUs.Options.Roles.Neutral.ZombieOptions.ZombieReviveTimer">
             <inheritdoc/>
         </member>
@@ -995,7 +1022,7 @@
         <member name="P:K2AmongUs.Roles.Crewmate.GossipRole.Abilities">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Roles.Crewmate.GossipRole.GenerateGossip(PlayerControl)">
+        <member name="M:K2AmongUs.Roles.Crewmate.GossipRole.GenerateGossip(PlayerControl,System.Collections.Generic.List{RoleBehaviour})">
             <inheritdoc/>
         </member>
         <member name="P:K2AmongUs.Roles.Crewmate.GossipRole.RoleColor">
@@ -1178,6 +1205,9 @@
         <member name="M:K2AmongUs.Roles.Neutral.RestlessRole.#ctor(System.IntPtr)">
             <inheritdoc/>
         </member>
+        <member name="F:K2AmongUs.Roles.Neutral.RestlessRole.numMeetingsSkipped">
+            <inheritdoc/>
+        </member>
         <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.DoomHintType">
             <inheritdoc/>
         </member>
@@ -1277,6 +1307,9 @@
         <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.#ctor(System.IntPtr)">
             <inheritdoc/>
         </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.HasImpostorVision">
+            <inheritdoc/>
+        </member>
         <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.RoleAlignment">
             <inheritdoc/>
         </member>
@@ -1332,6 +1365,9 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.ZombieLeaderRole.#ctor(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.HasImpostorVision">
             <inheritdoc/>
         </member>
         <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.RoleAlignment">
@@ -1413,6 +1449,12 @@
             <inheritdoc/>
         </member>
         <member name="M:TouExtensionExample.Patches.RivalsChatPatch.SendChatPatch(ChatController)">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Patches.RivalsChatPatch.RivalsSymbolPatch(System.String@,PlayerControl,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Patches.RivalsKnownDisplay">
             <inheritdoc/>
         </member>
     </members>

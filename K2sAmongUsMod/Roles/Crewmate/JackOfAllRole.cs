@@ -6,6 +6,9 @@ using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
+using TownOfUs.Modifiers;
+using TownOfUs.Modifiers.Game;
+using TownOfUs.Modifiers.Game.Assailant;
 using TownOfUs.Modifiers.Game.Impostor;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
@@ -22,9 +25,9 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
     /// <inheritdoc/>
     public DoomableType DoomHintType => DoomableType.Perception;
     /// <inheritdoc/>
-    public string LocaleKey => "Jack-Of-All-Trades";
+    public string LocaleKey => "Jack Of All";
     /// <inheritdoc/>
-    public string RoleName => "Jack-Of-All-Trades";
+    public string RoleName => "Jack Of All";
     /// <inheritdoc/>
     public string RoleDescription => "Have a lot of modifiers";
     /// <inheritdoc/>
@@ -75,12 +78,16 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
         {
             List<BaseModifier> modifiers =
                     ModifierManager.Modifiers
-                    .Where(m => m is GameModifier
+                    .Where(m => (m is GameModifier
                     && (m as GameModifier)?.GetAmountPerGame() > 0
                     && (m as GameModifier)?.GetAssignmentChance() > 0
                     && (m as GameModifier)?.CanSpawnOnCurrentMode() == true
                     && !player.HasModifier(m.TypeId)
                     && !(m is DeadlyQuotaModifier)
+                    && !(m is AllianceGameModifier)
+                    && !(m is TelepathModifier)
+                    && (!(m is DoubleShotModifier) || player.HasModifier<AssassinModifier>()))
+                    || m is KnightedModifier
                 ).ToList();
 
             if(modifiers.Count == 0)

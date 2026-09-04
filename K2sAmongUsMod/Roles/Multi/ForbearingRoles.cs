@@ -16,7 +16,7 @@ using TownOfUs.Roles.Crewmate;
 namespace K2AmongUs.Roles.Neutral;
 
 /// <inheritdoc/>
-public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
+public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, ICrewVariant
 {
     /// <inheritdoc/>
     public DoomableType DoomHintType => DoomableType.Trickster;
@@ -43,8 +43,11 @@ public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownO
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.SinisterIntro,
-        Icon = TouRoleIcons.Jackal
+        Icon = TouRoleIcons.Jackal,
+        TasksCountForProgress = true
     };
+
+    public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<SheriffRole>();
 
     /// <inheritdoc/>
     public override void OnVotingComplete()
@@ -67,13 +70,16 @@ public sealed class ForbearingRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownO
     /// <inheritdoc/>
     public override bool DidWin(GameOverReason gameOverReason)
     {
-        return base.DidWin(gameOverReason) && !(Player.GetRoleWhenAlive() is RestlessRole);
+        return  DestroyableSingleton<RoleManager>.Instance.GetRole(0).DidWin(gameOverReason);
     }
 }
 
 /// <inheritdoc/>
 public sealed class RestlessRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, IUnguessable
 {
+    /// <inheritdoc/>
+    public int numMeetingsSkipped;
+
     /// <inheritdoc/>
     public DoomableType DoomHintType => DoomableType.Fearmonger;
 
@@ -127,7 +133,7 @@ public sealed class RestlessRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
 
             if(OptionGroupSingleton<ForbearingOptions>.Instance.RestlessEveryMeeting)
             {
-                OptionGroupSingleton<ForbearingOptions>.Instance.RestlessCooldown = Mathf.Max(0, OptionGroupSingleton<ForbearingOptions>.Instance.RestlessCooldown - OptionGroupSingleton<ForbearingOptions>.Instance.RestlessMeetingDecrease);
+                numMeetingsSkipped++;
             }
         }
     }

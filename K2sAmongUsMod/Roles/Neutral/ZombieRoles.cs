@@ -18,12 +18,32 @@ using TownOfUs.Roles.Crewmate;
 using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
+using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Gameplay;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Gameplay;
+using MiraAPI.GameOptions;
+using MiraAPI.Modifiers;
+using MiraAPI.Roles;
+using Reactor.Utilities;
+using TownOfUs.Events.TouEvents;
+using TownOfUs.Modifiers.Neutral;
+using TownOfUs.Options.Roles.Neutral;
+using TownOfUs.Roles.Neutral;
+using TownOfUs.Utilities;
 
 namespace K2AmongUs.Roles.Neutral;
 
 /// <inheritdoc/>
 public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IUnguessable, IContinuesGame
 {
+    /// <inheritdoc/>
+    public bool HasImpostorVision => true;
     /// <inheritdoc/>
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralEvil;
     /// <inheritdoc/>
@@ -113,6 +133,8 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
 public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, IUnguessable, ICrewVariant
 {
     /// <inheritdoc/>
+    public bool HasImpostorVision => true;
+    /// <inheritdoc/>
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralEvil;
     /// <inheritdoc/>
     public DoomableType DoomHintType => DoomableType.Death;
@@ -134,7 +156,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.ScreamIntro,
-        Icon = TouNeutAssets.PestKillSprite
+        Icon = TouNeutAssets.PestKillSprite,
     };
 
     /// <inheritdoc/>
@@ -223,5 +245,40 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 
         var console = usable.TryCast<Console>()!;
         return console == null || console.AllowImpostor;
+    }
+
+    // Zombie Leader Arrow
+    [RegisterEvent(0)]
+    public static void AfterMurderEventHandler(AfterMurderEvent @event)
+    {
+        if (!CustomRoleUtils.GetActiveRolesOfType<ZombieLeaderRole>().HasAny())
+        {
+            return;
+        }
+
+        if (!OptionGroupSingleton<ZombieOptions>.Instance.ZombieArrows)
+        {
+            return;
+        }
+
+        Coroutines.Start(CoCreateArrow(@event.Target));
+    }
+
+    private static System.Collections.IEnumerator CoCreateArrow(PlayerControl target)
+    {
+        var deadBody = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(x => x.ParentId == target.PlayerId);
+
+        if (deadBody == null)
+        {
+            yield break;
+        }
+
+        foreach (var zombieRole in CustomRoleUtils.GetActiveRolesOfType<ZombieLeaderRole>().Select(x => x.Player))
+        {
+            if (zombieRole.AmOwner)
+            {
+                zombieRole.AddModifier<ZombieArrowModifier>(deadBody, Color.white);
+            }
+        }
     }
 }

@@ -17,7 +17,7 @@ public sealed class VentableOptions : AbstractOptionGroup<VentableModifier>
     public override string GroupName => "Ventable Options";
     
     /// <inheritdoc/>
-    [ModdedNumberOption("Ventable Count", 0f, 15f, 1f)]
+    [ModdedNumberOption("Ventable Count", 0f, 5f, 1f)]
     public float VentableCount { get; set; } = 1f;
 
     /// <inheritdoc/>

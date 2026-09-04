@@ -107,7 +107,6 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
         }
     }
 
-
     /// <inheritdoc/>
     void RandomlyTeleport()
     {
@@ -136,4 +135,13 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
 
         return UnityEngine.Random.Range(minTPTime, maxTPTime);
     }
+
+    /// <inheritdoc/>
+    public override void OnDeath(DeathReason reason)
+    {
+        base.OnDeath(reason);
+
+        Player.RemoveModifier(this);
+    }
+
 }

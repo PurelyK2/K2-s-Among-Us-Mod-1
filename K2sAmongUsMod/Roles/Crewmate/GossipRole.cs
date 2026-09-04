@@ -46,42 +46,18 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
     }
     
     /// <inheritdoc/>
-    public static void GenerateGossip(PlayerControl player)
+    public static void GenerateGossip(PlayerControl player, List<RoleBehaviour> randomRolesList)
     {
+        if(!(OptionGroupSingleton<GossipOptions>.Instance.ShowGossip || PlayerControl.LocalPlayer.Data.Role is GossipRole))
+        {
+            return;
+        }
+
         string alertString = "Gossip Has Been Spread About " + player.Data.PlayerName + "! View Details In The Chat!";
         MiraAPI.Utilities.Helpers.CreateAndShowNotification(alertString, Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());
 
         string gossipString = "";
-        int randRolesCount = (int)OptionGroupSingleton<GossipOptions>.Instance.GossipRoles;
 
-        List<RoleBehaviour> allRoles = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().ToList();
-        List<RoleBehaviour> possibleRoles = new List<RoleBehaviour>();
-        foreach(RoleBehaviour role in allRoles)
-        {
-            RoleManager.RoleAssignmentData roleData = CustomRoleUtils.GetAssignData(role.Role);
-            if(roleData.Chance > 0 && roleData.Count > 0 && CustomRoleUtils.CanSpawnOnCurrentMode(role))
-            {
-                possibleRoles.Add(role);
-            }
-        }
-
-        possibleRoles.RemoveAll(role => role.GetType() == player.GetRoleWhenAlive().GetType());
-
-        List<RoleBehaviour> randomRolesList = new List<RoleBehaviour> { player.GetRoleWhenAlive() };
-
-        for(int i = 0; i < randRolesCount; i++)
-        {
-            if(possibleRoles.Count == 0)
-            {
-                Error("No Roles For Gossip To Add");
-                break;
-            }
-
-            RoleBehaviour newRole = possibleRoles[UnityEngine.Random.Range(0, possibleRoles.Count)];
-
-            possibleRoles.Remove(newRole);
-            randomRolesList.Add(newRole);
-        }
         randomRolesList.Shuffle();
 
         foreach(string roleName in randomRolesList.Select(role => role.GetRoleName()))

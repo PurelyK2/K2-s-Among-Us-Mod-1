@@ -65,7 +65,7 @@ public sealed class OverhearButton : TownOfUsRoleButton<GossipRole, PlayerContro
             }
         }
 
-        Target.RpcAddModifier<GossipOverhearModifier>();
+        Target.RpcAddModifier<GossipOverhearModifier>(GossipOverhearModifier.GenerateGossipRoles(Target));
 
         string notifyString = "You are overhearing someone's conversation.\nYou will tell everyone something about them next meeting.";
         MiraAPI.Utilities.Helpers.CreateAndShowNotification(notifyString, Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());

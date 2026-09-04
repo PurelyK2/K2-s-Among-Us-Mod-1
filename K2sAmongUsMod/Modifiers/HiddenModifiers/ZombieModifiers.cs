@@ -3,6 +3,7 @@ using K2AmongUs.Roles.Neutral;
 using MiraAPI.GameOptions;
 using TownOfUs.Modifiers;
 using TownOfUs.Modules;
+using UnityEngine;
 
 namespace K2AmongUs.Modifiers.Neutral;
 
@@ -26,4 +27,10 @@ public sealed class ZombieRevealedModifier : BaseRevealModifier
     public override bool Visible => shouldShow;
     /// <inheritdoc/>
     public override string ExtraRoleText => string.Empty;
+}
+
+/// <inheritdoc/>
+public sealed class ZombieArrowModifier(DeadBody deadBody, Color color) : ArrowDeadBodyModifier(deadBody, color, 0)
+{
+    public override string ModifierName => "Zombie Arrow";
 }

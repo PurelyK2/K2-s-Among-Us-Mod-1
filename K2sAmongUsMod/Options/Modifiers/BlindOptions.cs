@@ -20,7 +20,7 @@ public sealed class BlindOptions : AbstractOptionGroup<BlindModifier>
     public override string GroupName => "Blind Options";
 
     /// <inheritdoc/>
-    [ModdedNumberOption("Blind Count", 0f, 15f, 1f)]
+    [ModdedNumberOption("Blind Count", 0f, 5f, 1f)]
     public float BlindCount { get; set; } = 1f;
     
     /// <inheritdoc/>

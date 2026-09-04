@@ -19,6 +19,10 @@ public sealed class ZombieOptions : AbstractOptionGroup<ZombieLeaderRole>
     public bool ZombieShowsRole { get; set; } = true;
 
     /// <inheritdoc/>
+    [ModdedToggleOption("Zombie Leader Has Arrows To Dead")]
+    public bool ZombieArrows { get; set; } = true;
+
+    /// <inheritdoc/>
     [ModdedNumberOption("Zombie Revive Timer", 0f, 120f, 5f, MiraNumberSuffixes.Seconds)]
     public float ZombieReviveTimer { get; set; } = 5f;
 }

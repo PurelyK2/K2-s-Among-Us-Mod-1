@@ -25,4 +25,12 @@ public sealed class RivalryOptions : AbstractOptionGroup<RivalryModifier>
     /// <inheritdoc/>
     [ModdedNumberOption("Max Rivals Count", 2f, 15f, 1f)]
     public float RivalsCount { get; set; } = 2f;
+
+    /// <inheritdoc/>
+    [ModdedToggleOption("Disable Rivals Chat")]
+    public bool RivalsChatOff { get; set; } = false;
+
+    /// <inheritdoc/>
+    [ModdedToggleOption("Rivals Know Each Other")]
+    public bool RivalsKnowOthers { get; set; } = true;
 }

@@ -24,7 +24,7 @@ public sealed class RestlessKillButton : TownOfUsKillRoleButton<RestlessRole, Pl
     /// <inheritdoc/>
     public override Color TextOutlineColor => K2AmongUsColors.Mimic;
     /// <inheritdoc/>
-    public override float Cooldown => OptionGroupSingleton<ForbearingOptions>.Instance.RestlessCooldown;
+    public override float Cooldown => OptionGroupSingleton<ForbearingOptions>.Instance.RestlessCooldown - OptionGroupSingleton<ForbearingOptions>.Instance.RestlessMeetingDecrease * Role.numMeetingsSkipped;
     /// <inheritdoc/>
     public override LoadableAsset<Sprite> Sprite => TouAssets.KillSprite;
 

@@ -68,4 +68,18 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
     }
 }
 
-// Let Sneak End Early
+// Mimic Doesn't have a wiki description
+// Zombie leader doesn't have wiki desc
+// Zombie Doesn't have wiki desc
+// Restless has no wiki description
+// Hyperfocus wiki desc is bugged
+// Change wiki desc for Sly
+
+// Mimic Can't be in draft?
+// Make timer for how long ventable can be in vents
+// Fix Rivals Chat
+
+// Add lawyer?
+
+// Add boo's bounty hunter idea
+// Make Anti-sly?

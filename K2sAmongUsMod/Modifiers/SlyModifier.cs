@@ -129,15 +129,4 @@ public sealed class SlyModifier : TouGameModifier, IWikiDiscoverable
             }
         }
     }
-
-    /// <inheritdoc/>
-    [HarmonyPatch(typeof(AurialRole), "RpcSense", [typeof(PlayerControl)])]
-    public static class OnAurialSense
-    {
-        /// <inheritdoc/>
-        public static bool Prefix(PlayerControl player)
-        {
-            return player.HasModifier<SlyModifier>();
-        }
-    }
 }

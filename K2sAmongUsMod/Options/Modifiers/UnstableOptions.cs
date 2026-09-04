@@ -20,7 +20,7 @@ public sealed class UnstableOptions : AbstractOptionGroup<UnstableModifier>
     public override string GroupName => "Unstable Options";
 
     /// <inheritdoc/>
-    [ModdedNumberOption("Unstable Count", 0f, 15f, 1f)]
+    [ModdedNumberOption("Unstable Count", 0f, 5f, 1f)]
     public float UnstableCount { get; set; } = 1f;
 
     /// <inheritdoc/>
@@ -32,6 +32,6 @@ public sealed class UnstableOptions : AbstractOptionGroup<UnstableModifier>
     public float UnstableMinCooldown { get; set; } = 30f;
 
     /// <inheritdoc/>
-    [ModdedNumberOption("Maximum TP Cooldown", 0, 120f, 5f, MiraNumberSuffixes.Seconds)]
+    [ModdedNumberOption("Maximum TP Cooldown", 5f, 120f, 5f, MiraNumberSuffixes.Seconds)]
     public float UnstableMaxCooldown { get; set; } = 100f;
 }

@@ -1,5 +1,6 @@
 using MiraAPI.Modifiers;
 using TownOfUs.Assets;
+using TownOfUs.Modifiers.Game;
 using UnityEngine;
 
 namespace K2AmongUs.Modifiers.Crewmate;
@@ -13,12 +14,14 @@ public sealed class ScrubberScrubModifier : BaseModifier
     /// <inheritdoc/>
     public override void OnMeetingStart()
     {
-        List<BaseModifier> modifiers = Player.GetModifiers<BaseModifier>().Where(m => !m.HideOnUi).ToList();
+        List<BaseModifier> modifiers = Player.GetModifiers<BaseModifier>().Where(m => !m.HideOnUi && !(m is AllianceGameModifier)).ToList();
 
         foreach(BaseModifier modifier in modifiers)
         {
             Player.RemoveModifier(modifier);
         }
+
+        Player.RemoveModifier(this);
 
         if(Player.AmOwner)
         {

@@ -22,7 +22,7 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
     /// <inheritdoc/>
     public DoomableType DoomHintType => DoomableType.Trickster;
     /// <inheritdoc/>
-    public string RoleName => "Mimic";
+    public string RoleName => "Mimic (Dev)";
     /// <inheritdoc/>
     public string RoleDescription => "Mimic Others Peoples's Abilities After Meetings To Win Alone";
     /// <inheritdoc/>
@@ -39,8 +39,7 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.GlitchSound,
-        Icon = TouAssets.TerminologySprite,
-        TasksCountForProgress = false,
+        Icon = TouAssets.TerminologySprite
     };
 
     /// <inheritdoc/>

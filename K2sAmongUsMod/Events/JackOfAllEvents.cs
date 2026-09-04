@@ -17,7 +17,7 @@ namespace K2AmongUs.Events.Crewmate
 			Info("Completed Task");
 			if(@event.Player.GetRoleWhenAlive() is JackOfAllRole jackOfAllRole)
 			{
-				if(jackOfAllRole.NumTasksUntilMod == 0)
+				if(jackOfAllRole.NumTasksUntilMod <= 1)
 				{
 					JackOfAllRole.CheckAddModifier(@event.Player);
 					jackOfAllRole.NumTasksUntilMod = (int)OptionGroupSingleton<JackOfAllOptions>.Instance.TasksPerMod;

@@ -65,7 +65,7 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
     /// <inheritdoc/>
     public override void OnActivate()
     {
-        if (!base.Player.AmOwner)
+        if (!base.Player.AmOwner || OptionGroupSingleton<RivalryOptions>.Instance.RivalsChatOff)
         {
             return;
         }
@@ -89,7 +89,7 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
     public override void OnMeetingStart()
     {
         base.OnMeetingStart();
-        if (!Player.AmOwner)
+        if (!Player.AmOwner || OptionGroupSingleton<RivalryOptions>.Instance.RivalsChatOff)
         {
             return;
         }
@@ -131,7 +131,7 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
             return false;
 
         if(!Helpers.GetAlivePlayers().Any((PlayerControl x) => x.HasModifier<RivalryModifier>()))
-            return false;
+            return Player.Data.Role.DidWin(reason);
 
         return !Player.Data.IsDead;
     }
