@@ -15,7 +15,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.2")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.3")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
