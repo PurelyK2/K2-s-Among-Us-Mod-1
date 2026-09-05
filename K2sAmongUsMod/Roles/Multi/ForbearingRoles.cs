@@ -38,14 +38,13 @@ public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
     /// <inheritdoc/>
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
     /// <inheritdoc/>
-    public RoleAlignment RoleAlignment => RoleAlignment.NeutralBenign;
+    public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
 
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.SinisterIntro,
-        Icon = TouRoleIcons.Jackal,
-        TasksCountForProgress = true
+        Icon = TouRoleIcons.Jackal
     };
 
     public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<SheriffRole>();
@@ -74,7 +73,7 @@ public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
     /// <inheritdoc/>
     public override bool DidWin(GameOverReason gameOverReason)
     {
-        return  DestroyableSingleton<RoleManager>.Instance.GetRole(0).DidWin(gameOverReason);
+        return false;
     }
 }
 
@@ -102,7 +101,7 @@ public sealed class RestlessRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     public string RoleLongDescription => "Kill with a lower cooldown after each tie or skip";
     
     /// <inheritdoc/>
-    public string GetAdvancedDescription() { return "(Comes From Forbearing) Once a meeting is tied, you'll turn into this role" + MiscUtils.AppendOptionsText(base.GetType()); }
+    public string GetAdvancedDescription() { return "(Comes From Forbearing) Once a meeting is tied, you'll turn into this role" + MiscUtils.AppendOptionsText(typeof(ForbearingRole)); }
     
 
     /// <inheritdoc/>

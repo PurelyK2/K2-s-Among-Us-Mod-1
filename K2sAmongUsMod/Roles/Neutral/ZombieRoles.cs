@@ -78,6 +78,17 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
         TasksCountForProgress = false,
     };
 
+    /// <inheritdoc/>
+    public List<CustomButtonWikiDescription> Abilities
+    {
+        get
+        {
+            return new List<CustomButtonWikiDescription>
+            {
+				new("Infect", "Mark A Player. If They Die This Round, They Will Revive As A Zombie", TouRoleIcons.Altruist),
+            };
+        }
+    }
 
     /// <inheritdoc/>
     public override void OnRoleSet()
@@ -87,6 +98,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
             Player.RemoveModifier(modifier);
         }
         Player.AddModifier<ZombieRevealedModifier>();
+        Player.AddModifier<BasicGhostModifier>();
     }
     
     /// <inheritdoc/>
@@ -105,15 +117,6 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
             return zombieLeader.DidWin(gameOverReason);
         }
         return false;
-    }
-
-    /// <inheritdoc/>
-    public override void OnMeetingStart()
-    {
-        Player.RpcSpecialMurder(Player, true, true, true, true, false, false, false, false, "Unalived");
-        
-        if(!Player.HasModifier<ZombieRevealedModifier>())
-            Player.AddModifier<ZombieRevealedModifier>();
     }
 
     /// <inheritdoc/>
@@ -138,6 +141,8 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     /// <inheritdoc/>
     public void Update()
     {
+        if(Player == null || Player.Data.IsDead) return;
+
         if(!MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.GetRoleWhenAlive() is ZombieLeaderRole))
         {
             Player.RpcSpecialMurder(Player, true, true, true, false, false, false, true, true, "Leaderless");
@@ -164,6 +169,18 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     
     /// <inheritdoc/>
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+
+    /// <inheritdoc/>
+    public List<CustomButtonWikiDescription> Abilities
+    {
+        get
+        {
+            return new List<CustomButtonWikiDescription>
+            {
+				new("Infect", "Mark A Player. If They Die This Round, They Will Revive As A Zombie", TouRoleIcons.Altruist),
+            };
+        }
+    }
 
     /// <inheritdoc/>
     public Color RoleColor => new Color32(84, 192, 113, byte.MaxValue);
@@ -244,41 +261,6 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 
         var console = usable.TryCast<Console>()!;
         return console == null || console.AllowImpostor;
-    }
-
-    // Zombie Leader Arrow
-    [RegisterEvent(0)]
-    public static void AfterMurderEventHandler(AfterMurderEvent @event)
-    {
-        if (!CustomRoleUtils.GetActiveRolesOfType<ZombieLeaderRole>().HasAny())
-        {
-            return;
-        }
-
-        if (!OptionGroupSingleton<ZombieOptions>.Instance.ZombieArrows)
-        {
-            return;
-        }
-
-        Coroutines.Start(CoCreateArrow(@event.Target));
-    }
-
-    private static System.Collections.IEnumerator CoCreateArrow(PlayerControl target)
-    {
-        var deadBody = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(x => x.ParentId == target.PlayerId);
-
-        if (deadBody == null)
-        {
-            yield break;
-        }
-
-        foreach (var zombieRole in CustomRoleUtils.GetActiveRolesOfType<ZombieLeaderRole>().Select(x => x.Player))
-        {
-            if (zombieRole.AmOwner)
-            {
-                zombieRole.AddModifier<ZombieArrowModifier>(deadBody, Color.white);
-            }
-        }
     }
 
     public bool ContinuesGame

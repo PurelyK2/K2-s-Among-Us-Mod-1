@@ -45,6 +45,7 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
             return (playerCount >= 2 && TownOfUs.Utilities.MiscUtils.KillersAliveCount > 0);
         }
     }
+
     /// <inheritdoc/>
     public override string GetDescription()
     {
@@ -53,7 +54,7 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
     /// <inheritdoc/>
     public string GetAdvancedDescription()
     {
-        return "You win if you survive for longer than your rival(s)";
+        return "You win if you survive for longer than your rivals";
     }
     /// <inheritdoc/>
     public override LoadableAsset<Sprite> ModifierIcon => TouRoleIcons.Haunter;
@@ -129,9 +130,13 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
 
 
     /// <inheritdoc/>
-    public static string RivalsString()
+    public string RivalsString()
     {
-        return "Outlast your " + (MiraAPI.Modifiers.ModifierUtils.GetPlayersWithModifier<RivalryModifier>().Count() - 1) + " rivals to win";
+        if(Player != null)
+            return "Outlast your " + (MiraAPI.Modifiers.ModifierUtils.GetPlayersWithModifier<RivalryModifier>().Count() - 1) + " rivals to win"
+                + "\n(" + string.Join(", ", GetAllRivals().Select(p => p.Data.PlayerName)) + ")";
+        else
+            return "Outlast your " + (MiraAPI.Modifiers.ModifierUtils.GetPlayersWithModifier<RivalryModifier>().Count() - 1) + " rivals to win";
     }
 
     /// <inheritdoc/>

@@ -1,12 +1,12 @@
-using K2AmongUs.Modifiers.Crewmate;
+using K2AmongUs.Modifiers.Neutral;
 using MiraAPI.GameOptions;
 using MiraAPI.Hud;
 using MiraAPI.Keybinds;
 using MiraAPI.Modifiers;
 using MiraAPI.Utilities.Assets;
 using Reactor.Utilities;
-using K2AmongUs.Options.Roles.Crewmate;
-using K2AmongUs.Roles.Crewmate;
+using K2AmongUs.Options.Roles.Neutral;
+using K2AmongUs.Roles.Neutral;
 using TownOfUs.Assets;
 using TownOfUs.Buttons;
 using TownOfUs.Utilities;
@@ -50,11 +50,6 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
         }
         this.OnClick();
     }
-    /// <inheritdoc/>
-    public override ButtonUsesMode UsesMode => ButtonUsesMode.PerGame;
-    /// <inheritdoc/>
-    public override int MaxUses => (int)OptionGroupSingleton<ScrubberOptions>.Instance.MaxScrubs;
-
 	
     /// <inheritdoc/>
     public override bool CanUse()
@@ -73,10 +68,7 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
         if(Role.Player.AmOwner)
         {
             Target.RpcAddModifier<ScrubberScrubModifier>();
-            SetUses(UsesLeft - 1);
             ResetCooldownAndOrEffect();
-            if(UsesLeft == 0 && Button != null)
-                Button.usesRemainingSprite.color = Color.grey;
         }
     }
 }

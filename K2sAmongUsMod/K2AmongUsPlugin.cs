@@ -68,22 +68,24 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
     }
 }
 
-// Change wiki desc for Sly
-// Fix restless wiki desc
-// zombie doesn't have desc
-// Zombie leader doesnt have desc
-
-// Make timer for how long ventable can be in vents
 // Fix Rivals Chat
 
-// Add lawyer?
 // Add boo's bounty hunter idea
 // Make Anti-sly?
 
-
-// Zombies Can Turn To Spectre
 // Zombies Win With Crew (Check vamp conversion stuff for caveat?)
+// Overhaul zombies (bite, if bitten dies, they become a zombie)
 
-// Scrubber to neutral?
 // Rival icons can't be seen in-game
 // Rivals Can Be Guessed
+
+// Hyperfocus triggers with ANY menu
+
+// Change ventable to a button modifier?
+// Make timer for how long ventable can be in vents
+
+// Imp that can Hijack tasks?
+
+// Sly but imp (random not-in-play crew for every )
+
+//Neut outlier that needs to guess exactly 1 person's role

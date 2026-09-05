@@ -82,12 +82,6 @@
         <member name="M:K2AmongUs.Buttons.Crewmate.ScrubberScrubButton.ClickHandler">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Crewmate.ScrubberScrubButton.UsesMode">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Buttons.Crewmate.ScrubberScrubButton.MaxUses">
-            <inheritdoc/>
-        </member>
         <member name="M:K2AmongUs.Buttons.Crewmate.ScrubberScrubButton.CanUse">
             <inheritdoc/>
         </member>
@@ -193,40 +187,31 @@
         <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.OnClick">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Buttons.Neutral.ZombieReviveButton">
+        <member name="T:K2AmongUs.Buttons.Neutral.ZombieInfectButton">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.ZombieReviveButton.Name">
+        <member name="P:K2AmongUs.Buttons.Neutral.ZombieInfectButton.Name">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.ZombieReviveButton.Keybind">
+        <member name="P:K2AmongUs.Buttons.Neutral.ZombieInfectButton.Keybind">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.ZombieReviveButton.TextOutlineColor">
+        <member name="P:K2AmongUs.Buttons.Neutral.ZombieInfectButton.TextOutlineColor">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.ZombieReviveButton.Cooldown">
+        <member name="P:K2AmongUs.Buttons.Neutral.ZombieInfectButton.Cooldown">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.ZombieReviveButton.ZeroIsInfinite">
+        <member name="P:K2AmongUs.Buttons.Neutral.ZombieInfectButton.Sprite">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.ZombieReviveButton.Sprite">
+        <member name="M:K2AmongUs.Buttons.Neutral.ZombieInfectButton.GetTarget">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.ZombieReviveButton.Enabled(RoleBehaviour)">
+        <member name="M:K2AmongUs.Buttons.Neutral.ZombieInfectButton.Enabled(RoleBehaviour)">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.ZombieReviveButton.CanUse">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.ZombieReviveButton.CanClick">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.ZombieReviveButton.OnClick">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.ZombieReviveButton.SetZombieRole(PlayerControl,DeadBody)">
+        <member name="M:K2AmongUs.Buttons.Neutral.ZombieInfectButton.OnClick">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Events.Crewmate.JackOfAllEvents">
@@ -671,15 +656,6 @@
         <member name="M:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier.OnDeath(DeathReason)">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Modifiers.Crewmate.ScrubberScrubModifier">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Crewmate.ScrubberScrubModifier.ModifierName">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Crewmate.ScrubberScrubModifier.OnMeetingStart">
-            <inheritdoc/>
-        </member>
         <member name="T:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier">
             <inheritdoc/>
         </member>
@@ -713,6 +689,15 @@
         <member name="M:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier.OnDeactivate">
             <inheritdoc/>
         </member>
+        <member name="T:K2AmongUs.Modifiers.Neutral.ScrubberScrubModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ScrubberScrubModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Neutral.ScrubberScrubModifier.OnMeetingStart">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier">
             <inheritdoc/>
         </member>
@@ -734,10 +719,7 @@
         <member name="P:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier.ExtraRoleText">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Modifiers.Neutral.ZombieArrowModifier">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Neutral.ZombieArrowModifier.#ctor(DeadBody,UnityEngine.Color)">
+        <member name="T:K2AmongUs.Modifiers.Neutral.ZombieTransformModifier">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Options.Modifiers.UniversalModifierOptions.BlindOptions">
@@ -857,18 +839,6 @@
         <member name="P:K2AmongUs.Options.Roles.Crewmate.JackOfAllOptions.TasksPerMod">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Options.Roles.Crewmate.ScrubberOptions">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Crewmate.ScrubberOptions.GroupName">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Crewmate.ScrubberOptions.ScrubCooldown">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Crewmate.ScrubberOptions.MaxScrubs">
-            <inheritdoc/>
-        </member>
         <member name="T:K2AmongUs.Options.Roles.Crewmate.StealthyOptions">
             <inheritdoc/>
         </member>
@@ -924,6 +894,18 @@
             <inheritdoc/>
         </member>
         <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.CanVent">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AmongUs.Options.Roles.Neutral.ScrubberOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.ScrubberOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.ScrubberOptions.ScrubCooldown">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Roles.Neutral.ScrubberOptions.MaxScrubs">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Options.Roles.Neutral.ZombieOptions">
@@ -1059,45 +1041,6 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Crewmate.JackOfAllRole.CheckAddModifier(PlayerControl)">
-            <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.Roles.Crewmate.ScrubberRole">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Crewmate.ScrubberRole.#ctor(System.IntPtr)">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.ScrubberRole.DoomHintType">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.ScrubberRole.LocaleKey">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.ScrubberRole.RoleName">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.ScrubberRole.RoleDescription">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.ScrubberRole.RoleLongDescription">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Crewmate.ScrubberRole.GetAdvancedDescription">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.ScrubberRole.Abilities">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.ScrubberRole.RoleColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.ScrubberRole.Team">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.ScrubberRole.RoleAlignment">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.ScrubberRole.Configuration">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Roles.Crewmate.StealthyRole">
@@ -1289,6 +1232,45 @@
         <member name="M:K2AmongUs.Roles.Neutral.MimicRole.CanUse(IUsable)">
             <inheritdoc/>
         </member>
+        <member name="T:K2AmongUs.Roles.Neutral.ScrubberRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ScrubberRole.#ctor(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ScrubberRole.DoomHintType">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ScrubberRole.LocaleKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ScrubberRole.RoleName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ScrubberRole.RoleDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ScrubberRole.RoleLongDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ScrubberRole.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ScrubberRole.Abilities">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ScrubberRole.RoleColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ScrubberRole.Team">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ScrubberRole.RoleAlignment">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ScrubberRole.Configuration">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.Roles.Neutral.ZombieRole">
             <inheritdoc/>
         </member>
@@ -1331,6 +1313,9 @@
         <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.Configuration">
             <inheritdoc/>
         </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.Abilities">
+            <inheritdoc/>
+        </member>
         <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.OnRoleSet">
             <inheritdoc/>
         </member>
@@ -1341,9 +1326,6 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.DidWin(GameOverReason)">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.OnMeetingStart">
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.OnVotingComplete">
@@ -1380,6 +1362,9 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.ZombieLeaderRole.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.Abilities">
             <inheritdoc/>
         </member>
         <member name="P:K2AmongUs.Roles.Neutral.ZombieLeaderRole.RoleColor">

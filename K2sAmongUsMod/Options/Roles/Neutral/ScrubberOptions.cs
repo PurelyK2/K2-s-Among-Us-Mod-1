@@ -7,7 +7,7 @@ using K2AmongUs.Roles.Neutral;
 using TownOfUs.Extensions;
 using TownOfUs.Modules.Localization;
 
-namespace K2AmongUs.Options.Roles.Crewmate;
+namespace K2AmongUs.Options.Roles.Neutral;
 
 /// <inheritdoc/>
 public sealed class ScrubberOptions : AbstractOptionGroup<ScrubberRole>
