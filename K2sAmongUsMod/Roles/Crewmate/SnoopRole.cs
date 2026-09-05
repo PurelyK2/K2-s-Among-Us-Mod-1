@@ -44,7 +44,7 @@ public sealed class StealthyRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfU
     /// <inheritdoc/>
     public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
     /// <inheritdoc/>
-    public RoleAlignment RoleAlignment => RoleAlignment.CrewmateSupport;
+    public RoleAlignment RoleAlignment => RoleAlignment.CrewmateInvestigative;
 
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)

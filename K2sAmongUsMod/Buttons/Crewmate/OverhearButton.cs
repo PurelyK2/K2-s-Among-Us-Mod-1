@@ -50,12 +50,6 @@ public sealed class OverhearButton : TownOfUsRoleButton<GossipRole, PlayerContro
             Error("Gossip Overhear: Target is null");
             return;
         }
-        
-        IDoomable? doomableRole = Target.GetRoleWhenAlive() as IDoomable;
-        if(doomableRole == null)
-        {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("You can't overhear this person.", Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());
-        }
 
         foreach(PlayerControl player in PlayerControl.AllPlayerControls)
         {
@@ -65,7 +59,9 @@ public sealed class OverhearButton : TownOfUsRoleButton<GossipRole, PlayerContro
             }
         }
 
-        Target.RpcAddModifier<GossipOverhearModifier>(GossipOverhearModifier.GenerateGossipRoles(Target));
+        GossipOverhearModifier gossipModifier = new GossipOverhearModifier(GossipOverhearModifier.GenerateGossipRoles(Target));
+
+        Target.AddModifier(gossipModifier);
 
         string notifyString = "You are overhearing someone's conversation.\nYou will tell everyone something about them next meeting.";
         MiraAPI.Utilities.Helpers.CreateAndShowNotification(notifyString, Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());

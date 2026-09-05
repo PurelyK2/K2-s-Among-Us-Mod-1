@@ -34,7 +34,7 @@ public sealed class SlyModifier : TouGameModifier, IWikiDiscoverable
     /// <inheritdoc/>
     public override string GetDescription()
     {
-        return IntroInfo;
+        return "Hide your role from those who might use it against you. \n(Seer, Lookout, and Trapper will see you as crewmate)";
     }
     /// <inheritdoc/>
     public string GetAdvancedDescription()

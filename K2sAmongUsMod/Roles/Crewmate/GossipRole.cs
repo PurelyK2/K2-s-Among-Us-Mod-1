@@ -68,7 +68,7 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
         gossipString = gossipString.Substring(2);
         gossipString = player.Data.PlayerName + " is one of the following roles:\n" + gossipString;
 
-        MiscUtils.AddSystemChat(player.Data, "Gossip", gossipString, false, true, true);
+        MiscUtils.AddFakeChat(player.Data, "Gossip:", gossipString, false, true);
     }
     
     /// <inheritdoc/>

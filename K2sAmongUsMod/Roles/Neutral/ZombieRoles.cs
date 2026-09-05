@@ -52,6 +52,10 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     public string RoleDescription => "THE APOCOLYPSE HAS BEGUN!";
     /// <inheritdoc/>
     public string RoleLongDescription => "Convert Dead Players Into Zombies.";
+    
+    /// <inheritdoc/>
+    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+
     /// <inheritdoc/>
     public Color RoleColor => new Color32(84, 192, 113, byte.MaxValue);
     /// <inheritdoc/>
@@ -78,6 +82,10 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     /// <inheritdoc/>
     public override void OnRoleSet()
     {
+        foreach(BaseModifier modifier in Player.GetModifiers<BaseModifier>().Where(m => !m.HideOnUi))
+        {
+            Player.RemoveModifier(modifier);
+        }
         Player.AddModifier<ZombieRevealedModifier>();
     }
     
@@ -127,10 +135,19 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
         return console == null || console.AllowImpostor;
     }
 
+    /// <inheritdoc/>
+    public void Update()
+    {
+        if(!MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.GetRoleWhenAlive() is ZombieLeaderRole))
+        {
+            Player.RpcSpecialMurder(Player, true, true, true, false, false, false, true, true, "Leaderless");
+            Player.RpcChangeRole(RoleId.Get<NeutralGhostRole>());
+        }
+    }
 }
 
 /// <inheritdoc/>
-public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, IUnguessable, ICrewVariant
+public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, IUnguessable, ICrewVariant, IContinuesGame
 {
     /// <inheritdoc/>
     public bool HasImpostorVision => true;
@@ -143,7 +160,11 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     /// <inheritdoc/>
     public string RoleDescription => "START AN APOCOLYPSE";
     /// <inheritdoc/>
-    public string RoleLongDescription => "Convert Dead Players Into Zombies.";
+    public string RoleLongDescription => "Convert Dead Players Into Zombies. To win alone!";
+    
+    /// <inheritdoc/>
+    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+
     /// <inheritdoc/>
     public Color RoleColor => new Color32(84, 192, 113, byte.MaxValue);
     /// <inheritdoc/>
@@ -197,28 +218,6 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
             Info("Should Win!");
             NetworkedPlayerInfo[] winners = PlayerControl.AllPlayerControls.ToArray().Where(p => p.GetRoleWhenAlive() is ZombieRole || p.GetRoleWhenAlive() is ZombieLeaderRole).Select(p => p.Data).ToArray();
 		    CustomGameOver.Trigger<ZombieGameOver>(winners);
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void OnDeath(DeathReason reason)
-    {
-        List<PlayerControl> zombies = Helpers.GetAlivePlayers().Where(p => p.GetRoleWhenAlive() is ZombieRole).ToList();
-        
-        Player.RpcSpecialMultiMurder(zombies, true, true, true, true, true, false, false, false, "Leaderless");
-
-        foreach(PlayerControl zombie in zombies)
-        {
-            DeathHandlerModifier? modifier = zombie.GetModifier<DeathHandlerModifier>();
-            if(modifier != null)
-            {
-                modifier.CauseOfDeath = "Leaderless";
-                modifier.ExtendedCauseOfDeath = "Leaderless";
-            }
-            else
-            {
-                Error("Zombie Doesn't Have Death Handler Modifier");
-            }
         }
     }
 
@@ -279,6 +278,17 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
             {
                 zombieRole.AddModifier<ZombieArrowModifier>(deadBody, Color.white);
             }
+        }
+    }
+
+    public bool ContinuesGame
+    {
+        get
+        {
+            bool killersAlive = TownOfUs.Utilities.MiscUtils.KillersAliveCount > 0;
+            bool hasZombies = PlayerControl.AllPlayerControls.ToArray().Any(p => p.Data.Role is ZombieRole);
+
+            return (killersAlive && MiraAPI.Utilities.Helpers.GetAlivePlayers().Count >= 3) || hasZombies;
         }
     }
 }

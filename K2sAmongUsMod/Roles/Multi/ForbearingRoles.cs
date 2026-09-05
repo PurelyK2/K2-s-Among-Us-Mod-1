@@ -12,6 +12,7 @@ using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
 using TownOfUs.Roles.Crewmate;
+using MiraAPI.Modifiers;
 
 namespace K2AmongUs.Roles.Neutral;
 
@@ -35,9 +36,9 @@ public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
     /// <inheritdoc/>
     public Color RoleColor => new Color32(217, 84, 77, byte.MaxValue);
     /// <inheritdoc/>
-    public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
+    public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
     /// <inheritdoc/>
-    public RoleAlignment RoleAlignment => RoleAlignment.CrewmateSupport;
+    public RoleAlignment RoleAlignment => RoleAlignment.NeutralBenign;
 
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
@@ -55,14 +56,17 @@ public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
         if(MeetingHud.Instance.exiledPlayer == null)
         {
             if(PlayerControl.LocalPlayer.GetRoleWhenAlive() is ForbearingRole)
+            {
                 Player.RpcChangeRole(RoleId.Get<RestlessRole>());
+                Player.RpcAddModifier<TownOfUs.Modifiers.Game.Assailant.AssassinModifier>();
+            }
 
             MiraAPI.Utilities.Helpers.CreateAndShowNotification(
                 "There is no decision, a killer has awoken...",
                 RoleColor,
                 new Vector3(0f, 1f, -20f),
                 null,
-                TouModifierIcons.Egotist.LoadAsset()
+                TouRoleIcons.Jackal.LoadAsset()
             );
         }
     }
@@ -95,7 +99,11 @@ public sealed class RestlessRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     public string RoleDescription => "You have become impatient, the time to kill has come";
 
     /// <inheritdoc/>
-    public string RoleLongDescription => "(Comes From Forbearing) Once a meeting is tied, you'll turn into this role";
+    public string RoleLongDescription => "Kill with a lower cooldown after each tie or skip";
+    
+    /// <inheritdoc/>
+    public string GetAdvancedDescription() { return "(Comes From Forbearing) Once a meeting is tied, you'll turn into this role" + MiscUtils.AppendOptionsText(base.GetType()); }
+    
 
     /// <inheritdoc/>
     public Color RoleColor => new Color32(217, 84, 77, byte.MaxValue);

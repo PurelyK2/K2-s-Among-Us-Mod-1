@@ -60,6 +60,7 @@ public static class RivalsChatPatch
     public static void RivalsSymbolPatch(ref string __result, PlayerControl player, bool hidden = false)
     {
         RivalsKnownDisplay.TryAppendRivalsSymbol(ref __result, player);
+        __result += "R";
     }
 }
 

@@ -27,6 +27,10 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
     public string RoleDescription => "Mimic Others Peoples's Abilities After Meetings To Win Alone";
     /// <inheritdoc/>
     public string RoleLongDescription => RoleDescription;
+
+    /// <inheritdoc/>
+    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+
     /// <inheritdoc/>
     public Color RoleColor => Color.green;
     /// <inheritdoc/>

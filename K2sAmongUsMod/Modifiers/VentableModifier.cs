@@ -7,6 +7,7 @@ using TownOfUs.Utilities;
 using UnityEngine;
 using TownOfUs.Modifiers;
 using K2AmongUs.Options.Modifiers.Game.Universal;
+using MiraAPI.Modifiers;
 
 namespace K2AmongUs.Modifiers.Game.Universal;
 
@@ -69,4 +70,14 @@ public sealed class VentableModifier : TouGameModifier, IWikiDiscoverable
     public override int CustomAmount => (int)OptionGroupSingleton<VentableOptions>.Instance.VentableCount;
     /// <inheritdoc/>
     public override int CustomChance => (int)OptionGroupSingleton<VentableOptions>.Instance.VentableChance;
+
+    public override void Update()
+    {
+        base.Update();
+
+        if(Player.Data.Role.CanVent)
+        {
+            Player.RpcRemoveModifier<VentableModifier>();
+        }
+    }
 }

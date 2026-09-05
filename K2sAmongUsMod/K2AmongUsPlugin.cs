@@ -15,7 +15,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.0")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.2")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -68,18 +68,22 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
     }
 }
 
-// Mimic Doesn't have a wiki description
-// Zombie leader doesn't have wiki desc
-// Zombie Doesn't have wiki desc
-// Restless has no wiki description
-// Hyperfocus wiki desc is bugged
 // Change wiki desc for Sly
+// Fix restless wiki desc
+// zombie doesn't have desc
+// Zombie leader doesnt have desc
 
-// Mimic Can't be in draft?
 // Make timer for how long ventable can be in vents
 // Fix Rivals Chat
 
 // Add lawyer?
-
 // Add boo's bounty hunter idea
 // Make Anti-sly?
+
+
+// Zombies Can Turn To Spectre
+// Zombies Win With Crew (Check vamp conversion stuff for caveat?)
+
+// Scrubber to neutral?
+// Rival icons can't be seen in-game
+// Rivals Can Be Guessed

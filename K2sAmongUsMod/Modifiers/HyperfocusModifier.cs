@@ -24,11 +24,10 @@ public sealed class HyperfocusModifier : TouGameModifier, IWikiDiscoverable
     {
         return IntroInfo;
     }
+    
     /// <inheritdoc/>
-    public string GetAdvancedDescription()
-    {
-        return GetDescription() + MiscUtils.AppendOptionsText(base.GetType());
-    }
+    public string GetAdvancedDescription() { return IntroInfo + MiscUtils.AppendOptionsText(base.GetType()); }
+
     /// <inheritdoc/>
     public override ModifierFaction FactionType => ModifierFaction.Crewmate;
 
@@ -42,7 +41,7 @@ public sealed class HyperfocusModifier : TouGameModifier, IWikiDiscoverable
     /// <inheritdoc/>
     public override bool HideOnUi => false;
     /// <inheritdoc/>
-    public override LoadableAsset<Sprite> ModifierIcon => TouModifierIcons.Scout;
+    public override LoadableAsset<Sprite> ModifierIcon => TouAssets.TerminologySprite;
     /// <inheritdoc/>
     public override int GetAmountPerGame()
     {
@@ -52,4 +51,10 @@ public sealed class HyperfocusModifier : TouGameModifier, IWikiDiscoverable
     public override int CustomAmount => (int)OptionGroupSingleton<HyperfocusOptions>.Instance.HyperfocusCount;
     /// <inheritdoc/>
     public override int CustomChance => (int)OptionGroupSingleton<HyperfocusOptions>.Instance.HyperfocusChance;
+
+    /// <inheritdoc/>
+    public override bool IsModifierValidOn(RoleBehaviour role)
+    {
+        return role.IsCrewmate();
+    }
 }

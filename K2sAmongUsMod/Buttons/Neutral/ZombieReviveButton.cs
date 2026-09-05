@@ -16,7 +16,7 @@ using K2AmongUs.Modifiers.Neutral;
 namespace K2AmongUs.Buttons.Neutral;
 
 /// <inheritdoc/>
-public class ZombieReviveButton : TownOfUsRoleButton<ZombieRole>
+public class ZombieReviveButton : TownOfUsButton
 {
     /// <inheritdoc/>
     public override string Name => "REVIVE";
@@ -32,6 +32,12 @@ public class ZombieReviveButton : TownOfUsRoleButton<ZombieRole>
     public override LoadableAsset<Sprite> Sprite => TouCrewAssets.ReviveSprite;
 
     /// <inheritdoc/>
+    public override bool Enabled(RoleBehaviour role)
+    {
+        return role is ZombieRole || role is ZombieLeaderRole;
+    }
+
+    /// <inheritdoc/>
     public override bool CanUse()
     {
         return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Count > 0;
@@ -40,52 +46,6 @@ public class ZombieReviveButton : TownOfUsRoleButton<ZombieRole>
     public override bool CanClick()
     {
         return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Count > 0;
-    }
-
-    /// <inheritdoc/>
-    protected override void OnClick()
-    {
-        List<DeadBody> bodiesInRange = Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Where(b => !(MiscUtils.PlayerById(b.ParentId).GetRoleWhenAlive() is ZombieLeaderRole)).ToList();
-
-        if(bodiesInRange.Count > 0)
-        {
-            ZombieLeaderReviveButton.SetZombieRole(MiscUtils.PlayerById(bodiesInRange[0].ParentId), bodiesInRange[0]);
-        }
-    }
-}
-
-/// <inheritdoc/>
-public sealed class ZombieLeaderReviveButton : TownOfUsRoleButton<ZombieLeaderRole>
-{
-    /// <inheritdoc/>
-    public override string Name => "REVIVE";
-    /// <inheritdoc/>
-    public override BaseKeybind Keybind => Keybinds.PrimaryAction;
-    /// <inheritdoc/>
-    public override Color TextOutlineColor => new Color32(84, 192, 113, byte.MaxValue);
-    /// <inheritdoc/>
-    public override float Cooldown => 0;
-    /// <inheritdoc/>
-    public override bool ZeroIsInfinite { get; set; } = true;
-
-    /// <inheritdoc/>
-    public override LoadableAsset<Sprite> Sprite
-    {
-        get
-        {
-            return TouCrewAssets.ReviveSprite;
-        }
-    }
-
-    /// <inheritdoc/>
-    public override bool CanUse()
-    {
-        return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Any(b => !(MiscUtils.PlayerById(b.ParentId).GetRoleWhenAlive() is ZombieLeaderRole));
-    }
-    /// <inheritdoc/>
-    public override bool CanClick()
-    {
-        return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Any(b => !(MiscUtils.PlayerById(b.ParentId).GetRoleWhenAlive() is ZombieLeaderRole));
     }
 
     /// <inheritdoc/>

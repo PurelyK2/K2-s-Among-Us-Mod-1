@@ -16,11 +16,9 @@ public sealed class ZombieRevealedModifier : BaseRevealModifier
     public override ChangeRoleResult ChangeRoleResult { get; set; } = ChangeRoleResult.Nothing;
     /// <inheritdoc/>
     public override RoleBehaviour ShownRole => Player.GetRoleWhenAlive();
-
-    static bool shouldShow =
-        OptionGroupSingleton<ZombieOptions>.Instance.ZombieShowsRole
-        || PlayerControl.LocalPlayer.GetRoleWhenAlive() is ZombieLeaderRole
-        || PlayerControl.LocalPlayer.GetRoleWhenAlive() is ZombieRole;
+    //DestroyableSingleton<RoleManager>.Instance.GetRole(RoleId.Get<ImitatorRole>())
+    static bool shouldShow = true;
+    
     /// <inheritdoc/>
     public override bool RevealRole => shouldShow;
     /// <inheritdoc/>

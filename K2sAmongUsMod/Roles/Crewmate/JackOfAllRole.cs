@@ -32,9 +32,8 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
     public string RoleDescription => "Have a lot of modifiers";
     /// <inheritdoc/>
     public string RoleLongDescription => RoleDescription + "\n(May Get More By Doing Tasks)";
-
     /// <inheritdoc/>
-    public RoleAlignment RoleAlignment => RoleAlignment.CrewmateInvestigative;
+    public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;
 
     /// <inheritdoc/>
     public Color RoleColor => Color.white;

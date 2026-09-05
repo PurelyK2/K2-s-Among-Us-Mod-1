@@ -30,4 +30,8 @@ public sealed class ForbearingOptions : AbstractOptionGroup<ForbearingRole>
     /// <inheritdoc/>
     [ModdedToggleOption("Restless Can Vent")]
     public bool RestlessCanVent { get; set; } = true;
+
+    /// <inheritdoc/>
+    [ModdedToggleOption("Restless Is Assassin")]
+    public bool RestlessAssassin { get; set; } = true;
 }

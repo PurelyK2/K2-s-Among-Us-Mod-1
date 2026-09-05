@@ -18,7 +18,7 @@ using Rewired;
 namespace K2AmongUs.Modifiers.Game.Alliance;
 
 /// <inheritdoc/>
-public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, IAssignableTargets
+public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, IAssignableTargets, TownOfUs.Interfaces.IContinuesGame
 {
     /// <inheritdoc/>
     public static Color RivalsColor { get; } = Color.green;
@@ -32,9 +32,19 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
     /// <inheritdoc/>
     public override string ModifierName => "Rivalry";
     /// <inheritdoc/>
-    public override string LocaleKey => "Rival";
+    public override string LocaleKey => "Rivalry";
     /// <inheritdoc/>
     public override string IntroInfo => RivalsString();
+    /// <inheritdoc/>
+    public bool ContinuesGame
+    {
+        get
+        {
+            int playerCount = MiraAPI.Utilities.Helpers.GetAlivePlayers().Count(p => p.HasModifier<RivalryModifier>());
+
+            return (playerCount >= 2 && TownOfUs.Utilities.MiscUtils.KillersAliveCount > 0);
+        }
+    }
     /// <inheritdoc/>
     public override string GetDescription()
     {
@@ -121,7 +131,7 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
     /// <inheritdoc/>
     public static string RivalsString()
     {
-        return "Outlast your " + (GetAllRivals().Count - 1) + " rival(s) to win";
+        return "Outlast your " + (MiraAPI.Modifiers.ModifierUtils.GetPlayersWithModifier<RivalryModifier>().Count() - 1) + " rivals to win";
     }
 
     /// <inheritdoc/>
