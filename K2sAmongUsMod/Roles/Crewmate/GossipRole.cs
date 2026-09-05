@@ -48,11 +48,6 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
     /// <inheritdoc/>
     public static void GenerateGossip(PlayerControl player, List<RoleBehaviour> randomRolesList)
     {
-        if(!(OptionGroupSingleton<GossipOptions>.Instance.ShowGossip || PlayerControl.LocalPlayer.Data.Role is GossipRole))
-        {
-            return;
-        }
-
         string alertString = "Gossip Has Been Spread About " + player.Data.PlayerName + "! View Details In The Chat!";
         MiraAPI.Utilities.Helpers.CreateAndShowNotification(alertString, Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());
 
