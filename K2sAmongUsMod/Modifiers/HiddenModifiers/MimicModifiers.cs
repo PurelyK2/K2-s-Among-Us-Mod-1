@@ -19,6 +19,9 @@ using TownOfUs.Roles.Crewmate;
 using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
+using System;
+using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace K2AmongUs.Modifiers.Neutral;
 
@@ -71,8 +74,8 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole, IContinuesGa
 
     private bool IsExempt(PlayerVoteArea voteArea)
     {
-        var player = GameData.Instance.GetPlayerById(voteArea.TargetPlayerId);
-        if (Player.Data.IsDead || player == null || player.Object == null || voteArea.TargetPlayerId == Player.PlayerId || player.Object.Data.Disconnected)
+        var player = GameData.Instance.GetPlayerById(voteArea.PlayerId);
+        if (Player.Data.IsDead || player == null || player.Object == null || voteArea.PlayerId == Player.PlayerId || player.Object.Data.Disconnected)
         {
             return true;
         }
@@ -127,12 +130,12 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole, IContinuesGa
 
     public void Click(PlayerVoteArea voteArea, MeetingHud __)
     {
-        var player = GameData.Instance.GetPlayerById(voteArea.TargetPlayerId);
+        var player = GameData.Instance.GetPlayerById(voteArea.PlayerId);
 
         if (_selectedPlr == player)
         {
             _selectedPlr = null;
-            _meetingMenu!.Actives[voteArea.TargetPlayerId] = false;
+            _meetingMenu!.Actives[voteArea.PlayerId] = false;
             return;
         }
 
@@ -142,7 +145,7 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole, IContinuesGa
             _selectedPlr = null;
         }
 
-        _meetingMenu!.Actives[voteArea.TargetPlayerId] = true;
+        _meetingMenu!.Actives[voteArea.PlayerId] = true;
         _selectedPlr = player;
     }
 
@@ -256,7 +259,7 @@ public sealed class MimicedRevealedModifier : BaseRevealModifier
         }
         foreach (var voteArea in meeting.playerStates)
         {
-            if (Player.PlayerId == voteArea.TargetPlayerId)
+            if (Player.PlayerId == voteArea.PlayerId)
             {
                 Sprite? roleImg = null;
 

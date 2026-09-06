@@ -14,9 +14,9 @@
       },
       "AmongUs.GameLibs.Steam": {
         "type": "Direct",
-        "requested": "[2025.9.9, )",
-        "resolved": "2025.9.9",
-        "contentHash": "cTDFYQ7awW2pDhqX3ADtQHBTJN3JvuWkOcleQMkdBbNJEVW/kwUu4btdCn6a8hYQXQZ3eocYI/vhwXs3lhiNkA=="
+        "requested": "[2026.8.18, )",
+        "resolved": "2026.8.18",
+        "contentHash": "sSGu2zGYvLboOc83PzPxQ0yGsK1YrhIO/538Tfzc/5FKfEbGCtCQErcKV0wdiYZCHGpCe561RzzfrBtp46jcgQ=="
       },
       "BepInEx.AutoPlugin": {
         "type": "Direct",
