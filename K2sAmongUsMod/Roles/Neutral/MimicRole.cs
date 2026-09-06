@@ -18,7 +18,7 @@ namespace K2AmongUs.Roles.Neutral;
 public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
     public DoomableType DoomHintType => DoomableType.Perception;
-    public string RoleName => "Mimic";
+    public string RoleName => "Mimic (Dev)";
 
     public string RoleDescription => "Mimic Others To Win.";
     public string RoleLongDescription => "Mimic Another Player's Role In Meetings To Hide In Plain Sight.";

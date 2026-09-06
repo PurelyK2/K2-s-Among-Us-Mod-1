@@ -82,4 +82,4 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 // Imp that can Hijack tasks?
 
 // Sly but imp (random not-in-play crew for every )
-//Neut outlier that needs to guess exactly 1 person's role
+// Neut outlier that needs to guess exactly 1 person's role

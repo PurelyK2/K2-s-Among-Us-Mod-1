@@ -41,7 +41,7 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole, IContinuesGa
     private NetworkedPlayerInfo? _selectedPlr;
     public override string ModifierName => "Mimic";
     public string CachedRoleName => "Mimic";
-    public override bool HideOnUi => true;
+    public override bool HideOnUi => false;
     public bool ShowCurrentRoleFirst => true;
 
     public bool Visible => Player.AmOwner || PlayerControl.LocalPlayer.HasDied() ||
@@ -87,14 +87,6 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole, IContinuesGa
         if (Player.HasDied() && Player.AmOwner)
         {
             ModifierUtils.GetActiveModifiers<MimicedRevealedModifier>().Do(x => x.Player.RemoveModifier(x));
-        }
-        if (!Player.IsCrewmate())
-        {
-            var text = "Removed Mimic Cache Modifier On Meeting Start";
-            MiscUtils.LogInfo(TownOfUsEventHandlers.LogLevel.Error, text);
-
-            ModifierComponent?.RemoveModifier(this);
-            return;
         }
 
         var meeting = MeetingHud.Instance;
@@ -151,21 +143,12 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole, IContinuesGa
 
     public void UpdateRole()
     {
-        if (!Player.IsCrewmate())
-        {
-            var text = "Removed Mimic Cache Modifier On Attempt To Update Role";
-            MiscUtils.LogInfo(TownOfUsEventHandlers.LogLevel.Error, text);
-
-            ModifierComponent?.RemoveModifier(this);
-            return;
-        }
-
         if (Player.HasDied())
         {
             return;
         }
 
-        if (_selectedPlr == null || !_selectedPlr.IsDead || _selectedPlr.Disconnected || _selectedPlr.Object == null)
+        if (_selectedPlr == null || _selectedPlr.Disconnected || _selectedPlr.Object == null)
         {
             _selectedPlr = null;
             if (!Player || Player.IsRole<MimicRole>())
@@ -178,17 +161,12 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole, IContinuesGa
         }
 
         var roleWhenAlive = _selectedPlr.Object.GetRoleWhenAlive();
-        if (roleWhenAlive is ICrewVariant crewType)
-        {
-            roleWhenAlive = crewType.CrewVariant;
-        }
 
         if (roleWhenAlive is MimicRole || roleWhenAlive is SurvivorRole || roleWhenAlive.IsSimpleRole)
         {
-            roleWhenAlive = RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<MimicRole>());
+            roleWhenAlive = RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<AurialRole>());
         }
 
-        // Only the Mimic will see this!
         if (!_selectedPlr.Object.HasModifier<MimicedRevealedModifier>())
         {
             _selectedPlr.Object.AddModifier<MimicedRevealedModifier>(roleWhenAlive);
@@ -238,14 +216,10 @@ public sealed class MimicedRevealedModifier : BaseRevealModifier
             return;
         }
         var roleWhenAlive = Player.GetRoleWhenAlive();
-        if (roleWhenAlive is ICrewVariant crewType)
-        {
-            roleWhenAlive = crewType.CrewVariant;
-        }
 
-        if (roleWhenAlive is ImitatorRole || roleWhenAlive is SurvivorRole || roleWhenAlive.IsSimpleRole)
+        if (roleWhenAlive is MimicRole || roleWhenAlive is SurvivorRole || roleWhenAlive.IsSimpleRole)
         {
-            roleWhenAlive = RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<ImitatorRole>());
+            roleWhenAlive = RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<MimicRole>());
         }
         SetNewInfo(true, null, null, roleWhenAlive);
         if (ShownRole == null)

@@ -12,6 +12,8 @@ using UnityEngine;
 using K2AmongUs;
 using TownOfUs.Assets;
 using TownOfUs.Buttons.Neutral;
+using MiraAPI.Modifiers;
+using K2AmongUs.Modifiers.Neutral;
 
 namespace TouExtensionExample.Buttons.Neutral;
 
@@ -29,6 +31,11 @@ public sealed class MimicKillButton : TownOfUsKillRoleButton<MimicRole, PlayerCo
     public override float Cooldown => Math.Clamp(OptionGroupSingleton<MimicOptions>.Instance.KillCooldown + MapCooldown, 5f, 120f);
     /// <inheritdoc/>
     public override LoadableAsset<Sprite> Sprite => TouNeutAssets.GlitchKillSprite;
+
+    public override bool Enabled(RoleBehaviour? role)
+    {
+        return base.Enabled(role) || (role != null && role.Player.HasModifier<MimicCacheModifier>());
+    }
 
     /// <inheritdoc/>
     public override void CreateButton(Transform parent)

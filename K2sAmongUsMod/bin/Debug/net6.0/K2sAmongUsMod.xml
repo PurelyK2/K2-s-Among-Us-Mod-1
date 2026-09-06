@@ -229,12 +229,6 @@
         <member name="M:K2AmongUs.Events.Crewmate.JackOfAllEvents.CompleteTaskEvent(MiraAPI.Events.Vanilla.Player.CompleteTaskEvent)">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Events.Neutral.MimicGameEndEvent">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Events.Neutral.MimicGameEndEvent.GameEndEvent(MiraAPI.Events.Vanilla.Gameplay.GameEndEvent)">
-            <inheritdoc/>
-        </member>
         <member name="T:K2AmongUs.K2AmongUsColors">
             <inheritdoc/>
         </member>
