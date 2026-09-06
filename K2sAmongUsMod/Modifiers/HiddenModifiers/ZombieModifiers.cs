@@ -1,11 +1,16 @@
 using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Roles.Neutral;
+using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameOptions;
-using TownOfUs.Modifiers;
-using TownOfUs.Modules;
-using UnityEngine;
-using TownOfUs.Networking;
 using MiraAPI.Modifiers;
+using MiraAPI.Roles;
+using Reactor.Utilities;
+using TownOfUs.Modifiers;
+using TownOfUs.Modifiers.Game;
+using TownOfUs.Modules;
+using TownOfUs.Networking;
+using UnityEngine;
 
 namespace K2AmongUs.Modifiers.Neutral;
 
@@ -29,41 +34,62 @@ public sealed class ZombieRevealedModifier : BaseRevealModifier
     public override string ExtraRoleText => string.Empty;
 }
 
-/// <inheritdoc/>
-public sealed class ZombieTransformModifier : DisabledModifier
+public sealed class  ZombieAllianceModifier : AllianceGameModifier
 {
-    public bool isZombie = false;
-
-    public override string ModifierName => "Zombie Transform Modifier";
-    public override bool CanBeInteractedWith => true;
-    public override bool IsConsideredAlive => false;
-    public override bool CanUseAbilities => true;
-    public override bool CanReport => false;
-    public override float Duration => 1f;
-
-    public override void OnDeath(DeathReason reason)
+    public override string ModifierName => "Zombie Alliance Modifier";
+    public override bool HideOnUi => true;
+    public override int GetAssignmentChance()
     {
-        if(!isZombie)
-        {
-            Player.RpcFullRevive(false, Player.transform.position, MiraAPI.Roles.RoleId.Get<ZombieRole>());
-            Player.RemoveModifier<TownOfUs.Modifiers.Game.Crewmate.TestCleanModifier>();
-            Player.AddModifier<ZombieRevealedModifier>();
-        }
-
-        isZombie = true;
+        return 0;
     }
 
-    public override void OnMeetingStart()
+    /// <inheritdoc/>
+    public override bool? DidWin(GameOverReason gameOverReason)
     {
-        if(!isZombie)
-            ModifierComponent.RemoveModifier(this);
-        else
+        if (MiraAPI.Utilities.Helpers.GetAlivePlayers().FirstOrDefault(p => p.GetRoleWhenAlive() is ZombieLeaderRole)?.GetRoleWhenAlive() is ZombieLeaderRole zombieLeader)
         {
-            if(!Player.Data.IsDead)
-                Player.RpcSpecialMurder(Player, true, true, true, true, false, false, false, false, "Unalived");
-            
-            if(!Player.HasModifier<ZombieRevealedModifier>())
-                Player.AddModifier<ZombieRevealedModifier>();
+            return zombieLeader.DidWin(gameOverReason);
+        }
+        return false;
+    }
+}
+
+public sealed class ZombieArrowModifier(DeadBody deadBody, Color color) : ArrowDeadBodyModifier(deadBody, color, 0)
+{
+    public override string ModifierName => "Zombie Arrow";
+
+    // Zombie Leader Arrow
+    [RegisterEvent(0)]
+    public static void AfterMurderEventHandler(AfterMurderEvent @event)
+    {
+        if (!CustomRoleUtils.GetActiveRolesOfType<ZombieLeaderRole>().Any())
+        {
+            return;
+        }
+
+        if (!OptionGroupSingleton<ZombieOptions>.Instance.ZombieArrows)
+        {
+            return;
+        }
+
+        Coroutines.Start(CoCreateArrow(@event.Target));
+    }
+
+    private static System.Collections.IEnumerator CoCreateArrow(PlayerControl target)
+    {
+        var deadBody = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(x => x.ParentId == target.PlayerId);
+
+        if (deadBody == null)
+        {
+            yield break;
+        }
+
+        foreach (var zombieRole in CustomRoleUtils.GetActiveRolesOfType<ZombieLeaderRole>().Select(x => x.Player))
+        {
+            if (zombieRole.AmOwner)
+            {
+                zombieRole.AddModifier<ZombieArrowModifier>(deadBody, Color.white);
+            }
         }
     }
 }

@@ -120,6 +120,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
                 PlayerControl randPlayer = playersList[UnityEngine.Random.Range(0, playersList.Count)];
 
                 ushort roleId = RoleId.Get(Player.GetRoleWhenAlive().GetType());
+
                 Player.RpcChangeRole(RoleId.Get<TransporterRole>(), false);
                 TransporterRole.RpcTransport(Player, Player.PlayerId, randPlayer.PlayerId);
                 Player.RpcChangeRole(roleId, false);

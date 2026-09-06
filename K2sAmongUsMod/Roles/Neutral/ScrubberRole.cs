@@ -18,7 +18,7 @@ namespace K2AmongUs.Roles.Neutral;
 /// <inheritdoc/>
 public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
-    bool didWin = false;
+    public bool didWin { get; set; }
 
     /// <inheritdoc/>
     public DoomableType DoomHintType => DoomableType.Fearmonger;
@@ -65,8 +65,15 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     {
         if(Player == null) return;
 
-        if(!MiraAPI.Utilities.Helpers.GetAlivePlayers().Where(p => !p.AmOwner).Select(p => p.GetModifiers<BaseModifier>()).Any(m => m.Any(m => !m.HideOnUi)))
+        foreach(PlayerControl player in MiraAPI.Utilities.Helpers.GetAlivePlayers())
+        {
+            if(player != null && player.GetModifiers<BaseModifier>().Any(m => !m.HideOnUi))
+            {
+                didWin = false;
+                break;
+            }
             didWin = true;
+        }
     }
 
     public void OnRoundStart()
@@ -82,11 +89,31 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     {
         return didWin;
     }
+    public bool WinConditionMet()
+    {
+        return false;
+    }
+
+    public bool MetWinCon => didWin;
 
     public override bool DidWin(GameOverReason gameOverReason)
     {
-        return didWin;
+        return this.didWin;
     }
+
+    /// <inheritdoc/>
+    public override bool CanUse(IUsable usable)
+    {
+        if (!GameManager.Instance.LogicUsables.CanUse(usable, Player))
+        {
+            return false;
+        }
+
+        var console = usable.TryCast<Console>()!;
+        return console == null || console.AllowImpostor;
+    }
+
+
 
     [RegisterEvent(0)]
     public static void RoundStartHandler(RoundStartEvent @event)

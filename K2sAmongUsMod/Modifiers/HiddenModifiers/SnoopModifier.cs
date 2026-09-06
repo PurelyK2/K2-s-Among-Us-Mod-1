@@ -52,7 +52,7 @@ public sealed class StealthySwoopModifier : ConcealedModifier, IVisualAppearance
     /// <inheritdoc/>
     public override void OnMeetingStart()
     {
-        base.Player.RemoveModifier(this);
+        Player.RpcRemoveModifier(this.GetType());
     }
 
     /// <inheritdoc/>

@@ -184,12 +184,12 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
             rival.RpcRemoveModifier<RivalryModifier>();
         }
 
-        int chance = UnityEngine.Random.Range(1, 102);
+        int chance = UnityEngine.Random.Range(1, 101);
         if(chance <= (int)OptionGroupSingleton<RivalryOptions>.Instance.RivalsChance)
         {
             RivalryOptions rivalryOptions = OptionGroupSingleton<RivalryOptions>.Instance;
 
-            List<PlayerControl> players = PlayerControl.AllPlayerControls.ToArray().Where(x => !x.HasModifier<AllianceGameModifier>() && !x.HasModifier<ExecutionerTargetModifier>() && !SpectatorRole.TrackedSpectators.Contains(x.Data.PlayerName)).ToList();
+            List<PlayerControl> players = MiraAPI.Utilities.Helpers.GetAlivePlayers().Where(x => !x.HasModifier<AllianceGameModifier>() && !x.HasModifier<ExecutionerTargetModifier>() && !SpectatorRole.TrackedSpectators.Contains(x.Data.PlayerName)).ToList();
 
             int rivalsCount = (int)rivalryOptions.RivalsCount;
 

@@ -1,14 +1,15 @@
 using HarmonyLib;
-using MiraAPI.Modifiers;
-using TownOfUs.Modules;
-using TownOfUs.Utilities;
+using K2AmongUs.Modifiers.Crewmate;
+using K2AmongUs.Modifiers.Neutral;
+using K2AmongUs.Roles.Neutral;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Gameplay;
+using MiraAPI.Modifiers;
 using MiraAPI.Modifiers.Types;
-using K2AmongUs.Roles.Neutral;
 using MiraAPI.Roles;
 using TownOfUs.Modifiers.Game.Assailant;
-using K2AmongUs.Modifiers.Crewmate;
+using TownOfUs.Modules;
+using TownOfUs.Utilities;
 
 namespace K2AmongUs.Patches;
 
@@ -27,23 +28,6 @@ public static class MimicPatches
             {
                 __result = false;
             }
-        }
-    }
-
-    /// <inheritdoc/>
-    [RegisterEvent(0)]
-    public static void OnRoundStart(RoundStartEvent @event)
-    {
-        if(!PlayerControl.LocalPlayer.HasModifier<MimicRoleModifier>()) return;
-
-        PlayerControl.LocalPlayer.RpcChangeRole(RoleId.Get<MimicRole>());
-
-        if(MiraAPI.Utilities.Helpers.GetAlivePlayers().Count < 2) return;
-
-        //open menu
-        foreach(MimicRole? mimic in MiraAPI.Utilities.Helpers.GetAlivePlayers().Where(x => x.GetRoleWhenAlive() is MimicRole).Select(x => x.GetRoleWhenAlive() as MimicRole))
-        {
-            mimic?.OpenPickingUI();
         }
     }
 }

@@ -25,17 +25,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using MiraAPI.Events;
-using MiraAPI.Events.Vanilla.Gameplay;
-using MiraAPI.GameOptions;
-using MiraAPI.Modifiers;
-using MiraAPI.Roles;
 using Reactor.Utilities;
 using TownOfUs.Events.TouEvents;
 using TownOfUs.Modifiers.Neutral;
 using TownOfUs.Options.Roles.Neutral;
-using TownOfUs.Roles.Neutral;
-using TownOfUs.Utilities;
 
 namespace K2AmongUs.Roles.Neutral;
 
@@ -98,7 +91,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
             Player.RemoveModifier(modifier);
         }
         Player.AddModifier<ZombieRevealedModifier>();
-        Player.AddModifier<BasicGhostModifier>();
+        Player.AddModifier<ZombieAllianceModifier>();
     }
     
     /// <inheritdoc/>

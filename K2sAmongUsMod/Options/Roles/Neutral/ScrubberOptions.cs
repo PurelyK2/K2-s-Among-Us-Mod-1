@@ -18,8 +18,4 @@ public sealed class ScrubberOptions : AbstractOptionGroup<ScrubberRole>
     /// <inheritdoc/>
     [ModdedNumberOption("Scrub Cooldown", 5f, 60f, 5f, MiraNumberSuffixes.Seconds)]
     public float ScrubCooldown { get; set; } = 30f;
-    
-    /// <inheritdoc/>
-    [ModdedNumberOption("Max Scrubs", 0f, 15f, 1f)]
-    public float MaxScrubs { get; set; } = 3f;
 }

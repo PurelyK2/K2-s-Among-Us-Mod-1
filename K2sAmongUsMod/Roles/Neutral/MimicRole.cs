@@ -1,96 +1,54 @@
-﻿using K2AmongUs.Modifiers.Crewmate;
-using MiraAPI.Hud;
+﻿using K2AmongUs.Modifiers.Neutral;
 using MiraAPI.Modifiers;
+using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
+using MiraAPI.Utilities;
+using MiraAPI.Utilities.Assets;
+using System.Text;
+using TMPro;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
-using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
-using TownOfUs.Roles;
-using TownOfUs.Roles.Crewmate;
-using TownOfUs.Roles.Neutral;
-using TownOfUs.Utilities;
 using UnityEngine;
+using TownOfUs.Roles.Neutral;
+using TownOfUs.Roles;
 
 namespace K2AmongUs.Roles.Neutral;
 
-/// <inheritdoc/>
-public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, ICrewVariant
+public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
-    /// <inheritdoc/>
-    public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
-    /// <inheritdoc/>
-    public DoomableType DoomHintType => DoomableType.Trickster;
-    /// <inheritdoc/>
-    public string RoleName => "Mimic (Dev)";
-    /// <inheritdoc/>
-    public string RoleDescription => "Mimic Others Peoples's Abilities After Meetings To Win Alone";
-    /// <inheritdoc/>
-    public string RoleLongDescription => RoleDescription;
+    public DoomableType DoomHintType => DoomableType.Perception;
+    public string RoleName => "Mimic";
 
-    /// <inheritdoc/>
-    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+    public string RoleDescription => "Mimic Others To Win.";
+    public string RoleLongDescription => "Mimic Another Player's Role In Meetings To Hide In Plain Sight.";
 
-    /// <inheritdoc/>
-    public Color RoleColor => Color.green;
-    /// <inheritdoc/>
-    public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
+    public string GetAdvancedDescription()
+    {
+        return RoleLongDescription + TownOfUs.Utilities.MiscUtils.AppendOptionsText(GetType());
+    }
+    public bool CanShowSecondTab => true;
 
-    /// <inheritdoc/>
-    public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<ImitatorRole>();
+    public Color RoleColor => K2AmongUsColors.Mimic;
+    public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
+    public RoleAlignment RoleAlignment => RoleAlignment.CrewmateSupport;
 
-    /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IntroSound = TouAudio.GlitchSound,
-        Icon = TouAssets.TerminologySprite
+        Icon = TouNeutAssets.HackSprite,
+        OptionsScreenshot = TouBanners.CrewmateRoleBanner,
+        IntroSound = TouAudio.SpyIntroSound
     };
 
-    /// <inheritdoc/>
-    public override void OnRoleSet()
+    public override void Initialize(PlayerControl player)
     {
-        if(Player.AmOwner && !Player.HasModifier<MimicRoleModifier>())
+        RoleBehaviourStubs.Initialize(this, player);
+        if (!player.HasModifier<MimicCacheModifier>())
         {
-            Player.AddModifier<MimicRoleModifier>();
+            player.AddModifier<MimicCacheModifier>();
         }
     }
 
-    /// <inheritdoc/>
-    public void OpenPickingUI()
-    {
-        CustomPlayerMenu playerMenu = CustomPlayerMenu.Create();
-        playerMenu.transform.FindChild("PhoneUI").GetChild(0).GetComponent<SpriteRenderer>().material = PlayerControl.LocalPlayer.cosmetics.currentBodySprite.BodySprite.material;
-        playerMenu.transform.FindChild("PhoneUI").GetChild(1).GetComponent<SpriteRenderer>().material = PlayerControl.LocalPlayer.cosmetics.currentBodySprite.BodySprite.material;
-        playerMenu.Begin(delegate(PlayerControl plr)
-        {
-            return !plr.AmOwner;
-        }, delegate (PlayerControl? plr)
-        {
-            playerMenu.ForceClose();
-            if (plr != null)
-            {
-                MimicPlayer(plr);
-            }
-        });
-        foreach (ShapeshifterPanel panel in playerMenu.potentialVictims)
-        {
-            panel.PlayerIcon.cosmetics.SetPhantomRoleAlpha(1f);
-            bool flag = panel.NameText.text != PlayerControl.LocalPlayer.Data.PlayerName;
-            if (flag)
-            {
-                panel.NameText.color = Color.white;
-            }
-        }
-    }
-
-    void MimicPlayer(PlayerControl player)
-    {
-        Player.RpcChangeRole(RoleId.Get(player.GetRoleWhenAlive().GetType()));
-
-        if(!Player.HasModifier<MimicRoleModifier>())
-            Player.AddModifier<MimicRoleModifier>();
-    }
-    
     /// <inheritdoc/>
     public override bool CanUse(IUsable usable)
     {
