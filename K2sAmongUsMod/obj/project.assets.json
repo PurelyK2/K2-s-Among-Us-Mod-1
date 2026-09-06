@@ -19,7 +19,7 @@
           }
         }
       },
-      "AmongUs.GameLibs.Steam/2026.8.18": {
+      "AmongUs.GameLibs.Steam/2025.9.9": {
         "type": "package",
         "build": {
           "build/AmongUs.GameLibs.Steam.props": {}
@@ -1428,13 +1428,13 @@
         "lib/net6.0/MiraAPI.xml"
       ]
     },
-    "AmongUs.GameLibs.Steam/2026.8.18": {
-      "sha512": "sSGu2zGYvLboOc83PzPxQ0yGsK1YrhIO/538Tfzc/5FKfEbGCtCQErcKV0wdiYZCHGpCe561RzzfrBtp46jcgQ==",
+    "AmongUs.GameLibs.Steam/2025.9.9": {
+      "sha512": "cTDFYQ7awW2pDhqX3ADtQHBTJN3JvuWkOcleQMkdBbNJEVW/kwUu4btdCn6a8hYQXQZ3eocYI/vhwXs3lhiNkA==",
       "type": "package",
-      "path": "amongus.gamelibs.steam/2026.8.18",
+      "path": "amongus.gamelibs.steam/2025.9.9",
       "files": [
         ".nupkg.metadata",
-        "amongus.gamelibs.steam.2026.8.18.nupkg.sha512",
+        "amongus.gamelibs.steam.2025.9.9.nupkg.sha512",
         "amongus.gamelibs.steam.nuspec",
         "build/AddressablesPlayAssetDelivery.dll",
         "build/AmongUs.GameLibs.Steam.props",
@@ -1472,9 +1472,10 @@
         "build/System.Xml.dll",
         "build/System.dll",
         "build/Unity.Addressables.dll",
-        "build/Unity.LevelPlay.dll",
+        "build/Unity.Analytics.DataPrivacy.dll",
         "build/Unity.ProBuilder.dll",
         "build/Unity.ResourceManager.dll",
+        "build/Unity.Services.Analytics.dll",
         "build/Unity.Services.Core.Configuration.dll",
         "build/Unity.Services.Core.Device.dll",
         "build/Unity.Services.Core.Environments.Internal.dll",
@@ -1517,6 +1518,7 @@
         "build/UnityEngine.UI.dll",
         "build/UnityEngine.UIElementsModule.dll",
         "build/UnityEngine.UIModule.dll",
+        "build/UnityEngine.UnityAnalyticsCommonModule.dll",
         "build/UnityEngine.UnityAnalyticsModule.dll",
         "build/UnityEngine.UnityWebRequestAssetBundleModule.dll",
         "build/UnityEngine.UnityWebRequestModule.dll",
@@ -4711,7 +4713,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "AllOfUs.MiraAPI >= 0.4.3",
-      "AmongUs.GameLibs.Steam >= 2026.8.18",
+      "AmongUs.GameLibs.Steam >= 2025.9.9",
       "BepInEx.AutoPlugin >= 1.1.0",
       "BepInEx.IL2CPP.MSBuild >= 2.1.0-rc.1",
       "BepInEx.Unity.IL2CPP >= 6.0.0-be.735",
@@ -4788,7 +4790,7 @@
           "AmongUs.GameLibs.Steam": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2026.8.18, )"
+            "version": "[2025.9.9, )"
           },
           "BepInEx.AutoPlugin": {
             "suppressParent": "All",

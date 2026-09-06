@@ -187,31 +187,40 @@
         <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.OnClick">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Buttons.Neutral.ZombieInfectButton">
+        <member name="T:K2AmongUs.Buttons.Neutral.ZombieReviveButton">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.ZombieInfectButton.Name">
+        <member name="P:K2AmongUs.Buttons.Neutral.ZombieReviveButton.Name">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.ZombieInfectButton.Keybind">
+        <member name="P:K2AmongUs.Buttons.Neutral.ZombieReviveButton.Keybind">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.ZombieInfectButton.TextOutlineColor">
+        <member name="P:K2AmongUs.Buttons.Neutral.ZombieReviveButton.TextOutlineColor">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.ZombieInfectButton.Cooldown">
+        <member name="P:K2AmongUs.Buttons.Neutral.ZombieReviveButton.Cooldown">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.ZombieInfectButton.Sprite">
+        <member name="P:K2AmongUs.Buttons.Neutral.ZombieReviveButton.ZeroIsInfinite">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.ZombieInfectButton.GetTarget">
+        <member name="P:K2AmongUs.Buttons.Neutral.ZombieReviveButton.Sprite">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.ZombieInfectButton.Enabled(RoleBehaviour)">
+        <member name="M:K2AmongUs.Buttons.Neutral.ZombieReviveButton.Enabled(RoleBehaviour)">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.ZombieInfectButton.OnClick">
+        <member name="M:K2AmongUs.Buttons.Neutral.ZombieReviveButton.CanUse">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Buttons.Neutral.ZombieReviveButton.CanClick">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Buttons.Neutral.ZombieReviveButton.OnClick">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Buttons.Neutral.ZombieReviveButton.SetZombieRole(PlayerControl,DeadBody)">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Events.Crewmate.JackOfAllEvents">
@@ -221,9 +230,6 @@
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Events.Neutral.MimicGameEndEvent">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Events.Neutral.MimicGameEndEvent.OnRoundStart(MiraAPI.Events.Vanilla.Gameplay.RoundStartEvent)">
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Events.Neutral.MimicGameEndEvent.GameEndEvent(MiraAPI.Events.Vanilla.Gameplay.GameEndEvent)">
@@ -638,24 +644,6 @@
         <member name="M:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier.GenerateGossipRoles(PlayerControl)">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier.ModifierName">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier.HideOnUi">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier.GetAssignmentChance">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier.OnMeetingStart">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Crewmate.MimicRoleModifier.OnDeath(DeathReason)">
-            <inheritdoc/>
-        </member>
         <member name="T:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier">
             <inheritdoc/>
         </member>
@@ -719,7 +707,7 @@
         <member name="P:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier.ExtraRoleText">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Modifiers.Neutral.ZombieTransformModifier">
+        <member name="M:K2AmongUs.Modifiers.Neutral.ZombieAllianceModifier.DidWin(GameOverReason)">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Options.Modifiers.UniversalModifierOptions.BlindOptions">
@@ -905,9 +893,6 @@
         <member name="P:K2AmongUs.Options.Roles.Neutral.ScrubberOptions.ScrubCooldown">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Options.Roles.Neutral.ScrubberOptions.MaxScrubs">
-            <inheritdoc/>
-        </member>
         <member name="T:K2AmongUs.Options.Roles.Neutral.ZombieOptions">
             <inheritdoc/>
         </member>
@@ -930,9 +915,6 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Patches.MimicPatches.GameModifierValidityPatch.Postifx(PlayerControl@,System.UInt32@,System.Boolean@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Patches.MimicPatches.OnRoundStart(MiraAPI.Events.Vanilla.Gameplay.RoundStartEvent)">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Patches.VisionPatch">
@@ -1187,48 +1169,6 @@
         <member name="M:K2AmongUs.Roles.Neutral.RestlessRole.CanUse(IUsable)">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Roles.Neutral.MimicRole">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.MimicRole.#ctor(System.IntPtr)">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.RoleAlignment">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.DoomHintType">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.RoleName">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.RoleDescription">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.RoleLongDescription">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.MimicRole.GetAdvancedDescription">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.RoleColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.Team">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.CrewVariant">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.MimicRole.Configuration">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.MimicRole.OnRoleSet">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.MimicRole.OpenPickingUI">
-            <inheritdoc/>
-        </member>
         <member name="M:K2AmongUs.Roles.Neutral.MimicRole.CanUse(IUsable)">
             <inheritdoc/>
         </member>
@@ -1269,6 +1209,9 @@
             <inheritdoc/>
         </member>
         <member name="P:K2AmongUs.Roles.Neutral.ScrubberRole.Configuration">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Roles.Neutral.ScrubberRole.CanUse(IUsable)">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Roles.Neutral.ZombieRole">

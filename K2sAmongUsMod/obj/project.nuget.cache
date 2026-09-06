@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "rShqx1qfDhs=",
+  "dgSpecHash": "8Ra5o4KS3/A=",
   "success": true,
   "projectFilePath": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2's Among Us Mod 1\\K2sAmongUsMod\\K2sAmongUsMod.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\K2\\.nuget\\packages\\allofus.miraapi\\0.4.3\\allofus.miraapi.0.4.3.nupkg.sha512",
-    "C:\\Users\\K2\\.nuget\\packages\\amongus.gamelibs.steam\\2026.8.18\\amongus.gamelibs.steam.2026.8.18.nupkg.sha512",
+    "C:\\Users\\K2\\.nuget\\packages\\amongus.gamelibs.steam\\2025.9.9\\amongus.gamelibs.steam.2025.9.9.nupkg.sha512",
     "C:\\Users\\K2\\.nuget\\packages\\asmresolver\\6.0.0-beta.1\\asmresolver.6.0.0-beta.1.nupkg.sha512",
     "C:\\Users\\K2\\.nuget\\packages\\asmresolver.dotnet\\6.0.0-beta.1\\asmresolver.dotnet.6.0.0-beta.1.nupkg.sha512",
     "C:\\Users\\K2\\.nuget\\packages\\asmresolver.pe\\6.0.0-beta.1\\asmresolver.pe.6.0.0-beta.1.nupkg.sha512",
