@@ -63,7 +63,7 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
 
     public void Update()
     {
-        if(Player == null) return;
+        if(Player == null || didWin) return;
 
         foreach(PlayerControl player in MiraAPI.Utilities.Helpers.GetAlivePlayers())
         {

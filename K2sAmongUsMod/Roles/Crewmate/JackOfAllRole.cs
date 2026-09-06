@@ -8,6 +8,7 @@ using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Game;
+using TownOfUs.Modifiers.Game.Alliance;
 using TownOfUs.Modifiers.Game.Assailant;
 using TownOfUs.Modifiers.Game.Impostor;
 using TownOfUs.Modules.Wiki;
@@ -84,7 +85,7 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
                     && !player.HasModifier(m.TypeId)
                     && !(m is DeadlyQuotaModifier)
                     && !(m is AllianceGameModifier)
-                    && !(m is TelepathModifier)
+                    && (!(m is TelepathModifier) || player.HasModifier<EgotistModifier>() || player.HasModifier<CrewpostorModifier>())
                     && (!(m is DoubleShotModifier) || player.HasModifier<AssassinModifier>()))
                     || m is KnightedModifier
                 ).ToList();

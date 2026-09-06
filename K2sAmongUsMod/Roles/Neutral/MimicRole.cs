@@ -30,8 +30,8 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
     public bool CanShowSecondTab => true;
 
     public Color RoleColor => K2AmongUsColors.Mimic;
-    public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
-    public RoleAlignment RoleAlignment => RoleAlignment.CrewmateSupport;
+    public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
+    public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
 
     public CustomRoleConfiguration Configuration => new(this)
     {

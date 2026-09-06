@@ -1,34 +1,35 @@
-﻿using K2AmongUs.Modifiers.Neutral;
+﻿
+using K2AmongUs.Modifiers.Neutral;
 using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Patches.WinConditions;
+using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameEnd;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
-using TownOfUs.Assets;
-using TownOfUs.Extensions;
-using TownOfUs.Interfaces;
-using TownOfUs.Modifiers;
-using TownOfUs.Modules;
-using TownOfUs.Modules.Wiki;
-using TownOfUs.Networking;
-using TownOfUs.Roles;
-using TownOfUs.Roles.Crewmate;
-using TownOfUs.Roles.Neutral;
-using TownOfUs.Utilities;
-using UnityEngine;
-using MiraAPI.Events;
-using MiraAPI.Events.Vanilla.Gameplay;
+using Reactor.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Reactor.Utilities;
+using TownOfUs.Assets;
 using TownOfUs.Events.TouEvents;
+using TownOfUs.Extensions;
+using TownOfUs.Interfaces;
+using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Neutral;
+using TownOfUs.Modules;
+using TownOfUs.Modules.Wiki;
+using TownOfUs.Networking;
 using TownOfUs.Options.Roles.Neutral;
+using TownOfUs.Roles;
+using TownOfUs.Roles.Crewmate;
+using TownOfUs.Roles.Neutral;
+using TownOfUs.Utilities;
+using UnityEngine;
 
 namespace K2AmongUs.Roles.Neutral;
 
@@ -209,7 +210,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
             {
                 PlayerControl player = MiscUtils.PlayerById(bodiesInRange[0].ParentId);
 
-                player.RpcBasicRevive();
+                player.RpcFullRevive(true, bodiesInRange[0].TruePosition, RoleId.Get<ZombieRole>(), true);
                 bodiesInRange[0].ClearBody();
                 timer = OptionGroupSingleton<ZombieOptions>.Instance.ZombieReviveTimer;
             }
@@ -262,8 +263,9 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         {
             bool killersAlive = TownOfUs.Utilities.MiscUtils.KillersAliveCount > 0;
             bool hasZombies = PlayerControl.AllPlayerControls.ToArray().Any(p => p.Data.Role is ZombieRole);
+            bool canGetDeadBody = Helpers.GetNearestDeadBodies(Player.transform.position, ShipStatus.Instance.MaxLightRadius * 100, Helpers.CreateFilter(Constants.NotShipMask)).Count > 0;
 
-            return (killersAlive && MiraAPI.Utilities.Helpers.GetAlivePlayers().Count >= 3) || hasZombies;
+            return (killersAlive && MiraAPI.Utilities.Helpers.GetAlivePlayers().Count >= 3) || hasZombies || canGetDeadBody;
         }
     }
 }

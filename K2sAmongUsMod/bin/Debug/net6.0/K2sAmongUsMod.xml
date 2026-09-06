@@ -178,6 +178,9 @@
         <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.CreateButton(UnityEngine.Transform)">
             <inheritdoc/>
         </member>
+        <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.Enabled(RoleBehaviour)">
+            <inheritdoc/>
+        </member>
         <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.SetDiseasedTimer(System.Single)">
             <inheritdoc/>
         </member>
@@ -1058,109 +1061,10 @@
         <member name="P:K2AmongUs.Roles.Crewmate.StealthyRole.Configuration">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Roles.Neutral.ForbearingRole">
+        <member name="M:K2AmongUs.Roles.Neutral.ForbearingRole.WinConditionMet">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Roles.Neutral.ForbearingRole.#ctor(System.IntPtr)">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.ForbearingRole.DoomHintType">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.ForbearingRole.LocaleKey">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.ForbearingRole.RoleName">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.ForbearingRole.RoleDescription">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.ForbearingRole.RoleLongDescription">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.ForbearingRole.GetAdvancedDescription">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.ForbearingRole.RoleColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.ForbearingRole.Team">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.ForbearingRole.RoleAlignment">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.ForbearingRole.Configuration">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.ForbearingRole.OnVotingComplete">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.ForbearingRole.DidWin(GameOverReason)">
-            <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.Roles.Neutral.RestlessRole">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.RestlessRole.#ctor(System.IntPtr)">
-            <inheritdoc/>
-        </member>
-        <member name="F:K2AmongUs.Roles.Neutral.RestlessRole.numMeetingsSkipped">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.DoomHintType">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.RoleAlignment">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.HasImpostorVision">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.RoleName">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.RoleDescription">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.RoleLongDescription">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.RestlessRole.GetAdvancedDescription">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.RoleColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.Team">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.CrewVariant">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.Configuration">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.RestlessRole.OnVotingComplete">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.IsDraftable">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.AppearAs">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.RestlessRole.IsGuessable">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.RestlessRole.WinConditionMet">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.RestlessRole.DidWin(GameOverReason)">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Roles.Neutral.RestlessRole.CanUse(IUsable)">
+        <member name="M:K2AmongUs.Roles.Neutral.ForbearingRole.CanUse(IUsable)">
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.MimicRole.CanUse(IUsable)">

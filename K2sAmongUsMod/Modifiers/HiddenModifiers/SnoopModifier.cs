@@ -1,3 +1,4 @@
+using HarmonyLib;
 using K2AmongUs.Options.Roles.Crewmate;
 using MiraAPI.Events;
 using MiraAPI.GameOptions;
@@ -91,4 +92,14 @@ public sealed class StealthySwoopModifier : ConcealedModifier, IVisualAppearance
         }
         MiraEventManager.InvokeEvent<TouAbilityEvent>(new TouAbilityEvent(AbilityType.SwooperUnswoop, base.Player, null, null));
     }
+
+    /*[HarmonyPatch(typeof(MushroomMixupSabotageSystem), "ConvertToPlayerOutfit", new Type[] {typeof(int)})]
+    public static class MushroomMixupDoesntAffectSnoop
+    {
+        public static bool Prefix(ref MushroomMixupSabotageSystem.CondensedOutfit __result, int playerId)
+        {
+            if (GameData.Instance.GetPlayerById((byte)playerId).Role.Player.HasModifier<StealthySwoopModifier>()) return false;
+            return true;
+        }
+    }*/
 }

@@ -62,8 +62,7 @@ public class ZombieReviveButton : TownOfUsButton
     /// <inheritdoc/>
     public static void SetZombieRole(PlayerControl player, DeadBody body)
     {
-        player.RpcSetRole((AmongUs.GameOptions.RoleTypes)RoleId.Get<ZombieRole>());
-        player.RpcSetPos(body.TruePosition);
+        player.RpcFullRevive(true, body.TruePosition, RoleId.Get<ZombieRole>(), true);
         player.AddModifier<ZombieRevealedModifier>();
     }
 }

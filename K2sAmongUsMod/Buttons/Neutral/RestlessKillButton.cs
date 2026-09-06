@@ -14,7 +14,7 @@ using UnityEngine;
 namespace K2AmongUs.Buttons.Neutral;
 
 /// <inheritdoc/>
-public sealed class RestlessKillButton : TownOfUsKillRoleButton<RestlessRole, PlayerControl>, IDiseaseableButton,
+public sealed class RestlessKillButton : TownOfUsKillRoleButton<ForbearingRole, PlayerControl>, IDiseaseableButton,
     IKillButton
 {
     /// <inheritdoc/>
@@ -33,6 +33,12 @@ public sealed class RestlessKillButton : TownOfUsKillRoleButton<RestlessRole, Pl
     {
         base.CreateButton(parent);
         Coroutines.Start(MiscUtils.CoMoveButtonIndex(this, false));
+    }
+
+    /// <inheritdoc/>
+    public override bool Enabled(RoleBehaviour? role)
+    {
+        return role is ForbearingRole && Role.numMeetingsSkipped >= 0;
     }
 
     /// <inheritdoc/>

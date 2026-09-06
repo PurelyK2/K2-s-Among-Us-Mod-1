@@ -16,154 +16,65 @@ using MiraAPI.Modifiers;
 
 namespace K2AmongUs.Roles.Neutral;
 
-/// <inheritdoc/>
 public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, ICrewVariant
 {
-    /// <inheritdoc/>
-    public DoomableType DoomHintType => DoomableType.Trickster;
-    /// <inheritdoc/>
-    public string LocaleKey => "Forbearing";
-    /// <inheritdoc/>
+    public int numMeetingsSkipped = -1;
+
     public string RoleName => "Forbearing";
-    /// <inheritdoc/>
+    public string LocaleKey => "Forbearing";
+    public DoomableType DoomHintType => DoomableType.Fearmonger;
     public string RoleDescription => "You are patient, but irritated...";
-    /// <inheritdoc/>
-    public string RoleLongDescription => RoleDescription + "\n(If a meeting ties, become a neutral killer)";
-
-    /// <inheritdoc/>
+    public string RoleLongDescription => "Decrease Your Cooldowns Each Meeting That Is Skipped Or Tied.";
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
-    
-    /// <inheritdoc/>
-    public Color RoleColor => new Color32(217, 84, 77, byte.MaxValue);
-    /// <inheritdoc/>
-    public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
-    /// <inheritdoc/>
-    public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
 
-    /// <inheritdoc/>
+    public Color RoleColor => new Color32(217, 84, 77, byte.MaxValue);
+    public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
+    public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.SinisterIntro,
         Icon = TouRoleIcons.Jackal
     };
-
     public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<SheriffRole>();
-
-    /// <inheritdoc/>
     public override void OnVotingComplete()
     {
-        if(MeetingHud.Instance.exiledPlayer == null)
+        if (MeetingHud.Instance.exiledPlayer == null)
         {
-            if(PlayerControl.LocalPlayer.GetRoleWhenAlive() is ForbearingRole)
-            {
-                Player.RpcChangeRole(RoleId.Get<RestlessRole>());
-                Player.RpcAddModifier<TownOfUs.Modifiers.Game.Assailant.AssassinModifier>();
-            }
+            Player.RpcAddModifier<TownOfUs.Modifiers.Game.Assailant.AssassinModifier>();
 
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification(
-                "There is no decision, a killer has awoken...",
-                RoleColor,
-                new Vector3(0f, 1f, -20f),
-                null,
-                TouRoleIcons.Jackal.LoadAsset()
-            );
-        }
-    }
-
-    /// <inheritdoc/>
-    public override bool DidWin(GameOverReason gameOverReason)
-    {
-        return false;
-    }
-}
-
-/// <inheritdoc/>
-public sealed class RestlessRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, IUnguessable
-{
-    /// <inheritdoc/>
-    public int numMeetingsSkipped;
-
-    /// <inheritdoc/>
-    public DoomableType DoomHintType => DoomableType.Fearmonger;
-
-    /// <inheritdoc/>
-    public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
-
-    /// <inheritdoc/>
-    public bool HasImpostorVision { get { return true; } }
-    /// <inheritdoc/>
-    public string RoleName => "Restless";
-
-    /// <inheritdoc/>
-    public string RoleDescription => "You have become impatient, the time to kill has come";
-
-    /// <inheritdoc/>
-    public string RoleLongDescription => "Kill with a lower cooldown after each tie or skip";
-    
-    /// <inheritdoc/>
-    public string GetAdvancedDescription() { return "(Comes From Forbearing) Once a meeting is tied, you'll turn into this role" + MiscUtils.AppendOptionsText(typeof(ForbearingRole)); }
-    
-
-    /// <inheritdoc/>
-    public Color RoleColor => new Color32(217, 84, 77, byte.MaxValue);
-
-    /// <inheritdoc/>
-    public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
-
-    /// <inheritdoc/>
-    public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<SheriffRole>();
-
-    /// <inheritdoc/>
-    public CustomRoleConfiguration Configuration => new(this)
-    {
-        Icon = TouRoleIcons.Jackal,
-        HideSettings = true,
-        CanModifyChance = false,
-        DefaultChance = 0,
-        MaxRoleCount = 0,
-        CanUseVent = OptionGroupSingleton<ForbearingOptions>.Instance.RestlessCanVent,
-        TasksCountForProgress = false
-    };
-
-    /// <inheritdoc/>
-    public override void OnVotingComplete()
-    {
-        if(MeetingHud.Instance.exiledPlayer == null)
-        {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification(
-                "The killer is getting tired of waiting...",
-                RoleColor,
-                new Vector3(0f, 1f, -20f),
-                null,
-                TouRoleIcons.Jackal.LoadAsset()
-            );
-
-            if(OptionGroupSingleton<ForbearingOptions>.Instance.RestlessEveryMeeting)
+            if(numMeetingsSkipped < 0)
             {
                 numMeetingsSkipped++;
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification(
+                    "There is no decision, a killer has awoken...",
+                    RoleColor,
+                    new Vector3(0f, 1f, -20f),
+                    null,
+                    TouRoleIcons.Jackal.LoadAsset()
+                );
+            }
+            else if(OptionGroupSingleton<ForbearingOptions>.Instance.RestlessEveryMeeting)
+            {
+                numMeetingsSkipped++;
+
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification(
+                    "The Killer Is Gettinge Tired Of Waiting...",
+                    RoleColor,
+                    new Vector3(0f, 1f, -20f),
+                    null,
+                    TouRoleIcons.Jackal.LoadAsset()
+                );
             }
         }
     }
-
-    /// <inheritdoc/>
-    public new bool IsDraftable => false;
-    /// <inheritdoc/>
-    public RoleBehaviour AppearAs => DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<ForbearingRole>());
-    /// <inheritdoc/>
-    public bool IsGuessable => false;
 
     /// <inheritdoc/>
     public bool WinConditionMet()
     {
-        return !Player.HasDied() && Helpers.GetAlivePlayers().Count <= 2 && MiscUtils.KillersAliveCount == 1;
+        int playersAlive = MiraAPI.Utilities.Helpers.GetAlivePlayers().Count;
+        return !Player.Data.IsDead && (MiscUtils.KillersAliveCount == 1 && playersAlive <= 2);
     }
 
-    /// <inheritdoc/>
-    public override bool DidWin(GameOverReason gameOverReason)
-    {
-        return WinConditionMet();
-    }
-    
     /// <inheritdoc/>
     public override bool CanUse(IUsable usable)
     {

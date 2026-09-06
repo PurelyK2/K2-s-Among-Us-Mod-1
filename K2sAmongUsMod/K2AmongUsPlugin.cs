@@ -68,18 +68,39 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
     }
 }
 
+// ADD IN SPRITES
 
 // Rival icons can't be seen in-game
 // Rivals Chat Only For First Round?
+// Rivals can't guess rivals, but other people can
+// Rivals Aren't Synced!?!
+// Adjust rivals desc
+// Everyone Sees Rivals Chat
+// End game if 1 of rivals is vig and the other can't kill and is crew
 
 // Hyperfocus triggers with ANY menu
 
-//Adjust rivals desc
-//Gossip Can't Be Imitated Correctly (And maybe same with other roles?
-//Make Snoop cancelable
+// Max sneaks does nothing with snoop atm
+// Snoop shows cosmetics on mushroom mixup
+
+// ================ OTHER ================
+
 // Add boo's bounty hunter idea
 
 // Imp that can Hijack tasks?
 
 // Sly but imp (random not-in-play crew for every )
 // Neut outlier that needs to guess exactly 1 person's role
+
+// ================ NOTES ================
+// Since Starting
+
+// =============== FIXES ===============
+// JOAT can get Tele if ego or crewposter
+// Updated Zombie Continues Game Code
+// Mimic Is Now Neutral (Though it still doesn't work)
+// Removed Restless and Made Forbearing The Whole Role
+// Made Forbearing Not Win With Crew (this time for sure, trust)
+// Fixed Zombie Leader Being Kicked When They Revive Zombie
+// Snoop fixed for mushroom mixup
+// Made it so forbearing warning doesn't show up if they aren't decreasing cooldown
