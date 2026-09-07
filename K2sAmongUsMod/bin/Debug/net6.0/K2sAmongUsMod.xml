@@ -7,25 +7,10 @@
         <member name="T:K2AmongUs.Assets.K2Assets">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Assets.K2Assets.Banner">
-            <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.Assets.ExampleNeutAssets">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Assets.ExampleNeutAssets.SentinelVentSprite">
+        <member name="T:K2AmongUs.Assets.K2ModifierIcons">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Assets.K2RoleIcons">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Assets.K2RoleIcons.Gossip">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Assets.K2RoleIcons.JackOfAll">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Assets.K2RoleIcons.Scrubber">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Buttons.Crewmate.OverhearButton">
@@ -137,9 +122,6 @@
             <inheritdoc/>
         </member>
         <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.EffectDuration">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.MaxUses">
             <inheritdoc/>
         </member>
         <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.Sprite">
@@ -554,6 +536,9 @@
         <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.HideOnUi">
             <inheritdoc/>
         </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.IsGuessable">
+            <inheritdoc/>
+        </member>
         <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.Symbol">
             <inheritdoc/>
         </member>
@@ -834,9 +819,6 @@
             <inheritdoc/>
         </member>
         <member name="P:K2AmongUs.Options.Roles.Crewmate.StealthyOptions.SneakDuration">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Crewmate.StealthyOptions.MaxSneaks">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Options.Roles.Crewmate.ForbearingOptions">

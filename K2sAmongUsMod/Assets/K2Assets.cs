@@ -7,6 +7,4 @@ namespace K2AmongUs.Assets;
 public static class K2Assets
 {
     private const string ShortPath = "K2AmongUsMod.Resources";
-    /// <inheritdoc/>
-    public static LoadableAsset<Sprite> Banner { get; } = new LoadableResourceAsset($"{ShortPath}.ExampleBanner.png");
 }

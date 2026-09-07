@@ -27,8 +27,11 @@ public sealed class StealthySwoopButton : TownOfUsRoleButton<StealthyRole>
     /// <inheritdoc/>
 	public override float EffectDuration => OptionGroupSingleton<StealthyOptions>.Instance.SneakDuration;
 
+    /* 
     /// <inheritdoc/>
 	public override int MaxUses => (int)OptionGroupSingleton<StealthyOptions>.Instance.MaxSneaks;
+	*/
+
     /// <inheritdoc/>
 	public override LoadableAsset<Sprite> Sprite => TouCrewAssets.CrewSwoopSprite;
     /// <inheritdoc/>

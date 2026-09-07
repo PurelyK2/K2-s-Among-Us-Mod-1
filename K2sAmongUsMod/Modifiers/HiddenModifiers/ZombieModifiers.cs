@@ -46,9 +46,12 @@ public sealed class  ZombieAllianceModifier : AllianceGameModifier
     /// <inheritdoc/>
     public override bool? DidWin(GameOverReason gameOverReason)
     {
-        if (MiraAPI.Utilities.Helpers.GetAlivePlayers().FirstOrDefault(p => p.GetRoleWhenAlive() is ZombieLeaderRole)?.GetRoleWhenAlive() is ZombieLeaderRole zombieLeader)
+        if (MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is ZombieLeaderRole && !p.Data.IsDead))
         {
-            return zombieLeader.DidWin(gameOverReason);
+            int numNonZombies = MiraAPI.Utilities.Helpers.GetAlivePlayers().Count(p => !(p.Data.Role is ZombieLeaderRole || p.Data.Role is ZombieRole));
+            int numZombies = PlayerControl.AllPlayerControls.ToArray().Count(p => p.Data.Role is ZombieRole || p.Data.Role is ZombieLeaderRole);
+
+            return numZombies > numNonZombies && TownOfUs.Utilities.MiscUtils.KillersAliveCount == 0;
         }
         return false;
     }

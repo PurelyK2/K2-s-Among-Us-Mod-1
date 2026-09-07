@@ -1,4 +1,5 @@
-﻿using Il2CppInterop.Runtime.Attributes;
+﻿using HarmonyLib;
+using Il2CppInterop.Runtime.Attributes;
 using MiraAPI.Roles;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
@@ -6,6 +7,7 @@ using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
 using TownOfUs.Utilities;
 using UnityEngine;
+using static MushroomMixupSabotageSystem;
 
 namespace K2AmongUs.Roles.Crewmate;
 

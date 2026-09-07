@@ -1,18 +1,19 @@
+using K2AmongUs.Assets;
+using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
+using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using MiraAPI.Utilities.Assets;
 using TownOfUs.Assets;
+using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Game;
+using TownOfUs.Modifiers.Game.Universal;
+using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
+using TownOfUs.Roles.Crewmate;
 using TownOfUs.Utilities;
 using UnityEngine;
-using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
-using TownOfUs.Modules;
-using TownOfUs.Modifiers;
-using TownOfUs.Roles.Crewmate;
-using MiraAPI.Roles;
-using TownOfUs.Modifiers.Game.Universal;
 
 namespace K2AmongUs.Modifiers.Game.Universal;
 
@@ -70,7 +71,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
     /// <inheritdoc/>
     public override bool HideOnUi => false;
     /// <inheritdoc/>
-    public override LoadableAsset<Sprite> ModifierIcon => TouNeutAssets.MimicSprite;
+    public override LoadableAsset<Sprite> ModifierIcon => K2ModifierIcons.Unstable;
     /// <inheritdoc/>
     public override int CustomAmount => (int)OptionGroupSingleton<UnstableOptions>.Instance.UnstableCount;
     /// <inheritdoc/>

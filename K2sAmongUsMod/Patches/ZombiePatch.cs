@@ -33,7 +33,7 @@ public static class ZombiePatches
         
         foreach(PlayerControl player in PlayerControl.AllPlayerControls)
         {
-            if(player.GetRoleWhenAlive() is ZombieRole)
+            if(player.GetRoleWhenAlive() is ZombieRole && player.AmOwner)
             {
                 player.RpcBasicRevive();
             }

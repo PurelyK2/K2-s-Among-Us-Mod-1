@@ -1,6 +1,6 @@
 using MiraAPI.GameOptions;
 using MiraAPI.Utilities.Assets;
-using TownOfUs.Assets;
+using K2AmongUs.Assets;
 using TownOfUs.Modifiers.Game;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Utilities;
@@ -42,7 +42,7 @@ public sealed class BlindModifier : TouGameModifier, IWikiDiscoverable
     /// <inheritdoc/>
     public override bool HideOnUi => false;
     /// <inheritdoc/>
-    public override LoadableAsset<Sprite> ModifierIcon => TouModifierIcons.Scout;
+    public override LoadableAsset<Sprite> ModifierIcon => K2ModifierIcons.Blind;
     /// <inheritdoc/>
     public override int GetAmountPerGame()
     {

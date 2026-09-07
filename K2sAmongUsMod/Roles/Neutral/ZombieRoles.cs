@@ -1,4 +1,5 @@
 ﻿
+using K2AmongUs.Assets;
 using K2AmongUs.Modifiers.Neutral;
 using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Patches.WinConditions;
@@ -63,7 +64,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
-        Icon = TouRoleIcons.Altruist,
+        Icon = K2RoleIcons.Zombie,
         HideSettings = true,
         CanModifyChance = false,
         DefaultChance = 0,
@@ -188,13 +189,18 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.ScreamIntro,
-        Icon = TouNeutAssets.PestKillSprite,
+        Icon = K2RoleIcons.ZombieLeader,
     };
 
     /// <inheritdoc/>
     public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<AltruistRole>();
 
+    public override void OnRoleSet()
+    {
+        base.OnRoleSet();
 
+        Player.AddModifier<ZombieAllianceModifier>();
+    }
     float timer;
     /// <inheritdoc/>
     public void Update()
@@ -235,14 +241,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     /// <inheritdoc/>
     public override bool DidWin(GameOverReason gameOverReason)
     {
-        if (Player == null)
-        {
-            return false;
-        }
-        else
-        {
-            return !Helpers.GetAlivePlayers().Any(p => !(p.GetRoleWhenAlive() is ZombieRole || p.GetRoleWhenAlive() is ZombieLeaderRole));
-        }
+        return false;
     }
     
     /// <inheritdoc/>

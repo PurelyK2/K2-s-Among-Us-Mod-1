@@ -12,6 +12,7 @@ using TownOfUs.Modules.Wiki;
 using UnityEngine;
 using TownOfUs.Roles.Neutral;
 using TownOfUs.Roles;
+using K2AmongUs.Assets;
 
 namespace K2AmongUs.Roles.Neutral;
 
@@ -35,7 +36,7 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        Icon = TouNeutAssets.HackSprite,
+        Icon = K2RoleIcons.Mimic,
         OptionsScreenshot = TouBanners.CrewmateRoleBanner,
         IntroSound = TouAudio.SpyIntroSound
     };

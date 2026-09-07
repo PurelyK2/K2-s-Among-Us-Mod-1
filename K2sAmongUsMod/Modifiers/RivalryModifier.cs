@@ -1,30 +1,34 @@
+using K2AmongUs.Assets;
+using K2AmongUs.Options.Modifiers.AllianceModifierOptions;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Utilities;
 using MiraAPI.Utilities.Assets;
+using Reactor.Utilities.Extensions;
+using Rewired;
+using System.Runtime.CompilerServices;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Modifiers.Game;
+using TownOfUs.Modifiers.Neutral;
 using TownOfUs.Modules.Wiki;
+using TownOfUs.Roles.Other;
 using TownOfUs.Utilities;
 using UnityEngine;
-using K2AmongUs.Options.Modifiers.AllianceModifierOptions;
-using TownOfUs.Modifiers.Neutral;
-using TownOfUs.Roles.Other;
-using System.Runtime.CompilerServices;
-using Reactor.Utilities.Extensions;
-using Rewired;
 
 namespace K2AmongUs.Modifiers.Game.Alliance;
 
 /// <inheritdoc/>
-public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, IAssignableTargets, TownOfUs.Interfaces.IContinuesGame
+public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, IAssignableTargets, TownOfUs.Interfaces.IContinuesGame, IUnguessableBasic
 {
     /// <inheritdoc/>
     public static Color RivalsColor { get; } = Color.green;
 
     /// <inheritdoc/>
     public override bool HideOnUi => false;
+
+    /// <inheritdoc/>
+    public bool IsGuessable => false;
 
     /// <inheritdoc/>
     public override string Symbol => "R";
@@ -57,14 +61,14 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
         return "You win if you survive for longer than your rivals";
     }
     /// <inheritdoc/>
-    public override LoadableAsset<Sprite> ModifierIcon => TouRoleIcons.Haunter;
+    public override LoadableAsset<Sprite> ModifierIcon => K2ModifierIcons.Rivalry;
     /// <inheritdoc/>
     public override int CustomAmount => (int)OptionGroupSingleton<RivalryOptions>.Instance.RivalsCount;
     /// <inheritdoc/>
     public override int CustomChance => (int)OptionGroupSingleton<RivalryOptions>.Instance.RivalsChance;
 
     /// <inheritdoc/>
-    public bool ForceDisableTasks { get; private set; }
+    public bool ForceDisableTasks { get; set; }
 
 
     /// <inheritdoc/>
@@ -179,6 +183,8 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
     /// <inheritdoc/>
     public void AssignTargets()
     {
+        if (!PlayerControl.LocalPlayer.IsHost()) return;
+
         foreach(PlayerControl rival in PlayerControl.AllPlayerControls.ToArray().Where(x => x.HasModifier<RivalryModifier>()))
         {
             rival.RpcRemoveModifier<RivalryModifier>();
@@ -205,7 +211,7 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
                 PlayerControl thisPlayer = players[randNum];
                 players.Remove(thisPlayer);
 
-                thisPlayer.AddModifier<RivalryModifier>();
+                thisPlayer.RpcAddModifier<RivalryModifier>();
             }
         }
     }

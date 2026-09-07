@@ -3,6 +3,7 @@ using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
+using K2AmongUs.Assets;
 using MiraAPI;
 using MiraAPI.PluginLoading;
 using Reactor;
@@ -15,7 +16,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.5")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.6")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -68,20 +69,11 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
     }
 }
 
-// ADD IN SPRITES
-
 // Rival icons can't be seen in-game
 // Rivals Chat Only For First Round?
-// Rivals can't guess rivals, but other people can
-// Rivals Aren't Synced!?!
+// Everyone Sees Rivals Chats
 // Adjust rivals desc
-// Everyone Sees Rivals Chat
 // End game if 1 of rivals is vig and the other can't kill and is crew
-
-// Hyperfocus triggers with ANY menu
-
-// Max sneaks does nothing with snoop atm
-// Snoop shows cosmetics on mushroom mixup
 
 // ================ OTHER ================
 
@@ -92,15 +84,13 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 // Sly but imp (random not-in-play crew for every )
 // Neut outlier that needs to guess exactly 1 person's role
 
-// ================ NOTES ================
-// Since Starting
-
 // =============== FIXES ===============
-// JOAT can get Tele if ego or crewposter
-// Updated Zombie Continues Game Code
-// Mimic Is Now Neutral (Though it still doesn't work)
-// Removed Restless and Made Forbearing The Whole Role
-// Made Forbearing Not Win With Crew (this time for sure, trust)
-// Fixed Zombie Leader Being Kicked When They Revive Zombie
-// Snoop fixed for mushroom mixup
-// Made it so forbearing warning doesn't show up if they aren't decreasing cooldown
+/*
+Fixed Zombie Win Condition (THIS TIME FOR SURE!!!)
+Addes Sprites to sprite folders
+FINALLY added sprites for role/modifier icons (at least the ones that are done
+Synced Rivals
+Made Rivals Unguessable
+Adjusted Snoop Options To Not Have Unused "Max Sneaks" Option (I will be implementing it, just not yet because there are more important things)
+Snoop Should No Longer Be Affected By Mushroom Mixup While Snoopingss
+*/

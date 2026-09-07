@@ -93,13 +93,13 @@ public sealed class StealthySwoopModifier : ConcealedModifier, IVisualAppearance
         MiraEventManager.InvokeEvent<TouAbilityEvent>(new TouAbilityEvent(AbilityType.SwooperUnswoop, base.Player, null, null));
     }
 
-    /*[HarmonyPatch(typeof(MushroomMixupSabotageSystem), "ConvertToPlayerOutfit", new Type[] {typeof(int)})]
+    [HarmonyPatch(typeof(PlayerControl), "MixUpOutfit", new Type[] {typeof(NetworkedPlayerInfo.PlayerOutfit)})]
     public static class MushroomMixupDoesntAffectSnoop
     {
-        public static bool Prefix(ref MushroomMixupSabotageSystem.CondensedOutfit __result, int playerId)
+        public static bool Prefix(ref PlayerControl __instance)
         {
-            if (GameData.Instance.GetPlayerById((byte)playerId).Role.Player.HasModifier<StealthySwoopModifier>()) return false;
+            if (__instance.HasModifier<StealthySwoopModifier>()) return false;
             return true;
         }
-    }*/
+    }
 }

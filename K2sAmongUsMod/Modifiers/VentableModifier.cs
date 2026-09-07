@@ -1,13 +1,14 @@
+using K2AmongUs.Assets;
+using K2AmongUs.Options.Modifiers.Game.Universal;
 using MiraAPI.GameOptions;
+using MiraAPI.Modifiers;
 using MiraAPI.Utilities.Assets;
 using TownOfUs.Assets;
+using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Game;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Utilities;
 using UnityEngine;
-using TownOfUs.Modifiers;
-using K2AmongUs.Options.Modifiers.Game.Universal;
-using MiraAPI.Modifiers;
 
 namespace K2AmongUs.Modifiers.Game.Universal;
 
@@ -60,7 +61,7 @@ public sealed class VentableModifier : TouGameModifier, IWikiDiscoverable
     /// <inheritdoc/>
     public override bool HideOnUi => false;
     /// <inheritdoc/>
-    public override LoadableAsset<Sprite> ModifierIcon => TouModifierIcons.Scout;
+    public override LoadableAsset<Sprite> ModifierIcon => K2ModifierIcons.Ventable;
     /// <inheritdoc/>
     public override int GetAmountPerGame()
     {

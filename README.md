@@ -1,6 +1,7 @@
 Adds the following roles:
 
 
+
 CREWMATE ROLES
 
 Gossip: (Crew variant of doomsayer) Hints to a player's role in meetings
@@ -20,6 +21,7 @@ Mimic: (Neutral Imitator) Mimic Other Players' Roles To Win Alone
 Zombie Leader: Raise A Zombie Army And Win By Being The Last One Standing
 
 
+
 Adds The Following Modifiers:
 
 Blind: Vision is reduced by X%
@@ -33,3 +35,14 @@ Sly: You show as good to roles who can check your allignment
 Unstable: You randomly teleport every X-Y seconds
 
 Ventable: You can vent
+
+
+
+
+
+Art by:
+
+* HarckDOof (Ventable, Rivalry, Mimic)
+* phantombee (Zombie/Zombie Leader, Blind)
+* Games And Things (General Clean Up)
+
