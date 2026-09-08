@@ -40,7 +40,7 @@ public class ZombieReviveButton : TownOfUsButton
     /// <inheritdoc/>
     public override bool CanUse()
     {
-        return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Count > 0;
+        return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Any(b => MiscUtils.PlayerById(b.ParentId).Data.Role is ZombieRole);
     }
     /// <inheritdoc/>
     public override bool CanClick()

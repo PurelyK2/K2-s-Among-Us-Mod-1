@@ -24,8 +24,6 @@ public sealed class ScrubberScrubModifier : BaseModifier
             Player.RemoveModifier(modifier);
         }
 
-        Player.RemoveModifier(this);
-
         if(Player.AmOwner)
         {
             MiraAPI.Utilities.Helpers.CreateAndShowNotification("Your modifiers have been scrubbed...", Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Bait.LoadAsset());

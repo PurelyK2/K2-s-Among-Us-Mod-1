@@ -25,7 +25,7 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     /// <inheritdoc/>
     public string LocaleKey => "Scrubber";
     /// <inheritdoc/>
-    public string RoleName => "Scrubber";
+    public string RoleName => "Scrubber (Bugged)";
     /// <inheritdoc/>
     public string RoleDescription => "Cleanse the land of modifiers to win";
     /// <inheritdoc/>
@@ -63,17 +63,9 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
 
     public void Update()
     {
-        if(Player == null || didWin) return;
+        if (Player == null || Player.Data.IsDead) return;
 
-        foreach(PlayerControl player in MiraAPI.Utilities.Helpers.GetAlivePlayers())
-        {
-            if(player != null && player.GetModifiers<BaseModifier>().Any(m => !m.HideOnUi))
-            {
-                didWin = false;
-                break;
-            }
-            didWin = true;
-        }
+        didWin = !MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.GetModifiers<BaseModifier>().Any(m => !m.HideOnUi));
     }
 
     public void OnRoundStart()
@@ -91,7 +83,7 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     }
     public bool WinConditionMet()
     {
-        return false;
+        return didWin;
     }
 
     public bool MetWinCon => didWin;

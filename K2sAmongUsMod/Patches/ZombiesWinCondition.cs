@@ -14,10 +14,19 @@ public sealed class ZombieGameOver : CustomGameOver
 	/// <inheritdoc/>
 	public override bool VerifyCondition(PlayerControl playerControl, NetworkedPlayerInfo[] winners)
     {
-        int numNonZombies = Helpers.GetAlivePlayers().Count(p => !(p.Data.Role is ZombieLeaderRole || p.Data.Role is ZombieRole));
-        int numZombies = PlayerControl.AllPlayerControls.ToArray().Count(p => p.Data.Role is ZombieRole || p.Data.Role is ZombieLeaderRole);
 
-        return numZombies > numNonZombies && TownOfUs.Utilities.MiscUtils.KillersAliveCount == 0;
+        if (Helpers.GetAlivePlayers().Any(p => p.Data.Role is ZombieLeaderRole))
+        {
+            int numNonZombies = Helpers.GetAlivePlayers().Count(p => p.Data.Role is not ZombieRole && p.Data.Role is not ZombieLeaderRole);
+            IEnumerable<NetworkedPlayerInfo> zombies = PlayerControl.AllPlayerControls.ToArray().Where(p => p.Data.Role is ZombieRole || p.Data.Role is ZombieLeaderRole).Select(p => p.Data);
+
+            if (numNonZombies < zombies.Count() && TownOfUs.Utilities.MiscUtils.KillersAliveCount == 0)
+            {
+                Info("Zombies Should Win!");
+				return true;
+            }
+        }
+		return false;
     }
 
 	/// <inheritdoc/>

@@ -1,8 +1,10 @@
 using TownOfUs.Modules;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Gameplay;
+using MiraAPI.Events.Vanilla.Meeting;
 using K2AmongUs.Roles.Neutral;
 using TownOfUs.Networking;
+using Il2CppSystem.Web.Util;
 
 namespace K2AmongUs.Patches;
 
@@ -30,13 +32,20 @@ public static class ZombiePatches
 	public static void OnRoundStart(RoundStartEvent @event)
     {
         if(!PlayerControl.AllPlayerControls.ToArray().Any(p => p.GetRoleWhenAlive() is ZombieLeaderRole)) return;
-        
-        foreach(PlayerControl player in PlayerControl.AllPlayerControls)
+
+        foreach (PlayerControl player in PlayerControl.AllPlayerControls.ToArray().Where(p => p.Data.Role is ZombieRole))
         {
-            if(player.GetRoleWhenAlive() is ZombieRole && player.AmOwner)
-            {
-                player.RpcBasicRevive();
-            }
+            player.Data.IsDead = false;
+        }
+    }
+
+    /// <inheritdoc/>
+    [RegisterEvent(0)]
+    public static void OnMeetingStart(StartMeetingEvent @event)
+    {
+        foreach(PlayerControl player in MiraAPI.Utilities.Helpers.GetAlivePlayers().Where(p => p.Data.Role is ZombieRole))
+        {
+            player.Data.IsDead = true;
         }
     }
 }

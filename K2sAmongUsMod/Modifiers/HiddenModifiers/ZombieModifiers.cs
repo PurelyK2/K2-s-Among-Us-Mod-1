@@ -24,12 +24,10 @@ public sealed class ZombieRevealedModifier : BaseRevealModifier
     /// <inheritdoc/>
     public override RoleBehaviour ShownRole => Player.GetRoleWhenAlive();
     
-    static bool shouldShow = true;
-    
     /// <inheritdoc/>
-    public override bool RevealRole => shouldShow;
+    public override bool RevealRole => true;
     /// <inheritdoc/>
-    public override bool Visible => shouldShow;
+    public override bool Visible => true;
     /// <inheritdoc/>
     public override string ExtraRoleText => string.Empty;
 }

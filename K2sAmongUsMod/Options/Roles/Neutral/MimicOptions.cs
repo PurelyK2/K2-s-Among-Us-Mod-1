@@ -1,3 +1,4 @@
+/*
 using K2AmongUs.Roles.Neutral;
 using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.Attributes;
@@ -33,3 +34,4 @@ public sealed class MimicOptions : AbstractOptionGroup<MimicRole>
     [ModdedToggleOption("Mimic Can Vent")]
     public bool CanVent { get; set; } = true;
 }
+*/

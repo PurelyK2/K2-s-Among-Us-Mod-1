@@ -28,7 +28,7 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
     public override bool HideOnUi => false;
 
     /// <inheritdoc/>
-    public bool IsGuessable => false;
+    public bool IsGuessable => PlayerControl.LocalPlayer != null && !(PlayerControl.LocalPlayer.HasModifier<RivalryModifier>() && OptionGroupSingleton<RivalryOptions>.Instance.RivalsKnowOthers);
 
     /// <inheritdoc/>
     public override string Symbol => "R";
@@ -136,11 +136,13 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
     /// <inheritdoc/>
     public string RivalsString()
     {
-        if(Player != null)
+        if (Player != null && OptionGroupSingleton<RivalryOptions>.Instance.RivalsKnowOthers)
             return "Outlast your " + (MiraAPI.Modifiers.ModifierUtils.GetPlayersWithModifier<RivalryModifier>().Count() - 1) + " rivals to win"
                 + "\n(" + string.Join(", ", GetAllRivals().Select(p => p.Data.PlayerName)) + ")";
-        else
+        else if (Player != null)
             return "Outlast your " + (MiraAPI.Modifiers.ModifierUtils.GetPlayersWithModifier<RivalryModifier>().Count() - 1) + " rivals to win";
+        else
+            return "Outlast your rivals to win!";
     }
 
     /// <inheritdoc/>
@@ -183,8 +185,6 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
     /// <inheritdoc/>
     public void AssignTargets()
     {
-        if (!PlayerControl.LocalPlayer.IsHost()) return;
-
         foreach(PlayerControl rival in PlayerControl.AllPlayerControls.ToArray().Where(x => x.HasModifier<RivalryModifier>()))
         {
             rival.RpcRemoveModifier<RivalryModifier>();

@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using TownOfUs.Assets;
+using TownOfUs.Events;
 using TownOfUs.Events.TouEvents;
 using TownOfUs.Extensions;
 using TownOfUs.Interfaces;
@@ -26,16 +27,18 @@ using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Networking;
 using TownOfUs.Options.Roles.Neutral;
+using TownOfUs.Patches;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Crewmate;
 using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
+using TownOfUs.Utilities.Appearances;
 using UnityEngine;
 
 namespace K2AmongUs.Roles.Neutral;
 
 /// <inheritdoc/>
-public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IUnguessable, IContinuesGame
+public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IUnguessable, IGhostRole
 {
     /// <inheritdoc/>
     public bool HasImpostorVision => true;
@@ -95,23 +98,20 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
         Player.AddModifier<ZombieRevealedModifier>();
         Player.AddModifier<ZombieAllianceModifier>();
     }
-    
-    /// <inheritdoc/>
-    public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<AltruistRole>();
 
-    /// <inheritdoc/>
-    public bool ContinuesGame =>
-        PlayerControl.AllPlayerControls.ToArray().Any(p => p.GetRoleWhenAlive() is ZombieRole)
-        || MiraAPI.Utilities.Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.GetTruePosition(), 100000, Helpers.CreateFilter(Constants.NotShipMask)).Count > 0;
+    public bool WinConditionMet()
+    {
+        if (Helpers.GetAlivePlayers().FirstOrDefault(p => p.GetRoleWhenAlive() is ZombieLeaderRole)?.GetRoleWhenAlive() is ZombieLeaderRole zombieLeader)
+        {
+            return zombieLeader.WinConditionMet();
+        }
+        return false;
+    }
 
     /// <inheritdoc/>
     public override bool DidWin(GameOverReason gameOverReason)
     {
-        if(Helpers.GetAlivePlayers().FirstOrDefault(p => p.GetRoleWhenAlive() is ZombieLeaderRole)?.GetRoleWhenAlive() is ZombieLeaderRole zombieLeader)
-        {
-            return zombieLeader.DidWin(gameOverReason);
-        }
-        return false;
+        return WinConditionMet();
     }
 
     /// <inheritdoc/>
@@ -144,6 +144,41 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
             Player.RpcChangeRole(RoleId.Get<NeutralGhostRole>());
         }
     }
+
+    #region Ghost Role Stuff
+    public bool Setup { get; set; }
+    public bool Caught { get; set; }
+    public bool Faded { get; set; }
+    public bool CanBeClicked { get; set; } = false;
+    public void Spawn()
+    {
+        this.Setup = true;
+        bool camouflageCommsEnabled = HudManagerPatches.CamouflageCommsEnabled;
+        if (camouflageCommsEnabled)
+        {
+            base.Player.SetCamouflage(false);
+        }
+        string text = "Setup HaunterRole '" + base.Player.Data.PlayerName + "'";
+
+        MiscUtils.LogInfo(TownOfUsEventHandlers.LogLevel.Error, text);
+        base.Player.gameObject.layer = LayerMask.NameToLayer("Players");
+        base.Player.gameObject.GetComponent<PassiveButton>().OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
+        base.Player.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        bool amOwner = base.Player.AmOwner;
+        if (amOwner)
+        {
+            base.Player.SpawnAtRandomVent();
+            base.Player.MyPhysics.ResetMoveState(true);
+            DestroyableSingleton<HudManager>.Instance.SetHudActive(false);
+            DestroyableSingleton<HudManager>.Instance.SetHudActive(true);
+            DestroyableSingleton<HudManager>.Instance.AbilityButton.SetDisabled();
+            HudManagerPatches.ResetZoom();
+        }
+    }
+    public void FadeUpdate() { }
+    public void Clicked() { }
+    public bool CanCatch() { return false; }
+    #endregion
 }
 
 /// <inheritdoc/>
@@ -184,7 +219,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     /// <inheritdoc/>
     public RoleBehaviour AppearAs => (RoleBehaviour)RoleId.Get<ZombieLeaderRole>();
     /// <inheritdoc/>
-    public bool IsGuessable => false;
+    public bool IsGuessable => PlayerControl.LocalPlayer != null && PlayerControl.LocalPlayer.Data.Role is VigilanteRole;
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
@@ -230,18 +265,33 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
             timer = OptionGroupSingleton<ZombieOptions>.Instance.ZombieReviveTimer;
         }
 
-        if(!Helpers.GetAlivePlayers().Any(p => !(p.GetRoleWhenAlive() is ZombieRole || p.GetRoleWhenAlive() is ZombieLeaderRole)))
+        if(!Player.Data.IsDead)
         {
-            Info("Should Win!");
-            NetworkedPlayerInfo[] winners = PlayerControl.AllPlayerControls.ToArray().Where(p => p.GetRoleWhenAlive() is ZombieRole || p.GetRoleWhenAlive() is ZombieLeaderRole).Select(p => p.Data).ToArray();
-		    CustomGameOver.Trigger<ZombieGameOver>(winners);
+            int numNonZombies = Helpers.GetAlivePlayers().Count(p => p.Data.Role is not ZombieRole && p.Data.Role is not ZombieLeaderRole);
+            IEnumerable<NetworkedPlayerInfo> zombies = PlayerControl.AllPlayerControls.ToArray().Where(p => p.Data.Role is ZombieRole || p.Data.Role is ZombieLeaderRole).Select(p => p.Data);
+
+            if(numNonZombies < zombies.Count() && MiscUtils.KillersAliveCount == 0)
+            {
+                Info("Zombies Should Win!");
+                CustomGameOver.Trigger<ZombieGameOver>(zombies);
+            }
         }
+    }
+
+    public bool WinConditionMet()
+    {
+        if (Player.Data.IsDead) return false;
+
+        int numNonZombies = Helpers.GetAlivePlayers().Count(p => p.Data.Role is not ZombieRole && p.Data.Role is not ZombieLeaderRole);
+        IEnumerable<NetworkedPlayerInfo> zombies = PlayerControl.AllPlayerControls.ToArray().Where(p => p.Data.Role is ZombieRole || p.Data.Role is ZombieLeaderRole).Select(p => p.Data);
+
+        return numNonZombies < zombies.Count() && MiscUtils.KillersAliveCount == 0;
     }
 
     /// <inheritdoc/>
     public override bool DidWin(GameOverReason gameOverReason)
     {
-        return false;
+        return WinConditionMet();
     }
     
     /// <inheritdoc/>

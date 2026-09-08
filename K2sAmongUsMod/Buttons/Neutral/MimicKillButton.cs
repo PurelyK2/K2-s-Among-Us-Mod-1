@@ -1,3 +1,4 @@
+/*
 using MiraAPI.GameOptions;
 using MiraAPI.Keybinds;
 using MiraAPI.Networking;
@@ -73,3 +74,4 @@ public sealed class MimicKillButton : TownOfUsKillRoleButton<MimicRole, PlayerCo
         PlayerControl.LocalPlayer.RpcCustomMurder(Target);
     }
 }
+*/

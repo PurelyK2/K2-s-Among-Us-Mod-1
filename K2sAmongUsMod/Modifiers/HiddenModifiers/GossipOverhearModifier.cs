@@ -4,6 +4,7 @@ using TownOfUs.Modules;
 using MiraAPI.GameOptions;
 using K2AmongUs.Options.Roles.Crewmate;
 using MiraAPI.Roles;
+using TownOfUs.Utilities;
 
 namespace K2AmongUs.Modifiers.Crewmate;
 
@@ -91,7 +92,15 @@ public sealed class GossipOverhearModifier : BaseModifier
                 break;
             }
 
-            RoleBehaviour newRole = possibleRoles[UnityEngine.Random.Range(0, possibleRoles.Count)];
+            List<RoleBehaviour> thesePossibleRoles = possibleRoles;
+
+            //Weighted To Crewmate
+            if(UnityEngine.Random.Range(0, 101) <= OptionGroupSingleton<GossipOptions>.Instance.CrewWeight)
+            {
+                thesePossibleRoles.RemoveAll(r => !r.IsCrewmate());
+            }
+
+            RoleBehaviour newRole = thesePossibleRoles[UnityEngine.Random.Range(0, possibleRoles.Count)];
 
             possibleRoles.Remove(newRole);
             randomRolesList.Add(newRole);

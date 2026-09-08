@@ -836,31 +836,7 @@
         <member name="P:K2AmongUs.Options.Roles.Crewmate.ForbearingOptions.RestlessMeetingDecrease">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Options.Roles.Crewmate.ForbearingOptions.RestlessCanVent">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Crewmate.ForbearingOptions.RestlessAssassin">
-            <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.Options.Roles.Neutral.MimicOptions">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.GroupName">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.MimicReflectsAbility">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.KillCooldown">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.MimicGuess">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.ImpostorVision">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Neutral.MimicOptions.CanVent">
+        <member name="P:K2AmongUs.Options.Roles.Crewmate.ForbearingOptions.ForbearingCanVent">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Options.Roles.Neutral.ScrubberOptions">
@@ -887,15 +863,6 @@
         <member name="P:K2AmongUs.Options.Roles.Neutral.ZombieOptions.ZombieReviveTimer">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Patches.MimicPatches">
-            <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.Patches.MimicPatches.GameModifierValidityPatch">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Patches.MimicPatches.GameModifierValidityPatch.Postifx(PlayerControl@,System.UInt32@,System.Boolean@)">
-            <inheritdoc/>
-        </member>
         <member name="T:K2AmongUs.Patches.VisionPatch">
             <inheritdoc/>
         </member>
@@ -909,6 +876,9 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Patches.ZombiePatches.OnRoundStart(MiraAPI.Events.Vanilla.Gameplay.RoundStartEvent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Patches.ZombiePatches.OnMeetingStart(MiraAPI.Events.Vanilla.Meeting.StartMeetingEvent)">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Patches.WinConditions.ZombieGameOver">
@@ -1049,9 +1019,6 @@
         <member name="M:K2AmongUs.Roles.Neutral.ForbearingRole.CanUse(IUsable)">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Roles.Neutral.MimicRole.CanUse(IUsable)">
-            <inheritdoc/>
-        </member>
         <member name="T:K2AmongUs.Roles.Neutral.ScrubberRole">
             <inheritdoc/>
         </member>
@@ -1142,12 +1109,6 @@
         <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.OnRoleSet">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.CrewVariant">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Roles.Neutral.ZombieRole.ContinuesGame">
-            <inheritdoc/>
-        </member>
         <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.DidWin(GameOverReason)">
             <inheritdoc/>
         </member>
@@ -1215,36 +1176,6 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.ZombieLeaderRole.CanUse(IUsable)">
-            <inheritdoc/>
-        </member>
-        <member name="T:TouExtensionExample.Buttons.Neutral.MimicKillButton">
-            <inheritdoc/>
-        </member>
-        <member name="P:TouExtensionExample.Buttons.Neutral.MimicKillButton.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:TouExtensionExample.Buttons.Neutral.MimicKillButton.Keybind">
-            <inheritdoc/>
-        </member>
-        <member name="P:TouExtensionExample.Buttons.Neutral.MimicKillButton.TextOutlineColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:TouExtensionExample.Buttons.Neutral.MimicKillButton.Cooldown">
-            <inheritdoc/>
-        </member>
-        <member name="P:TouExtensionExample.Buttons.Neutral.MimicKillButton.Sprite">
-            <inheritdoc/>
-        </member>
-        <member name="M:TouExtensionExample.Buttons.Neutral.MimicKillButton.CreateButton(UnityEngine.Transform)">
-            <inheritdoc/>
-        </member>
-        <member name="M:TouExtensionExample.Buttons.Neutral.MimicKillButton.SetDiseasedTimer(System.Single)">
-            <inheritdoc/>
-        </member>
-        <member name="M:TouExtensionExample.Buttons.Neutral.MimicKillButton.GetTarget">
-            <inheritdoc/>
-        </member>
-        <member name="M:TouExtensionExample.Buttons.Neutral.MimicKillButton.OnClick">
             <inheritdoc/>
         </member>
         <member name="T:TouExtensionExample.Patches.RivalsChatPatch">

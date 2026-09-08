@@ -71,26 +71,46 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // Rival icons can't be seen in-game
 // Rivals Chat Only For First Round?
+// Rivals Aren't Synced
 // Everyone Sees Rivals Chats
 // Adjust rivals desc
 // End game if 1 of rivals is vig and the other can't kill and is crew
+// Make Neutrals win by rival or win condition
+
+// FIX RIVALS!!!
+// Finish Mimic
+// Gossip Doesn't Share Info
+// Snoop Doesn't Have Max Sneaks
+
+// Snoop has "can't use" icon for comms even though they can use in comms
+
+// Scrubber Win Condition Is Bugged Still... :sob:
+
 
 // ================ OTHER ================
 
 // Add boo's bounty hunter idea
+// Add Jay's Deceiver Idea
 
-// Imp that can Hijack tasks?
+// Cleric can revive the zombie as survivor
 
-// Sly but imp (random not-in-play crew for every )
-// Neut outlier that needs to guess exactly 1 person's role
+// Make a "Scrubbed" Modifier So People Know Their Mods Were Scrubbed
+
+// Add Extroverted And Introverted Cooldown Modifiers
 
 // =============== FIXES ===============
 /*
-Fixed Zombie Win Condition (THIS TIME FOR SURE!!!)
-Addes Sprites to sprite folders
-FINALLY added sprites for role/modifier icons (at least the ones that are done
-Synced Rivals
-Made Rivals Unguessable
-Adjusted Snoop Options To Not Have Unused "Max Sneaks" Option (I will be implementing it, just not yet because there are more important things)
-Snoop Should No Longer Be Affected By Mushroom Mixup While Snoopingss
+ * Fixed Typo For Forbearing
+ * Jack Of All Role Can't Get Giant Or Mini From Tasks
+ * HOPEFULLY Fixed Scrubber's Win Con For Real This Time!
+ * Added "Crew Role Weight" To Gossip Options
+ * Fixed Bugs With Unstable Modifier
+ * Fixed Zombie Win Condition (Actually This Time)
+ * Zombie Leader is now guessable by Vigilante
+ * Fixed Forbearing Options Name
+ * Zombies Die And Revive Properly
+ * Zombies Can't Talk To Living
+ * Mimic Removed From Roles List For Now (Until Finished)
+ * Added Sprites For Forbearing, Gossip, And Jack Of All
+ * Made It So Rivals Can't Guess Other Rivals (Unless They Don't Know Each Other)
 */

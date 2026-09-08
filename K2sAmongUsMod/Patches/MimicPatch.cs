@@ -1,3 +1,4 @@
+/*
 using HarmonyLib;
 using K2AmongUs.Modifiers.Crewmate;
 using K2AmongUs.Modifiers.Neutral;
@@ -31,3 +32,4 @@ public static class MimicPatches
         }
     }
 }
+*/

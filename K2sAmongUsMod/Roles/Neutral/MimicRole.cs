@@ -1,4 +1,5 @@
-﻿using K2AmongUs.Modifiers.Neutral;
+﻿/*
+using K2AmongUs.Modifiers.Neutral;
 using MiraAPI.Modifiers;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
@@ -62,3 +63,4 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
         return console == null || console.AllowImpostor;
     }
 }
+*/

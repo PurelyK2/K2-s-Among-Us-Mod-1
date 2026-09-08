@@ -13,10 +13,10 @@ namespace K2AmongUs.Options.Roles.Crewmate;
 public sealed class ForbearingOptions : AbstractOptionGroup<ForbearingRole>
 {
     /// <inheritdoc/>
-    public override string GroupName => "Forbearing/Restless Options";
+    public override string GroupName => "Forbearing Options";
     
     /// <inheritdoc/>
-    [ModdedNumberOption("Restless Kill Cooldown", 5f, 60f, 1f, MiraNumberSuffixes.Seconds)]
+    [ModdedNumberOption("Forbearing Kill Cooldown", 5f, 60f, 1f, MiraNumberSuffixes.Seconds)]
     public float RestlessCooldown { get; set; } = 20f;
 
     /// <inheritdoc/>
@@ -28,10 +28,6 @@ public sealed class ForbearingOptions : AbstractOptionGroup<ForbearingRole>
     public float RestlessMeetingDecrease { get; set; } = 4f;
 
     /// <inheritdoc/>
-    [ModdedToggleOption("Restless Can Vent")]
-    public bool RestlessCanVent { get; set; } = true;
-
-    /// <inheritdoc/>
-    [ModdedToggleOption("Restless Is Assassin")]
-    public bool RestlessAssassin { get; set; } = true;
+    [ModdedToggleOption("Forbearing Can Vent")]
+    public bool ForbearingCanVent { get; set; } = true;
 }

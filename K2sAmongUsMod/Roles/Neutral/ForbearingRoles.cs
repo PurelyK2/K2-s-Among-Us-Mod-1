@@ -13,6 +13,7 @@ using TownOfUs.Utilities;
 using UnityEngine;
 using TownOfUs.Roles.Crewmate;
 using MiraAPI.Modifiers;
+using K2AmongUs.Assets;
 
 namespace K2AmongUs.Roles.Neutral;
 
@@ -33,7 +34,8 @@ public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.SinisterIntro,
-        Icon = TouRoleIcons.Jackal
+        Icon = K2RoleIcons.Forbearing,
+        CanUseVent = OptionGroupSingleton<ForbearingOptions>.Instance.ForbearingCanVent
     };
     public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<SheriffRole>();
     public override void OnVotingComplete()
@@ -58,7 +60,7 @@ public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
                 numMeetingsSkipped++;
 
                 MiraAPI.Utilities.Helpers.CreateAndShowNotification(
-                    "The Killer Is Gettinge Tired Of Waiting...",
+                    "The Killer Is Getting Tired Of Waiting...",
                     RoleColor,
                     new Vector3(0f, 1f, -20f),
                     null,

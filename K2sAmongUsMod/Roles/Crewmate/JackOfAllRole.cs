@@ -1,4 +1,5 @@
-﻿using K2AmongUs.Options.Roles.Crewmate;
+﻿using K2AmongUs.Assets;
+using K2AmongUs.Options.Roles.Crewmate;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Modifiers.Types;
@@ -11,6 +12,7 @@ using TownOfUs.Modifiers.Game;
 using TownOfUs.Modifiers.Game.Alliance;
 using TownOfUs.Modifiers.Game.Assailant;
 using TownOfUs.Modifiers.Game.Impostor;
+using TownOfUs.Modifiers.Game.Universal;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
 using TownOfUs.Utilities;
@@ -46,7 +48,7 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.DetectiveIntroSound,
-        Icon = TouRoleIcons.Agent
+        Icon = K2RoleIcons.JackOfAll
     };
 
 
@@ -83,10 +85,12 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
                     && (m as GameModifier)?.GetAssignmentChance() > 0
                     && (m as GameModifier)?.CanSpawnOnCurrentMode() == true
                     && !player.HasModifier(m.TypeId)
-                    && !(m is DeadlyQuotaModifier)
-                    && !(m is AllianceGameModifier)
-                    && (!(m is TelepathModifier) || player.HasModifier<EgotistModifier>() || player.HasModifier<CrewpostorModifier>())
-                    && (!(m is DoubleShotModifier) || player.HasModifier<AssassinModifier>()))
+                    && m is not DeadlyQuotaModifier
+                    && m is not AllianceGameModifier
+                    && m is not MiniModifier
+                    && m is not GiantModifier
+                    && (m is not TelepathModifier || player.HasModifier<EgotistModifier>() || player.HasModifier<CrewpostorModifier>())
+                    && (m is not DoubleShotModifier || player.HasModifier<AssassinModifier>()))
                     || m is KnightedModifier
                 ).ToList();
 

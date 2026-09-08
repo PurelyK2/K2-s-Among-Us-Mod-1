@@ -1,3 +1,4 @@
+/*
 using AmongUs.GameOptions;
 using HarmonyLib;
 using K2AmongUs.Options.Roles.Neutral;
@@ -264,3 +265,4 @@ public sealed class MimicedRevealedModifier : BaseRevealModifier
         }
     }
 }
+*/

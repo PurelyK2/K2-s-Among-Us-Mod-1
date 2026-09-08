@@ -10,6 +10,7 @@ using TownOfUs.Utilities;
 using UnityEngine;
 using K2AmongUs.Options.Roles.Crewmate;
 using MiraAPI.GameOptions;
+using K2AmongUs.Assets;
 
 namespace K2AmongUs.Roles.Crewmate;
 
@@ -77,6 +78,6 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
     public CustomRoleConfiguration Configuration => new(this)
     {
         IntroSound = TouAudio.DetectiveIntroSound,
-        Icon = TouModifierIcons.Colorblind
+        Icon = K2RoleIcons.Gossip
     };
 }
