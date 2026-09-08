@@ -8,17 +8,17 @@ Gossip: (Crew variant of doomsayer) Hints to a player's role in meetings
 
 Jack Of All Trades: Have a lot of modifiers
 
-Scrubber: Remove All Visible Modifiers From A Player
-
 Snoop: (Crew Variant of Swooper) Hide In Plain Sight To Gain Info
-
-Forbearing: (Equivalent to Sasquach from the game Werewolf) is crew, but once a meeting is tied or skipped, they become a neutral killer and win alone
 
 NEUTRAL ROLES
 
-Mimic: (Neutral Imitator) Mimic Other Players' Roles To Win Alone
+Forbearing: (Equivalent to Sasquach from the game Werewolf) once a meeting is tied or skipped, they get the ability to kill
+
+Mimic: (Neutral Imitator) Mimic Other Players' Roles To Win Alone (Bugged At The Moment)
 
 Zombie Leader: Raise A Zombie Army And Win By Being The Last One Standing
+
+Scrubber: Remove All Visible Modifiers From A Player (Bugged At The Moment)
 
 
 
@@ -28,7 +28,7 @@ Blind: Vision is reduced by X%
 
 Hyperfocus: You can ONLY see tasks while in tasks
 
-Rivalry: You will only win if you're the last rival standing
+Rivalry: You will only win if you're the last rival standing (Bugged At The Moment)
 
 Sly: You show as good to roles who can check your allignment
 
