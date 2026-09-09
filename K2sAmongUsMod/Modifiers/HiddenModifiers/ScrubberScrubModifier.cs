@@ -15,8 +15,10 @@ public sealed class ScrubberScrubModifier : BaseModifier
     /// <inheritdoc/>
     public override void OnMeetingStart()
     {
-        List<BaseModifier> modifiers = Player.GetModifiers<BaseModifier>().Where(m => !m.HideOnUi && !(m is AllianceGameModifier)).ToList();
+        List<BaseModifier> modifiers = Player.GetModifiers<BaseModifier>().Where(m => !m.HideOnUi && !(m is AllianceGameModifier) && !(m is ScrubberScrubModifier)).ToList();
         List<string> modifierNames = new List<string>();
+
+        if (modifiers.Count > 0) return;
 
         foreach(BaseModifier modifier in modifiers)
         {
@@ -31,13 +33,7 @@ public sealed class ScrubberScrubModifier : BaseModifier
 
         if(PlayerControl.LocalPlayer.Data.Role is ScrubberRole scrubber)
         {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Following Modifiers Were Scrubbed From " + Player.Data.PlayerName + ": " + string.Join(", ", modifierNames), Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Bait.LoadAsset());
-
-            if(scrubber.GetDidWin())
-            {
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification("The world has been cleansed of impurities, the only thing left to cleanse is yourself...", Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Bait.LoadAsset());
-            }
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Have Cleansed " + Player.Data.PlayerName + " Of Their Modifiers!", Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Bait.LoadAsset());
         }
     }
-
 }

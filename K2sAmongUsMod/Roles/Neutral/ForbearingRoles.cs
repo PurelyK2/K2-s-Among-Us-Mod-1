@@ -76,6 +76,10 @@ public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
         int playersAlive = MiraAPI.Utilities.Helpers.GetAlivePlayers().Count;
         return !Player.Data.IsDead && (MiscUtils.KillersAliveCount == 1 && playersAlive <= 2);
     }
+    public override bool DidWin(GameOverReason gameOverReason)
+    {
+        return WinConditionMet() && gameOverReason != GameOverReason.CrewmatesByTask && gameOverReason != GameOverReason.CrewmatesByVote;
+    }
 
     /// <inheritdoc/>
     public override bool CanUse(IUsable usable)

@@ -4,8 +4,8 @@
     "net6.0": {
       "AllOfUs.MiraAPI": {
         "type": "Direct",
-        "requested": "[0.4.3, )",
-        "resolved": "0.4.3",
+        "requested": "[0.5.0, )",
+        "resolved": "0.5.0",
         "contentHash": "M6RFA9U7Sps+y2BmIhQAYnaYdmJjtfOhdoqdtwCgAOxkZAt8olytYjaA7P+v65OkonqmMDM+p3ruiLLz3RXZ+g==",
         "dependencies": {
           "BepInEx.Unity.IL2CPP": "6.0.0-be.735",
@@ -64,11 +64,11 @@
       },
       "TownOfUsMira": {
         "type": "Direct",
-        "requested": "[1.7.1, )",
-        "resolved": "1.7.1",
+        "requested": "[1.7.3, )",
+        "resolved": "1.7.3",
         "contentHash": "qRKWOM4FCqkUQ3SHzo/EzVzGM2i/Xwo8FfIl2846knrHJKATkxTitCQrXOjn4KnFu3yM8l+GQ1sh7v9RfOlNdg==",
         "dependencies": {
-          "AllOfUs.MiraAPI": "0.4.3",
+          "AllOfUs.MiraAPI": "0.5.0",
           "BepInEx.Unity.IL2CPP": "6.0.0-be.735",
           "Reactor": "2.5.0-ci.371"
         }

@@ -1,17 +1,20 @@
 ﻿using Il2CppInterop.Runtime.Attributes;
+using K2AmongUs.Modifiers.Neutral;
+using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Gameplay;
+using MiraAPI.Modifiers;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
+using TownOfUs.Modules;
+using TownOfUs.Modules.Components;
 using TownOfUs.Modules.Wiki;
+using TownOfUs.Networking;
 using TownOfUs.Roles;
+using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
-using TownOfUs.Roles.Neutral;
-using MiraAPI.Modifiers;
-using TownOfUs.Networking;
-using MiraAPI.Events;
-using MiraAPI.Events.Vanilla.Gameplay;
 
 namespace K2AmongUs.Roles.Neutral;
 
@@ -25,7 +28,7 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     /// <inheritdoc/>
     public string LocaleKey => "Scrubber";
     /// <inheritdoc/>
-    public string RoleName => "Scrubber (Bugged)";
+    public string RoleName => "Scrubber";
     /// <inheritdoc/>
     public string RoleDescription => "Cleanse the land of modifiers to win";
     /// <inheritdoc/>
@@ -63,18 +66,44 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
 
     public void Update()
     {
-        if (Player == null || Player.Data.IsDead) return;
+        if (Player == null || Player.Data.IsDead || didWin || !Player.AmOwner) return;
 
-        didWin = !MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.GetModifiers<BaseModifier>().Any(m => !m.HideOnUi));
+        didWin = !MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => !p.HasModifier<ScrubberScrubModifier>() && p.Data.Role is not ScrubberRole);
+
+        if(didWin)
+        {
+            Info("Scrubber Should Win");
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The world has been cleansed of impurities, the only thing left to cleanse is yourself...", Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Bait.LoadAsset());
+
+            foreach(PlayerControl player in PlayerControl.AllPlayerControls.ToArray().Where(p => p.HasModifier<ScrubberScrubModifier>()))
+            {
+                player.RemoveModifier<ScrubberScrubModifier>();
+            }
+        }
     }
 
     public void OnRoundStart()
     {
         if(Player.AmOwner && didWin)
         {
-            Player.RpcSpecialMurder(Player, true, true, true, false, false, false, false, false, "Cleansed");
-            Player.RpcAddModifier<TownOfUs.Modifiers.BasicGhostModifier>();
+            /*
+            PlayerStats stats = GameHistory.PlayerStats[Player.PlayerId];
+            stats.DeathString =  "Cleansed";
+            stats.DiedThisRound = false;
+            stats.PlayerState = StoredPlayerState.Dead;
+            stats.LockDeathInfo = true;
+            */
+            Player.Exiled();
         }
+    }
+
+    public bool CheckDidWin()
+    {
+        if (didWin) return true;
+
+        didWin = !MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => !p.HasModifier<ScrubberScrubModifier>() && p.Data.Role is not ScrubberRole);
+        
+        return didWin;
     }
 
     public bool GetDidWin()

@@ -1,32 +1,19 @@
-﻿
-using K2AmongUs.Assets;
+﻿using K2AmongUs.Assets;
 using K2AmongUs.Modifiers.Neutral;
 using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Patches.WinConditions;
-using MiraAPI.Events;
-using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameEnd;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
-using Reactor.Utilities;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using TownOfUs.Assets;
 using TownOfUs.Events;
-using TownOfUs.Events.TouEvents;
 using TownOfUs.Extensions;
 using TownOfUs.Interfaces;
-using TownOfUs.Modifiers;
-using TownOfUs.Modifiers.Neutral;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Networking;
-using TownOfUs.Options.Roles.Neutral;
 using TownOfUs.Patches;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Crewmate;
@@ -38,7 +25,7 @@ using UnityEngine;
 namespace K2AmongUs.Roles.Neutral;
 
 /// <inheritdoc/>
-public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IUnguessable, IGhostRole
+public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IUnguessable
 {
     /// <inheritdoc/>
     public bool HasImpostorVision => true;
@@ -95,8 +82,9 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
         {
             Player.RemoveModifier(modifier);
         }
-        Player.AddModifier<ZombieRevealedModifier>();
-        Player.AddModifier<ZombieAllianceModifier>();
+
+        Player.RpcAddModifier<ZombieRevealedModifier>();
+        Player.RpcAddModifier<ZombieAllianceModifier>();
     }
 
     public bool WinConditionMet()
@@ -140,45 +128,9 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
 
         if(!MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.GetRoleWhenAlive() is ZombieLeaderRole))
         {
-            Player.RpcSpecialMurder(Player, true, true, true, false, false, false, true, true, "Leaderless");
-            Player.RpcChangeRole(RoleId.Get<NeutralGhostRole>());
+            Player.Data.IsDead = true;
         }
     }
-
-    #region Ghost Role Stuff
-    public bool Setup { get; set; }
-    public bool Caught { get; set; }
-    public bool Faded { get; set; }
-    public bool CanBeClicked { get; set; } = false;
-    public void Spawn()
-    {
-        this.Setup = true;
-        bool camouflageCommsEnabled = HudManagerPatches.CamouflageCommsEnabled;
-        if (camouflageCommsEnabled)
-        {
-            base.Player.SetCamouflage(false);
-        }
-        string text = "Setup HaunterRole '" + base.Player.Data.PlayerName + "'";
-
-        MiscUtils.LogInfo(TownOfUsEventHandlers.LogLevel.Error, text);
-        base.Player.gameObject.layer = LayerMask.NameToLayer("Players");
-        base.Player.gameObject.GetComponent<PassiveButton>().OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
-        base.Player.gameObject.GetComponent<BoxCollider2D>().enabled = true;
-        bool amOwner = base.Player.AmOwner;
-        if (amOwner)
-        {
-            base.Player.SpawnAtRandomVent();
-            base.Player.MyPhysics.ResetMoveState(true);
-            DestroyableSingleton<HudManager>.Instance.SetHudActive(false);
-            DestroyableSingleton<HudManager>.Instance.SetHudActive(true);
-            DestroyableSingleton<HudManager>.Instance.AbilityButton.SetDisabled();
-            HudManagerPatches.ResetZoom();
-        }
-    }
-    public void FadeUpdate() { }
-    public void Clicked() { }
-    public bool CanCatch() { return false; }
-    #endregion
 }
 
 /// <inheritdoc/>
@@ -195,7 +147,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     /// <inheritdoc/>
     public string RoleDescription => "START AN APOCOLYPSE";
     /// <inheritdoc/>
-    public string RoleLongDescription => "Convert Dead Players Into Zombies. To win alone!";
+    public string RoleLongDescription => "Convert Dead Players Into Zombies!";
     
     /// <inheritdoc/>
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
@@ -251,7 +203,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
             {
                 PlayerControl player = MiscUtils.PlayerById(bodiesInRange[0].ParentId);
 
-                player.RpcFullRevive(true, bodiesInRange[0].TruePosition, RoleId.Get<ZombieRole>(), true);
+                player.RpcFullRevive(false, bodiesInRange[0].TruePosition, RoleId.Get<ZombieRole>(), false);
                 bodiesInRange[0].ClearBody();
                 timer = OptionGroupSingleton<ZombieOptions>.Instance.ZombieReviveTimer;
             }
@@ -291,7 +243,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     /// <inheritdoc/>
     public override bool DidWin(GameOverReason gameOverReason)
     {
-        return WinConditionMet();
+        return WinConditionMet() && gameOverReason != GameOverReason.CrewmatesByTask && gameOverReason != GameOverReason.CrewmatesByVote;
     }
     
     /// <inheritdoc/>

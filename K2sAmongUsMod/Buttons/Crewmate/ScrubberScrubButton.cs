@@ -54,7 +54,7 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
     /// <inheritdoc/>
     public override bool CanUse()
     {
-        return base.CanUse() && Target?.GetModifiers<BaseModifier>(null).Any() == true;
+        return base.CanUse() && !Target.HasModifier<ScrubberScrubModifier>();
     }
     /// <inheritdoc/>
     protected override void OnClick()

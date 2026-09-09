@@ -22,10 +22,4 @@ public sealed class StealthyOptions : AbstractOptionGroup<StealthyRole>
     /// <inheritdoc/>
     [ModdedNumberOption("Sneak Duration", 10f, 120f, 5f, MiraNumberSuffixes.Seconds)]
     public float SneakDuration { get; set; } = 30f;
-
-    /*
-    /// <inheritdoc/>
-    [ModdedNumberOption("Max Sneaks", 0f, 60f, 1f, MiraNumberSuffixes.None, null, true)]
-    public float MaxSneaks { get; set; } = 0f;
-    */
 }

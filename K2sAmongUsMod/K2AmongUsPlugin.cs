@@ -16,7 +16,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.7")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.8")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -73,21 +73,17 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 // Rivals Chat Only For First Round?
 // Rivals Aren't Synced
 // Everyone Sees Rivals Chats
-// Adjust rivals desc
 // End game if 1 of rivals is vig and the other can't kill and is crew
-// Make Neutrals win by rival or win condition
 
 // FIX RIVALS!!!
 // Finish Mimic
 // Gossip Doesn't Share Info
-// Snoop Doesn't Have Max Sneaks
-
-// Snoop has "can't use" icon for comms even though they can use in comms
-
-// Scrubber Win Condition Is Bugged Still... :sob:
-
 
 // ================ OTHER ================
+
+// Make Zombies Able To Talk As If Dead (Toggleable?)
+
+// Make Outlines For Zombie Leader, Zombie, Gossip, And Forbearing Icons
 
 // Add boo's bounty hunter idea
 // Add Jay's Deceiver Idea
@@ -100,17 +96,16 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // =============== FIXES ===============
 /*
- * Fixed Typo For Forbearing
- * Jack Of All Role Can't Get Giant Or Mini From Tasks
- * HOPEFULLY Fixed Scrubber's Win Con For Real This Time!
- * Added "Crew Role Weight" To Gossip Options
- * Fixed Bugs With Unstable Modifier
- * Fixed Zombie Win Condition (Actually This Time)
- * Zombie Leader is now guessable by Vigilante
- * Fixed Forbearing Options Name
- * Zombies Die And Revive Properly
- * Zombies Can't Talk To Living
- * Mimic Removed From Roles List For Now (Until Finished)
- * Added Sprites For Forbearing, Gossip, And Jack Of All
- * Made It So Rivals Can't Guess Other Rivals (Unless They Don't Know Each Other)
+ * Added Percent Symbol To "Crew Role Weight" Gossip Option
+ * Changed Gossip Cooldowns To Increment By 1 And Go Between 0 And 15
+ * Made Zombies Spawn Normally
+ * (Hopefully) Fixed Zombie Role Being Assigned Many Times Over
+ * Zombie Leader Now Gets A Screen Flash When A Body Is Created
+ * Gossip And Forbearing Icons Are Now Correctly Sized
+ * Forbearing And Zombie Leader SHOULD No Longer Win With Crew... :sob:
+ * Scrubber Should Now Win Correctly
+ * Let Neutral Rivals Still Win With Their Win Condition
+ * Made Zombie Role Visible To All
+ * Made Zombies Revive Properly
+ * Replaced Sly Modifier With Deceiver Impostor Role
 */

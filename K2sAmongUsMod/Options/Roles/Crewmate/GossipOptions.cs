@@ -16,8 +16,8 @@ public sealed class GossipOptions : AbstractOptionGroup<GossipRole>
     public override string GroupName => "Gossip";
     
     /// <inheritdoc/>
-    [ModdedNumberOption("Gossip Cooldown", 0f, 60f, 5f, MiraNumberSuffixes.Seconds)]
-    public float GossipCooldown { get; set; } = 15f;
+    [ModdedNumberOption("Gossip Cooldown", 0f, 15f, 1f, MiraNumberSuffixes.Seconds)]
+    public float GossipCooldown { get; set; } = 1f;
     
     /// <inheritdoc/>
     [ModdedNumberOption("Gossip Roles Count", 0f, 20f, 1f)]
@@ -30,6 +30,6 @@ public sealed class GossipOptions : AbstractOptionGroup<GossipRole>
     */
 
     // <inheritdoc/>
-    [ModdedNumberOption("Crew Role Weight", 0f, 100f, 5f)]
+    [ModdedNumberOption("Crew Role Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
     public float CrewWeight { get; set; } = 30;
 }

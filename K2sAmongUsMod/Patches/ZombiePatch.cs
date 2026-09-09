@@ -29,23 +29,27 @@ public static class ZombiePatches
 
     /// <inheritdoc/>
     [RegisterEvent(0)]
-	public static void OnRoundStart(RoundStartEvent @event)
+    public static void OnMeetingStart(StartMeetingEvent @event)
     {
-        if(!PlayerControl.AllPlayerControls.ToArray().Any(p => p.GetRoleWhenAlive() is ZombieLeaderRole)) return;
-
-        foreach (PlayerControl player in PlayerControl.AllPlayerControls.ToArray().Where(p => p.Data.Role is ZombieRole))
+        foreach (PlayerControl player in MiraAPI.Utilities.Helpers.GetAlivePlayers().Where(p => p.Data.Role is ZombieRole))
         {
-            player.Data.IsDead = false;
+            player.Data.IsDead = true;
         }
     }
 
     /// <inheritdoc/>
     [RegisterEvent(0)]
-    public static void OnMeetingStart(StartMeetingEvent @event)
+    public static void OnRoundStart(RoundStartEvent @event)
     {
-        foreach(PlayerControl player in MiraAPI.Utilities.Helpers.GetAlivePlayers().Where(p => p.Data.Role is ZombieRole))
+        if (!MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is ZombieLeaderRole))
         {
-            player.Data.IsDead = true;
+            Info("No Zombie Leader Found, Remain Dead");
+        }
+
+        foreach (PlayerControl player in PlayerControl.AllPlayerControls.ToArray().Where(p => p.Data.Role is ZombieRole))
+        {
+            Info("Reviving Zombie: " + player.Data.PlayerName);
+            player.Data.IsDead = false;
         }
     }
 }

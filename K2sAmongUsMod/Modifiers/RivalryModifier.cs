@@ -145,16 +145,21 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
             return "Outlast your rivals to win!";
     }
 
+    public static bool WinConditionMet()
+    {
+        return Helpers.GetAlivePlayers().Count(p => p.HasModifier<RivalryModifier>()) == 1;
+    }
+
     /// <inheritdoc/>
     public override bool? DidWin(GameOverReason reason)
     {
-        if(Helpers.GetAlivePlayers().Count((PlayerControl x) => x.HasModifier<RivalryModifier>() && !x.HasDied()) > 1)
+        if (Helpers.GetAlivePlayers().Count((PlayerControl x) => x.HasModifier<RivalryModifier>() && !x.HasDied()) > 1)
             return false;
 
-        if(!Helpers.GetAlivePlayers().Any((PlayerControl x) => x.HasModifier<RivalryModifier>()))
+        if (!Helpers.GetAlivePlayers().Any((PlayerControl x) => x.HasModifier<RivalryModifier>()))
             return Player.Data.Role.DidWin(reason);
 
-        return !Player.Data.IsDead;
+        return !Player.Data.IsDead || (Player.Data.Role.IsNeutral() && Player.Data.Role.DidWin(reason));
     }
 
     /// <inheritdoc/>

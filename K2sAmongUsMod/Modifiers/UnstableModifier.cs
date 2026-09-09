@@ -206,7 +206,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
         {
             var notif1 = Helpers.CreateAndShowNotification(
                 $"<b>{TownOfUsColors.Transporter.ToTextColor()}You have been transported</color></b>", Color.white,
-                new Vector3(0f, 1f, -20f), spr: TouRoleIcons.Transporter.LoadAsset());
+                new Vector3(0f, 1f, -20f), spr: K2ModifierIcons.Unstable.LoadAsset());
 
             notif1.AdjustNotification();
 

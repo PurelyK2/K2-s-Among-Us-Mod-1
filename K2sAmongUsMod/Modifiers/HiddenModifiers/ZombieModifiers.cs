@@ -1,3 +1,4 @@
+using AmongUs.GameOptions;
 using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Roles.Neutral;
 using MiraAPI.Events;
@@ -10,6 +11,7 @@ using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Game;
 using TownOfUs.Modules;
 using TownOfUs.Networking;
+using TownOfUs.Roles.Crewmate;
 using UnityEngine;
 
 namespace K2AmongUs.Modifiers.Neutral;
@@ -22,12 +24,30 @@ public sealed class ZombieRevealedModifier : BaseRevealModifier
     /// <inheritdoc/>
     public override ChangeRoleResult ChangeRoleResult { get; set; } = ChangeRoleResult.Nothing;
     /// <inheritdoc/>
-    public override RoleBehaviour ShownRole => Player.GetRoleWhenAlive();
-    
+    public override RoleBehaviour ShownRole => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<ZombieRole>());
+
     /// <inheritdoc/>
     public override bool RevealRole => true;
     /// <inheritdoc/>
     public override bool Visible => true;
+    /// <inheritdoc/>
+    public override string ExtraRoleText => string.Empty;
+}
+
+/// <inheritdoc/>
+public sealed class ZombieLeaderRevealedModifier : BaseRevealModifier
+{
+    /// <inheritdoc/>
+    public override string ModifierName => "Zombie Leader Revealed";
+    /// <inheritdoc/>
+    public override ChangeRoleResult ChangeRoleResult { get; set; } = ChangeRoleResult.Nothing;
+    /// <inheritdoc/>
+    public override RoleBehaviour ShownRole => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<ZombieLeaderRole>());
+
+    /// <inheritdoc/>
+    public override bool RevealRole => true;
+    /// <inheritdoc/>
+    public override bool Visible => PlayerControl.LocalPlayer.Data.Role is ZombieRole;
     /// <inheritdoc/>
     public override string ExtraRoleText => string.Empty;
 }
@@ -74,6 +94,7 @@ public sealed class ZombieArrowModifier(DeadBody deadBody, Color color) : ArrowD
         }
 
         Coroutines.Start(CoCreateArrow(@event.Target));
+        Coroutines.Start(TownOfUs.Utilities.MiscUtils.CoFlash(DestroyableSingleton<ZombieRole>.Instance.RoleColor));
     }
 
     private static System.Collections.IEnumerator CoCreateArrow(PlayerControl target)

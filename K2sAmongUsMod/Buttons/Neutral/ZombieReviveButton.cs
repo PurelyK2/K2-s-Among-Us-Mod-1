@@ -12,6 +12,8 @@ using MiraAPI.Roles;
 using TownOfUs.Networking;
 using TownOfUs.Modifiers.Game.Crewmate;
 using K2AmongUs.Modifiers.Neutral;
+using TownOfUs.Utilities.Appearances;
+using TownOfUs.Roles.Impostor;
 
 namespace K2AmongUs.Buttons.Neutral;
 
@@ -40,12 +42,12 @@ public class ZombieReviveButton : TownOfUsButton
     /// <inheritdoc/>
     public override bool CanUse()
     {
-        return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Any(b => MiscUtils.PlayerById(b.ParentId).Data.Role is ZombieRole);
+        return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Any(b => MiscUtils.PlayerById(b.ParentId).Data.Role is not ZombieRole);
     }
     /// <inheritdoc/>
     public override bool CanClick()
     {
-        return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Count > 0;
+        return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Any(b => MiscUtils.PlayerById(b.ParentId).Data.Role is not ZombieRole);
     }
 
     /// <inheritdoc/>
@@ -62,7 +64,15 @@ public class ZombieReviveButton : TownOfUsButton
     /// <inheritdoc/>
     public static void SetZombieRole(PlayerControl player, DeadBody body)
     {
-        player.RpcFullRevive(true, body.TruePosition, RoleId.Get<ZombieRole>(), true);
-        player.AddModifier<ZombieRevealedModifier>();
+        if (player.HasModifier<ZombieRevealedModifier>()) return;
+
+        foreach (BaseModifier modifier in player.GetModifiers<BaseModifier>().Where(m => m is not IVisualAppearance))
+        {
+            player.RpcRemoveModifier(modifier.UniqueId);
+        }
+
+        player.RpcFullRevive(false, body.TruePosition, RoleId.Get<ZombieRole>(), true);
+
+        body.ClearBody();
     }
 }

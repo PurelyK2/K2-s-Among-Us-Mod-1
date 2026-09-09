@@ -352,70 +352,6 @@
         <member name="M:K2AmongUs.Modifiers.Game.Universal.HyperfocusModifier.IsModifierValidOn(RoleBehaviour)">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Modifiers.Game.Universal.SlyModifier">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Game.Universal.SlyModifier.ModifierName">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Game.Universal.SlyModifier.LocaleKey">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Game.Universal.SlyModifier.IntroInfo">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Game.Universal.SlyModifier.GetDescription">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Game.Universal.SlyModifier.GetAdvancedDescription">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Game.Universal.SlyModifier.FactionType">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Game.Universal.SlyModifier.GetAssignmentChance">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Game.Universal.SlyModifier.IntroSize">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Game.Universal.SlyModifier.HideOnUi">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Game.Universal.SlyModifier.ModifierIcon">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Game.Universal.SlyModifier.GetAmountPerGame">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Game.Universal.SlyModifier.CustomAmount">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Game.Universal.SlyModifier.CustomChance">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Game.Universal.SlyModifier.IsModifierValidOn(RoleBehaviour)">
-            <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.Modifiers.Game.Universal.SlyModifier.OnSeerCheckEvil">
-            =========================== PATCHES ===========================
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Game.Universal.SlyModifier.OnSeerCheckEvil.Postfix(System.Boolean@,PlayerControl)">
-            <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.Modifiers.Game.Universal.SlyModifier.OnTrapperReport">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Game.Universal.SlyModifier.OnTrapperReport.Prefix(TownOfUs.Roles.Crewmate.TrapperRole@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.Modifiers.Game.Universal.SlyModifier.OnLookoutWatch">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Game.Universal.SlyModifier.OnLookoutWatch.Prefix(TownOfUs.Modifiers.Crewmate.LookoutWatchedModifier@)">
-            <inheritdoc/>
-        </member>
         <member name="T:K2AmongUs.Modifiers.Game.Universal.UnstableModifier">
             <inheritdoc/>
         </member>
@@ -689,6 +625,27 @@
         <member name="P:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier.ExtraRoleText">
             <inheritdoc/>
         </member>
+        <member name="T:K2AmongUs.Modifiers.Neutral.ZombieLeaderRevealedModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ZombieLeaderRevealedModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ZombieLeaderRevealedModifier.ChangeRoleResult">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ZombieLeaderRevealedModifier.ShownRole">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ZombieLeaderRevealedModifier.RevealRole">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ZombieLeaderRevealedModifier.Visible">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Neutral.ZombieLeaderRevealedModifier.ExtraRoleText">
+            <inheritdoc/>
+        </member>
         <member name="M:K2AmongUs.Modifiers.Neutral.ZombieAllianceModifier.DidWin(GameOverReason)">
             <inheritdoc/>
         </member>
@@ -768,18 +725,6 @@
             <inheritdoc/>
         </member>
         <member name="P:K2AmongUs.Options.Modifiers.Game.Universal.VentableOptions.MaxVents">
-            <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.Options.Roles.Crewmate.SlyOptions">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Crewmate.SlyOptions.GroupName">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Crewmate.SlyOptions.SlyCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Crewmate.SlyOptions.SlyChance">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Options.Roles.Crewmate.GossipOptions">
@@ -875,10 +820,10 @@
         <member name="M:K2AmongUs.Patches.ZombiePatches.HandleVoteEvent(MiraAPI.Events.Vanilla.Meeting.Voting.HandleVoteEvent)">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Patches.ZombiePatches.OnRoundStart(MiraAPI.Events.Vanilla.Gameplay.RoundStartEvent)">
+        <member name="M:K2AmongUs.Patches.ZombiePatches.OnMeetingStart(MiraAPI.Events.Vanilla.Meeting.StartMeetingEvent)">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Patches.ZombiePatches.OnMeetingStart(MiraAPI.Events.Vanilla.Meeting.StartMeetingEvent)">
+        <member name="M:K2AmongUs.Patches.ZombiePatches.OnRoundStart(MiraAPI.Events.Vanilla.Gameplay.RoundStartEvent)">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Patches.WinConditions.ZombieGameOver">
