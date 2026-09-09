@@ -20,6 +20,9 @@ Zombie Leader: Raise A Zombie Army And Win By Being The Last One Standing
 
 Scrubber: Remove All Visible Modifiers From A Player (Bugged At The Moment)
 
+IMPOSTOR ROLES
+
+Deceiver: Hide Your Role From Other Factions
 
 
 Adds The Following Modifiers:
@@ -29,8 +32,6 @@ Blind: Vision is reduced by X%
 Hyperfocus: You can ONLY see tasks while in tasks
 
 Rivalry: You will only win if you're the last rival standing (Bugged At The Moment)
-
-Sly: You show as good to roles who can check your allignment
 
 Unstable: You randomly teleport every X-Y seconds
 
