@@ -18,7 +18,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.9")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.10")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -83,9 +83,12 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
     }
 }
 
-// Finish Mimic
+// Buttons Can Be Clicked During Sabotage But Have The Blocking Symbol
+// Deceiver Ends Game If They Aren't Host And Are The Only Killer
 
 // ================ OTHER ================
+
+// Finish Mimic
 
 // Make Zombies Able To Talk As If Dead (Toggleable?)
 
@@ -100,20 +103,12 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // =============== FIXES ===============
 /*
- * Added Deceiver Options
- * Fixed Deceiver Icon Size
- * GOSSIP FINALLY SHARES INFO!!!
- * Let Dead See Deceiver Correctly
- * Deceiver Doesn't Deceive Snitch
- * Hardcoded Jack Of All To Be Unable To Randomly Get First Death Shield
- * Removed Ghostwalker Roles From Gossip's Roles (Haunter, Spectre, etc.)
- * Fixed Bug Where Imitator Doesn't Show Up In Roles List For Gossip If The Person Is Imitator
- * Fixed Some Confusing Wording In Gossip's Overhear Notification
- * Blind Is No Longer Guessable
- * Scrubber Should No Longer Be Able To Turn Into Spectre After Winning
- * Removed Rivalry Modifier Until Further Notice (Decided It May Be Unfun And Not Worth My Time
- * Made Deceiver Unguessable By Assassin For Now (Until I Figure Out How To Get It Working With Assassin)
- * Scrubber Winning Should Now Be Synced
- * Updated Gossip And Forbearing Icons
- * Began Adding Direct Compatability With Perfect Comms (Not Yet Working)
+ * Zombie Leader Will No Longer Flash Everyone's Screen On Player Death
+ * Zombies Die Properly At Meeting Start And Revive Later Than Before
+ * Deceiver Shows On End Screen Properly
+ * Updated README to include credit for Jay for the INCREDIBLE mod icon (I Haven't Found Where It Goes Yet. XD)!!!
+ * Adjusted Deceiver Code To Correctly Show On Game End Screen
+ * Adjusted Deceiver Code To Correctly Work With Assassin
+ * Made Deceiver Not Deceive After Death
+ * Made Deceiver Show The Right Number Of Impostors On Game Start
 */

@@ -979,9 +979,6 @@
         <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.DidWin(GameOverReason)">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.OnVotingComplete">
-            <inheritdoc/>
-        </member>
         <member name="M:K2AmongUs.Roles.Neutral.ZombieRole.CanUse(IUsable)">
             <inheritdoc/>
         </member>

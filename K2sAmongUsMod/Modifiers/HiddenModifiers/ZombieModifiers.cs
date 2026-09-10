@@ -94,7 +94,9 @@ public sealed class ZombieArrowModifier(DeadBody deadBody, Color color) : ArrowD
         }
 
         Coroutines.Start(CoCreateArrow(@event.Target));
-        Coroutines.Start(TownOfUs.Utilities.MiscUtils.CoFlash(DestroyableSingleton<ZombieRole>.Instance.RoleColor));
+
+        if(PlayerControl.LocalPlayer.Data.Role is ZombieLeaderRole)
+            Coroutines.Start(TownOfUs.Utilities.MiscUtils.CoFlash(DestroyableSingleton<ZombieRole>.Instance.RoleColor));
     }
 
     private static System.Collections.IEnumerator CoCreateArrow(PlayerControl target)

@@ -101,13 +101,6 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     {
         return WinConditionMet();
     }
-
-    /// <inheritdoc/>
-    public override void OnVotingComplete()
-    {
-        if(Helpers.GetAlivePlayers().Any(p => p.GetRoleWhenAlive() is ZombieLeaderRole))
-            Player.RpcBasicRevive();
-    }
     
     /// <inheritdoc/>
     public override bool CanUse(IUsable usable)

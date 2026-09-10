@@ -25,6 +25,7 @@ IMPOSTOR ROLES
 Deceiver: Hide Your Role From Other Factions
 
 
+
 Adds The Following Modifiers:
 
 Blind: Vision is reduced by X%
@@ -46,4 +47,5 @@ Art by:
 * HarckDOof (Ventable, Rivalry, Mimic, Jack Of All)
 * phantombee (Zombie/Zombie Leader, Blind, Unstable, Un-Implemented Art)
 * Games And Things (General Clean Up, Gossip, Forbearing)
-* ₊˚✧ 𝒥𝒶𝓎 :3 ✧˚₊‧ (Deceiver)
+* ₊˚✧ 𝒥𝒶𝓎 :3 ✧˚₊‧ (Deceiver, Logo (Not Yet Fully Implemented))
+

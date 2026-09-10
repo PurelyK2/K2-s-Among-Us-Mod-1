@@ -31,9 +31,9 @@ public static class ZombiePatches
     [RegisterEvent(0)]
     public static void OnMeetingStart(StartMeetingEvent @event)
     {
-        foreach (PlayerControl player in MiraAPI.Utilities.Helpers.GetAlivePlayers().Where(p => p.Data.Role is ZombieRole))
+        foreach (PlayerControl player in MiraAPI.Utilities.Helpers.GetAlivePlayers().Where(p => p.Data.Role is ZombieRole && p.AmOwner))
         {
-            player.Data.IsDead = true;
+            player.RpcSpecialMurder(player, true, true, true, false, false, false, false, false, "Undead");
         }
     }
 
@@ -43,13 +43,13 @@ public static class ZombiePatches
     {
         if (!MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is ZombieLeaderRole))
         {
-            Info("No Zombie Leader Found, Remain Dead");
+            Info("No Zombie Leader Found, Zombies Remain Dead");
         }
 
-        foreach (PlayerControl player in PlayerControl.AllPlayerControls.ToArray().Where(p => p.Data.Role is ZombieRole))
+        foreach (PlayerControl player in PlayerControl.AllPlayerControls.ToArray().Where(p => p.Data.Role is ZombieRole && p.AmOwner))
         {
             Info("Reviving Zombie: " + player.Data.PlayerName);
-            player.Data.IsDead = false;
+            player.RpcBasicRevive();
         }
     }
 }

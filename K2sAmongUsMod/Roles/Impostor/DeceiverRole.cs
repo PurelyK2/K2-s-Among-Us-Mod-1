@@ -6,12 +6,19 @@ using InnerNet;
 using K2AmongUs.Assets;
 using K2AmongUs.Options.Roles.Crewmate;
 using K2AmongUs.Options.Roles.Impostor;
+using K2sAmongUsMod.Modifiers.HiddenModifiers;
+using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameOptions;
+using MiraAPI.Hud;
+using MiraAPI.Modifiers;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using TownOfUs;
 using TownOfUs.Assets;
+using TownOfUs.Buttons.Crewmate;
 using TownOfUs.Extensions;
+using TownOfUs.Modifiers.Game.Assailant;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
@@ -21,12 +28,12 @@ using TownOfUs.Utilities;
 using UnityEngine;
 
 //Note: This Role Was Suggested By: ‧₊˚✧ 𝒥𝒶𝓎 :3 ✧˚₊‧ (Discord)
-public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, ICrewVariant, IUnguessable
+public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, ICrewVariant
 {
-    public static bool confuseRole = true;
+    public static bool confuseRole;
 
     public RoleAlignment RoleAlignment => RoleAlignment.ImpostorConcealing;
-    public string RoleName => "Deceiver";
+    public string RoleName => "Deceiver (Dev)";
     public string LocaleKey => "Deceiver";
 
     public string RoleDescription => "You Seem Innocent To Others...";
@@ -49,24 +56,64 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 
     public RoleBehaviour CrewVariant => DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<SeerRole>());
 
-    public RoleBehaviour AppearAs => DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<SeerRole>());
+    public override void OnRoleSet()
+    {
+        base.OnRoleSet();
+		Player.AddModifier<DeceiverModifier>();
+    }
 
-    public bool IsGuessable => PlayerControl.LocalPlayer.Data.Role is not VigilanteRole && PlayerControl.LocalPlayer.Data.Role is not DoomsayerRole;
+    [RegisterEvent(0)]
+    public static void OnRoundStartEventHandler(RoundStartEvent _)
+    {
+		confuseRole = true;
+    }
+
+	[HarmonyPatch(typeof(AssassinModifier), "ClickGuess", [typeof(PlayerVoteArea), typeof(MeetingHud)])]
+	public static class AssassinGuessDeceiverPatch
+	{
+		public static void Prefix()
+		{
+			confuseRole = false;
+		}
+		public static void Postfix()
+		{
+			confuseRole = true;
+		}
+	}
 
     [HarmonyPatch(typeof(NetworkedPlayerInfo), "Role", MethodType.Getter)]
     public static class GetDeceiverRolePatch
     {
 		public static void Postfix(ref RoleBehaviour __result, ref NetworkedPlayerInfo __instance)
 		{
+			/*
+			Skip if one of the following:
+			1. Game Is At A Point Where It Shouldn't Confuse
+				* The Game Hasn't Started
+				* The Game Is Ending
+				* The Player Is Guessing Your Role (Assassin, Vigilante, Doomsayer, etc.)
+				- Someone is checking for your role (sleuth, imitator, mimic, etc.)
+			2. __result isn't Deceiver
+			3. You Are The Owner of a player AND One Of The Following:
+				- You Are Imp
+				- You Are Dead
+				- You Are Snitch
+				- You Are Inquisitor
+			 */
+			if(MiscUtils.PlayerById(__instance.PlayerId).HasModifier<DeceiverModifier>())
+			{
+				__result = DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<DeceiverRole>());
+				
+				if (__instance.AmOwner) return;
+			}
+
 			if (!confuseRole) return;
-			if (__result is not DeceiverRole
-				|| __instance.AmOwner &&
-				(__instance.Role.IsImpostor()
+			if (__result is not DeceiverRole || __instance.IsDead) return;
+			if(__instance.AmOwner
+				&& (__instance.Role.IsImpostor()
 				|| __instance.IsDead
 				|| __instance.Role is SnitchRole
-				|| __instance.Role is InquisitorRole
-				|| __instance.Role is DoomsayerRole
-				|| __instance.Role is VigilanteRole)) return;
+				|| __instance.Role is InquisitorRole)) return;
 
 			if(OptionGroupSingleton<DeceiverOptions>.Instance.DeceiverDisplayedAs == DeceiverOptions.DeceiverRoleDisplayed.Investigator)
 				__result = DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<InvestigatorRole>());
@@ -93,16 +140,7 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 		}
 	}
 
-	[HarmonyPatch(typeof(InnerNetServer), "StartGame", new[] { typeof(MessageReader), typeof(InnerNetServer.Player) })]
-	public static class StartGamePatch
-	{
-		public static void Postfix()
-		{
-			confuseRole = true;
-		}
-	}
-
-	[HarmonyPatch(typeof(InnerNetServer), "EndGame", new[] { typeof(MessageReader), typeof(InnerNetServer.Player) })]
+	[HarmonyPatch(typeof(InnerNetClient), "StartEndGame")]
 	public static class EndGamePatch
 	{
 		public static void Prefix()
