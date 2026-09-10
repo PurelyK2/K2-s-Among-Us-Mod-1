@@ -59,6 +59,8 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
         {
             _ = ConstantlyError(e.ToString());
         }
+
+        PerfectCommsSetup();
     }
     private static async Task ConstantlyError(string e)
     {
@@ -83,13 +85,12 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // Finish Mimic
 
-// Deceiver Ends Game If They Aren't The Host (Because EndGame Happens)
-
 // ================ OTHER ================
 
 // Make Zombies Able To Talk As If Dead (Toggleable?)
 
 // Add boo's bounty hunter idea
+// Add Jay's Deceiver Idea
 
 // Cleric can revive the zombie as survivor
 
@@ -99,6 +100,20 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // =============== FIXES ===============
 /*
- * Fixed Gossip Sprite Sizing (Again)
- * Removed Perfect Comms Integration Because It Seemed To Bug Stuff?
+ * Added Deceiver Options
+ * Fixed Deceiver Icon Size
+ * GOSSIP FINALLY SHARES INFO!!!
+ * Let Dead See Deceiver Correctly
+ * Deceiver Doesn't Deceive Snitch
+ * Hardcoded Jack Of All To Be Unable To Randomly Get First Death Shield
+ * Removed Ghostwalker Roles From Gossip's Roles (Haunter, Spectre, etc.)
+ * Fixed Bug Where Imitator Doesn't Show Up In Roles List For Gossip If The Person Is Imitator
+ * Fixed Some Confusing Wording In Gossip's Overhear Notification
+ * Blind Is No Longer Guessable
+ * Scrubber Should No Longer Be Able To Turn Into Spectre After Winning
+ * Removed Rivalry Modifier Until Further Notice (Decided It May Be Unfun And Not Worth My Time
+ * Made Deceiver Unguessable By Assassin For Now (Until I Figure Out How To Get It Working With Assassin)
+ * Scrubber Winning Should Now Be Synced
+ * Updated Gossip And Forbearing Icons
+ * Began Adding Direct Compatability With Perfect Comms (Not Yet Working)
 */
