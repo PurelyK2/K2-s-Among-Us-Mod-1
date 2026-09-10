@@ -5,6 +5,12 @@ using MiraAPI.GameOptions;
 using K2AmongUs.Options.Roles.Crewmate;
 using MiraAPI.Roles;
 using TownOfUs.Utilities;
+using MiraAPI.Utilities;
+using AmongUs.GameOptions;
+using TMPro;
+using TownOfUs.Modifiers.Crewmate;
+using TownOfUs.Roles.Crewmate;
+using TownOfUs.Roles;
 
 namespace K2AmongUs.Modifiers.Crewmate;
 
@@ -15,6 +21,16 @@ public sealed class GossipOverhearModifier : BaseModifier
     public GossipOverhearModifier(List<RoleBehaviour> rolesList)
     {
         GossipRoles = rolesList;
+    }
+    public GossipOverhearModifier(RoleBehaviour[] rolesList)
+    {
+        GossipRoles = rolesList.ToList();
+    }
+    public GossipOverhearModifier(string rolesList)
+    {
+        string[] roleNames = rolesList.Split("|");
+
+        GossipRoles = roleNames.Select(name => DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().First(r => r.GetRoleName() == name)).ToList();
     }
 
     /// <inheritdoc/>
@@ -65,11 +81,11 @@ public sealed class GossipOverhearModifier : BaseModifier
     }
 
     /// <inheritdoc/>
-    public static List<RoleBehaviour> GenerateGossipRoles(PlayerControl player)
+    public static RoleBehaviour[] GenerateGossipRoles(PlayerControl player)
     {
         int randRolesCount = (int)OptionGroupSingleton<GossipOptions>.Instance.GossipRoles;
 
-        List<RoleBehaviour> allRoles = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().ToList();
+        List<RoleBehaviour> allRoles = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().Where(r => r is not IGhostRole).ToList();
         List<RoleBehaviour> possibleRoles = new List<RoleBehaviour>();
         foreach(RoleBehaviour role in allRoles)
         {
@@ -80,9 +96,20 @@ public sealed class GossipOverhearModifier : BaseModifier
             }
         }
 
-        possibleRoles.RemoveAll(role => role.GetType() == player.GetRoleWhenAlive().GetType());
 
-        List<RoleBehaviour> randomRolesList = new List<RoleBehaviour> { player.GetRoleWhenAlive() };
+        List<RoleBehaviour> randomRolesList = new List<RoleBehaviour>();
+
+        if (player.HasModifier<ImitatorCacheModifier>())
+        {
+            RoleBehaviour imitatorRole = possibleRoles.First(r => r is ImitatorRole);
+            randomRolesList.Add(imitatorRole);
+            possibleRoles.Remove(imitatorRole);
+        }
+        else
+        {
+            possibleRoles.RemoveAll(role => role.GetType() == player.GetRoleWhenAlive().GetType());
+            randomRolesList.Add(player.Data.Role);
+        }
 
         for(int i = 0; i < randRolesCount; i++)
         {
@@ -106,6 +133,6 @@ public sealed class GossipOverhearModifier : BaseModifier
             randomRolesList.Add(newRole);
         }
         
-        return randomRolesList;
+        return randomRolesList.ToArray();
     }
 }

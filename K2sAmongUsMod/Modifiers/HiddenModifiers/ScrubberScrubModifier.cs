@@ -3,14 +3,18 @@ using TownOfUs.Assets;
 using TownOfUs.Modifiers.Game;
 using UnityEngine;
 using K2AmongUs.Roles.Neutral;
+using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Gameplay;
 
 namespace K2AmongUs.Modifiers.Neutral;
 
 /// <inheritdoc/>
 public sealed class ScrubberScrubModifier : BaseModifier
 {
+    bool GotThisRound = true;
     /// <inheritdoc/>
     public override string ModifierName => "Scrubber Scrubbing";
+    public override bool HideOnUi => GotThisRound;
 
     /// <inheritdoc/>
     public override void OnMeetingStart()
@@ -35,5 +39,7 @@ public sealed class ScrubberScrubModifier : BaseModifier
         {
             MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Have Cleansed " + Player.Data.PlayerName + " Of Their Modifiers!", Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Bait.LoadAsset());
         }
+
+        GotThisRound = false;
     }
 }

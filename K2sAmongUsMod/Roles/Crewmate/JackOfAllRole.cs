@@ -91,6 +91,7 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
                     && m is not GiantModifier
                     && (m is not TelepathModifier || player.HasModifier<EgotistModifier>() || player.HasModifier<CrewpostorModifier>())
                     && (m is not DoubleShotModifier || player.HasModifier<AssassinModifier>()))
+                    && (m is not FirstDeadShield)
                     || m is KnightedModifier
                 ).ToList();
 

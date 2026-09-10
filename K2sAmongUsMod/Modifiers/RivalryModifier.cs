@@ -1,3 +1,4 @@
+/*
 using K2AmongUs.Assets;
 using K2AmongUs.Options.Modifiers.AllianceModifierOptions;
 using MiraAPI.GameOptions;
@@ -222,3 +223,4 @@ public sealed class RivalryModifier : AllianceGameModifier, IWikiDiscoverable, I
     }
 
 }
+*/

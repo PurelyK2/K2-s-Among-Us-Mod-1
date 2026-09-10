@@ -3,7 +3,7 @@ using MiraAPI.Keybinds;
 using MiraAPI.Networking;
 using MiraAPI.Utilities.Assets;
 using Reactor.Utilities;
-using K2AmongUs.Options.Roles.Crewmate;
+using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Roles.Neutral;
 using TownOfUs.Assets;
 using TownOfUs.Buttons;

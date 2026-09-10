@@ -23,11 +23,9 @@ public sealed class GossipOptions : AbstractOptionGroup<GossipRole>
     [ModdedNumberOption("Gossip Roles Count", 0f, 20f, 1f)]
     public float GossipRoles { get; set; } = 7f;
 
-    /*
     // <inheritdoc/>
     [ModdedToggleOption("Gossip Shares Info")]
     public bool ShowGossip { get; set; } = true;
-    */
 
     // <inheritdoc/>
     [ModdedNumberOption("Crew Role Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
