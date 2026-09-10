@@ -1,6 +1,7 @@
 ﻿using K2AmongUs.Modifiers.Game.Universal;
 using System;
 using System.Runtime.CompilerServices;
+using K2AmongUs.Modifiers.Game.Alliance;
 using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.Attributes;
 using MiraAPI.GameOptions.OptionTypes;

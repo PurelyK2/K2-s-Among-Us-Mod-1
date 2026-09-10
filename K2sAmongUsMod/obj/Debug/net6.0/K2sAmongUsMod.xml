@@ -277,9 +277,6 @@
         <member name="P:K2AmongUs.Modifiers.Game.Universal.BlindModifier.IntroInfo">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Modifiers.Game.Universal.BlindModifier.HideFromGuessing">
-            <inheritdoc/>
-        </member>
         <member name="M:K2AmongUs.Modifiers.Game.Universal.BlindModifier.GetDescription">
             <inheritdoc/>
         </member>
@@ -466,6 +463,78 @@
         <member name="P:K2AmongUs.Modifiers.Game.Universal.VentableModifier.CustomChance">
             <inheritdoc/>
         </member>
+        <member name="T:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.RivalsColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.HideOnUi">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.IsGuessable">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.Symbol">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.ModifierName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.LocaleKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.IntroInfo">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.ContinuesGame">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.GetAdvancedDescription">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.ModifierIcon">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.CustomAmount">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.CustomChance">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.ForceDisableTasks">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.GetAllRivals">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.OnActivate">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.OnMeetingStart">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.GetAssignmentChance">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.GetAmountPerGame">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.RivalsString">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.DidWin(GameOverReason)">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.RpcSendRivalsChat(PlayerControl,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AmongUs.Modifiers.Game.Alliance.RivalryModifier.AssignTargets">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.Modifiers.Crewmate.GossipOverhearModifier">
             <inheritdoc/>
         </member>
@@ -625,6 +694,24 @@
         <member name="P:K2AmongUs.Options.Modifiers.UniversalModifierOptions.UnstableOptions.UnstableMaxCooldown">
             <inheritdoc/>
         </member>
+        <member name="T:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions.GroupName">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions.RivalsChance">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions.RivalsCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions.RivalsChatOff">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AmongUs.Options.Modifiers.AllianceModifierOptions.RivalryOptions.RivalsKnowOthers">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.Options.Modifiers.Game.Universal.VentableOptions">
             <inheritdoc/>
         </member>
@@ -679,31 +766,22 @@
         <member name="P:K2AmongUs.Options.Roles.Crewmate.StealthyOptions.SneakDuration">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Options.Roles.Impostor.DeceiverOptions">
+        <member name="T:K2AmongUs.Options.Roles.Crewmate.ForbearingOptions">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Options.Roles.Impostor.DeceiverOptions.GroupName">
+        <member name="P:K2AmongUs.Options.Roles.Crewmate.ForbearingOptions.GroupName">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Options.Roles.Impostor.DeceiverOptions.DeceiverDisplayedAs">
+        <member name="P:K2AmongUs.Options.Roles.Crewmate.ForbearingOptions.RestlessCooldown">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Options.Roles.Neutral.ForbearingOptions">
+        <member name="P:K2AmongUs.Options.Roles.Crewmate.ForbearingOptions.RestlessEveryMeeting">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Options.Roles.Neutral.ForbearingOptions.GroupName">
+        <member name="P:K2AmongUs.Options.Roles.Crewmate.ForbearingOptions.RestlessMeetingDecrease">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Options.Roles.Neutral.ForbearingOptions.RestlessCooldown">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Neutral.ForbearingOptions.RestlessEveryMeeting">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Neutral.ForbearingOptions.RestlessMeetingDecrease">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Options.Roles.Neutral.ForbearingOptions.ForbearingCanVent">
+        <member name="P:K2AmongUs.Options.Roles.Crewmate.ForbearingOptions.ForbearingCanVent">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Options.Roles.Neutral.ScrubberOptions">
@@ -1043,6 +1121,18 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.ZombieLeaderRole.CanUse(IUsable)">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Patches.RivalsChatPatch">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Patches.RivalsChatPatch.SendChatPatch(ChatController)">
+            <inheritdoc/>
+        </member>
+        <member name="M:TouExtensionExample.Patches.RivalsChatPatch.RivalsSymbolPatch(System.String@,PlayerControl,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:TouExtensionExample.Patches.RivalsKnownDisplay">
             <inheritdoc/>
         </member>
     </members>

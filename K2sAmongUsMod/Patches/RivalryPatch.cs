@@ -1,4 +1,3 @@
-/*
 using System.Runtime.CompilerServices;
 using HarmonyLib;
 using MiraAPI.Modifiers;
@@ -113,4 +112,3 @@ internal static class RivalsKnownDisplay
         }
     }
 }
-*/

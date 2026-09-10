@@ -2,7 +2,7 @@
 using MiraAPI.GameOptions;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
-using K2AmongUs.Options.Roles.Neutral;
+using K2AmongUs.Options.Roles.Crewmate;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Modules;

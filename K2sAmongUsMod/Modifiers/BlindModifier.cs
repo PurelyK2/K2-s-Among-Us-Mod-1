@@ -7,7 +7,6 @@ using TownOfUs.Utilities;
 using UnityEngine;
 using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
 using TownOfUs.Modifiers;
-using TownOfUs.Extensions;
 
 namespace K2AmongUs.Modifiers.Game.Universal;
 
@@ -20,8 +19,6 @@ public sealed class BlindModifier : TouGameModifier, IWikiDiscoverable
     public override string LocaleKey => "Blind";
     /// <inheritdoc/>
     public override string IntroInfo => "Your vision is reduced by " + (int)OptionGroupSingleton<BlindOptions>.Instance.BlindAmount + "%";
-    /// <inheritdoc/>
-    public override bool HideFromGuessing => true;
     /// <inheritdoc/>
     public override string GetDescription()
     {

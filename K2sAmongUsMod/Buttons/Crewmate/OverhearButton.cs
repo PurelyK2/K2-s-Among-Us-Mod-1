@@ -12,8 +12,6 @@ using TownOfUs.Extensions;
 using TownOfUs.Modules;
 using TownOfUs.Utilities;
 using UnityEngine;
-using MiraAPI.Roles;
-using MiraAPI.Utilities;
 
 namespace K2AmongUs.Buttons.Crewmate;
 
@@ -53,24 +51,19 @@ public sealed class OverhearButton : TownOfUsRoleButton<GossipRole, PlayerContro
             return;
         }
 
-        foreach (PlayerControl player in PlayerControl.AllPlayerControls)
+        foreach(PlayerControl player in PlayerControl.AllPlayerControls)
         {
-            if (player.HasModifier<GossipOverhearModifier>())
+            if(player.HasModifier<GossipOverhearModifier>())
             {
                 player.RemoveModifier<GossipOverhearModifier>();
             }
         }
 
+        GossipOverhearModifier gossipModifier = new GossipOverhearModifier(GossipOverhearModifier.GenerateGossipRoles(Target));
 
-        if (OptionGroupSingleton<GossipOptions>.Instance.ShowGossip)
-            Target.RpcAddModifier(typeof(GossipOverhearModifier), new object[] { string.Join("|", GossipOverhearModifier.GenerateGossipRoles(Target).Select(r => r.GetRoleName()).ToList()) });
-        else
-        {
-            GossipOverhearModifier gossipModifier = new GossipOverhearModifier(GossipOverhearModifier.GenerateGossipRoles(Target));
-            Target.AddModifier(gossipModifier);
-        }
+        Target.AddModifier(gossipModifier);
 
-        string notifyString = "You are overhearing " + Target.Data.PlayerName + ".\nYou will " + (OptionGroupSingleton<GossipOptions>.Instance.ShowGossip ? "tell everyone" : "learn") + "something about them next meeting.";
+        string notifyString = "You are overhearing someone's conversation.\nYou will tell everyone something about them next meeting.";
         MiraAPI.Utilities.Helpers.CreateAndShowNotification(notifyString, Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());
     }
 }
