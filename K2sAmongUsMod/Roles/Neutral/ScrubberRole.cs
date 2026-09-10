@@ -7,6 +7,7 @@ using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
+using TownOfUs.Modifiers;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Components;
 using TownOfUs.Modules.Wiki;
@@ -74,11 +75,6 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
         {
             Info("Scrubber Should Win");
             MiraAPI.Utilities.Helpers.CreateAndShowNotification("The world has been cleansed of impurities, the only thing left to cleanse is yourself...", Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Bait.LoadAsset());
-
-            foreach(PlayerControl player in PlayerControl.AllPlayerControls.ToArray().Where(p => p.HasModifier<ScrubberScrubModifier>()))
-            {
-                player.RemoveModifier<ScrubberScrubModifier>();
-            }
         }
     }
 
@@ -94,6 +90,7 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
             stats.LockDeathInfo = true;
             */
             Player.Exiled();
+            Player.AddModifier<BasicGhostModifier>();
         }
     }
 
@@ -108,18 +105,18 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
 
     public bool GetDidWin()
     {
-        return didWin;
+        return CheckDidWin();
     }
     public bool WinConditionMet()
     {
-        return didWin;
+        return CheckDidWin();
     }
 
-    public bool MetWinCon => didWin;
+    public bool MetWinCon => CheckDidWin();
 
     public override bool DidWin(GameOverReason gameOverReason)
     {
-        return this.didWin;
+        return CheckDidWin();
     }
 
     /// <inheritdoc/>
