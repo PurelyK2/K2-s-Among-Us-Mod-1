@@ -18,7 +18,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.10")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.11")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -111,4 +111,6 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
  * Adjusted Deceiver Code To Correctly Work With Assassin
  * Made Deceiver Not Deceive After Death
  * Made Deceiver Show The Right Number Of Impostors On Game Start
+ * Fixed Bug Where Deceiver Broke Game Even When Off
+ * Made Deceiver Show As Deceiver To Self
 */

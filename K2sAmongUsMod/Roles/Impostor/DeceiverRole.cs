@@ -65,6 +65,8 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
     [RegisterEvent(0)]
     public static void OnRoundStartEventHandler(RoundStartEvent _)
     {
+		if (PlayerControl.LocalPlayer.Data.Role is DeceiverRole) return;
+
 		confuseRole = true;
     }
 
@@ -100,7 +102,10 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 				- You Are Snitch
 				- You Are Inquisitor
 			 */
-			if(MiscUtils.PlayerById(__instance.PlayerId).HasModifier<DeceiverModifier>())
+
+			if (__result.Player == null) return;
+
+			if(__result.Player.HasModifier<DeceiverModifier>())
 			{
 				__result = DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<DeceiverRole>());
 				
