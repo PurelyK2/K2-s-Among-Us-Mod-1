@@ -14,10 +14,12 @@ using MiraAPI.Hud;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
+using System.Xml.Linq;
 using TownOfUs;
 using TownOfUs.Assets;
 using TownOfUs.Buttons.Crewmate;
 using TownOfUs.Extensions;
+using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Game.Assailant;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
@@ -33,7 +35,7 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
     public static bool confuseRole;
 
     public RoleAlignment RoleAlignment => RoleAlignment.ImpostorConcealing;
-    public string RoleName => "Deceiver (Dev)";
+    public string RoleName => "Deceiver";
     public string LocaleKey => "Deceiver";
 
     public string RoleDescription => "You Seem Innocent To Others...";
@@ -62,15 +64,16 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 		Player.AddModifier<DeceiverModifier>();
     }
 
+
     [RegisterEvent(0)]
     public static void OnRoundStartEventHandler(RoundStartEvent _)
     {
-		if (PlayerControl.LocalPlayer.Data.Role is DeceiverRole) return;
-
-		confuseRole = true;
+        if (PlayerControl.LocalPlayer.Data.Role is DeceiverRole) return;
+        confuseRole = true;
     }
 
-	[HarmonyPatch(typeof(AssassinModifier), "ClickGuess", [typeof(PlayerVoteArea), typeof(MeetingHud)])]
+    #region Deceiver Deceive Exceptions
+    [HarmonyPatch(typeof(AssassinModifier), "ClickGuess", [typeof(PlayerVoteArea), typeof(MeetingHud)])]
 	public static class AssassinGuessDeceiverPatch
 	{
 		public static void Prefix()
@@ -78,10 +81,69 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 			confuseRole = false;
 		}
 		public static void Postfix()
-		{
-			confuseRole = true;
+        {
+            if (PlayerControl.LocalPlayer.Data.Role is DeceiverRole) return;
+            confuseRole = true;
 		}
-	}
+    }
+
+    [HarmonyPatch(typeof(TownOfUs.Utilities.Extensions), "RpcChangeRole", [typeof(PlayerControl), typeof(ushort), typeof(bool)])]
+    public static class DeceiverChangesRolePatch
+    {
+        public static void Prefix()
+        {
+            confuseRole = false;
+        }
+        public static void Postfix()
+        {
+            if (PlayerControl.LocalPlayer.Data.Role is DeceiverRole) return;
+            confuseRole = true;
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerControl), "RpcSetRole", [typeof(RoleTypes), typeof(bool)])]
+    public static class DeceiverSetRolePatch
+    {
+        public static void Prefix()
+        {
+            confuseRole = false;
+        }
+        public static void Postfix()
+        {
+            if (PlayerControl.LocalPlayer.Data.Role is DeceiverRole) return;
+            confuseRole = true;
+        }
+    }
+
+    [HarmonyPatch(typeof(LogicGameFlowNormal), nameof(LogicGameFlowNormal.CheckEndCriteria))]
+	public static class DeceiverDoesntDeceiveTheGamePatch
+    {
+        [HarmonyPriority(801)]
+        public static void Prefix()
+        {
+            confuseRole = false;
+        }
+        public static void Postfix()
+        {
+            if (PlayerControl.LocalPlayer.Data.Role is DeceiverRole) return;
+            confuseRole = true;
+        }
+    }
+
+    [HarmonyPatch(typeof(TownOfUs.Utilities.Extensions), "IsImpostorAligned", [typeof(PlayerControl)])]
+    public static class DeceiverIsImpostorPatch
+    {
+        public static void Prefix()
+        {
+            confuseRole = false;
+        }
+        public static void Postfix()
+        {
+            if (PlayerControl.LocalPlayer.Data.Role is DeceiverRole) return;
+            confuseRole = true;
+        }
+    }
+    #endregion
 
     [HarmonyPatch(typeof(NetworkedPlayerInfo), "Role", MethodType.Getter)]
     public static class GetDeceiverRolePatch
@@ -94,7 +156,8 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 				* The Game Hasn't Started
 				* The Game Is Ending
 				* The Player Is Guessing Your Role (Assassin, Vigilante, Doomsayer, etc.)
-				- Someone is checking for your role (sleuth, imitator, mimic, etc.)
+				* Your Role Is Being Changed Or Set (so it can remember your previous role
+				* The Game Is Checking If It Should End
 			2. __result isn't Deceiver
 			3. You Are The Owner of a player AND One Of The Following:
 				- You Are Imp
@@ -103,22 +166,21 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 				- You Are Inquisitor
 			 */
 
-			if (__result.Player == null) return;
+			if (__result?.Player == null || __instance?.PlayerId == null) return;
 
 			if(__result.Player.HasModifier<DeceiverModifier>())
 			{
 				__result = DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<DeceiverRole>());
-				
-				if (__instance.AmOwner) return;
 			}
 
 			if (!confuseRole) return;
 			if (__result is not DeceiverRole || __instance.IsDead) return;
 			if(__instance.AmOwner
-				&& (__instance.Role.IsImpostor()
+				&& (__result.IsImpostor()
 				|| __instance.IsDead
-				|| __instance.Role is SnitchRole
-				|| __instance.Role is InquisitorRole)) return;
+				|| __result is SnitchRole
+				|| __result is InquisitorRole
+                || __result.Player.HasModifier<BaseRevealModifier>())) return;
 
 			if(OptionGroupSingleton<DeceiverOptions>.Instance.DeceiverDisplayedAs == DeceiverOptions.DeceiverRoleDisplayed.Investigator)
 				__result = DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<InvestigatorRole>());

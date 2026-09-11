@@ -18,7 +18,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.11")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.12")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -84,7 +84,6 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 }
 
 // Buttons Can Be Clicked During Sabotage But Have The Blocking Symbol
-// Deceiver Ends Game If They Aren't Host And Are The Only Killer
 
 // ================ OTHER ================
 
@@ -97,20 +96,13 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // Cleric can revive the zombie as survivor
 
-// Make a "Scrubbed" Modifier So People Know Their Mods Were Scrubbed (Visible so long as they have no mods
+// Make a "Scrubbed" Modifier So People Know Their Mods Were Scrubbed (Visible so long as they have no mods)
 
 // Add Extroverted And Introverted Cooldown Modifiers
 
 // =============== FIXES ===============
 /*
- * Zombie Leader Will No Longer Flash Everyone's Screen On Player Death
- * Zombies Die Properly At Meeting Start And Revive Later Than Before
- * Deceiver Shows On End Screen Properly
- * Updated README to include credit for Jay for the INCREDIBLE mod icon (I Haven't Found Where It Goes Yet. XD)!!!
- * Adjusted Deceiver Code To Correctly Show On Game End Screen
- * Adjusted Deceiver Code To Correctly Work With Assassin
- * Made Deceiver Not Deceive After Death
- * Made Deceiver Show The Right Number Of Impostors On Game Start
- * Fixed Bug Where Deceiver Broke Game Even When Off
- * Made Deceiver Show As Deceiver To Self
+ * FIXED GOSSIP IMAGE AGAIN!!!
+ * Deceiver No Longer Ends Game Early!!!
+ * DECEIVER SHOULD BE WORKING NOW!!! (I can't think of any more bugs with it atm)
 */
