@@ -126,6 +126,10 @@ public sealed class GossipOverhearModifier : BaseModifier
             {
                 thesePossibleRoles.RemoveAll(r => !r.IsCrewmate());
             }
+            else
+            {
+                thesePossibleRoles.RemoveAll(r => r.IsCrewmate());
+            }
 
             RoleBehaviour newRole = thesePossibleRoles[UnityEngine.Random.Range(0, possibleRoles.Count)];
 

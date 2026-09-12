@@ -85,9 +85,15 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // Buttons Can Be Clicked During Sabotage But Have The Blocking Symbol
 
+// Make Deceiver Only Copy Possibly-In-Game Roles
+
 // ================ OTHER ================
 
-// Finish Mimic
+// Give JOA custom double-vote modifier (that can stack)
+
+// Make mimic more like neutral ambassador
+
+// Medium but NK? (idea by Jay)
 
 // Make Zombies Able To Talk As If Dead (Toggleable?)
 
@@ -102,7 +108,12 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // =============== FIXES ===============
 /*
- * FIXED GOSSIP IMAGE AGAIN!!!
- * Deceiver No Longer Ends Game Early!!!
- * DECEIVER SHOULD BE WORKING NOW!!! (I can't think of any more bugs with it atm)
+ * Zombie Can No Longer Become Spectre
+ * Gossip Weight Now Fully Determines The Percentage Of Gossip That Is Crew
+ * Modifiers Now Have Proper Colors
+ * Deceiver Should No Longer Deceive Impostors
+ * (Hopefully) Stopped Roles From Being Deceived After Death
+ * Deceiver Counts As An Imp On Game Start For Crew
+ * FORBEARING SHOULD NO LONGER WIN WITH CREW (3rd tries a charm!)
+ * Lobbies Will No Longer Freak Out After Game 1!!!
 */

@@ -11,6 +11,7 @@ using TownOfUs.Assets;
 using TownOfUs.Events;
 using TownOfUs.Extensions;
 using TownOfUs.Interfaces;
+using TownOfUs.Modifiers;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Networking;
@@ -85,6 +86,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
 
         Player.RpcAddModifier<ZombieRevealedModifier>();
         Player.RpcAddModifier<ZombieAllianceModifier>();
+        Player.RpcAddModifier<BasicGhostModifier>();
     }
 
     public bool WinConditionMet()

@@ -55,6 +55,13 @@ public sealed class VentableModifier : TouGameModifier, IWikiDiscoverable
         return true;
     }
 
+    public override ModifierUiConfiguration Configuration
+    {
+        get
+        {
+            return new ModifierUiConfiguration(new UnityEngine.Color32(88, 90, 204, Byte.MaxValue), TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
+        }
+    }
 
     /// <inheritdoc/>
     public override float IntroSize => 3f;

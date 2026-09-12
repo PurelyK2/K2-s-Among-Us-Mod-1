@@ -1,12 +1,13 @@
+using K2AmongUs.Assets;
+using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
 using MiraAPI.GameOptions;
 using MiraAPI.Utilities.Assets;
 using TownOfUs.Assets;
+using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Game;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Utilities;
 using UnityEngine;
-using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
-using TownOfUs.Modifiers;
 
 namespace K2AmongUs.Modifiers.Game.Universal;
 
@@ -31,6 +32,13 @@ public sealed class HyperfocusModifier : TouGameModifier, IWikiDiscoverable
     /// <inheritdoc/>
     public override ModifierFaction FactionType => ModifierFaction.Crewmate;
 
+    public override ModifierUiConfiguration Configuration
+    {
+        get
+        {
+            return new ModifierUiConfiguration(new UnityEngine.Color32(0, 60, 95, Byte.MaxValue), TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
+        }
+    }
     /// <inheritdoc/>
     public override int GetAssignmentChance()
     {

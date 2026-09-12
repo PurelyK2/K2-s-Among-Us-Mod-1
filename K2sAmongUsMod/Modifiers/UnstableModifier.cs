@@ -68,6 +68,14 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
     {
         return "Randomly Teleport With Other Players Throughout The Round" + MiscUtils.AppendOptionsText(base.GetType());
     }
+
+    public override ModifierUiConfiguration Configuration
+    {
+        get
+        {
+            return new ModifierUiConfiguration(new UnityEngine.Color32(57, 255, 20, byte.MaxValue), TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
+        }
+    }
     /// <inheritdoc/>
     public override ModifierFaction FactionType => ModifierFaction.UniversalPassive;
 
