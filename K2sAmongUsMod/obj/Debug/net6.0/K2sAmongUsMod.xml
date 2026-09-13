@@ -214,6 +214,9 @@
         <member name="M:K2AmongUs.Events.Crewmate.JackOfAllEvents.CompleteTaskEvent(MiraAPI.Events.Vanilla.Player.CompleteTaskEvent)">
             <inheritdoc/>
         </member>
+        <member name="M:K2AmongUs.Events.Crewmate.JackOfAllEvents.HandleVoteEvent(MiraAPI.Events.Vanilla.Meeting.Voting.HandleVoteEvent)">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.K2AmongUsColors">
             <inheritdoc/>
         </member>
@@ -740,9 +743,6 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Patches.ZombiePatches.HandleVoteEvent(MiraAPI.Events.Vanilla.Meeting.Voting.HandleVoteEvent)">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Patches.ZombiePatches.OnMeetingStart(MiraAPI.Events.Vanilla.Meeting.StartMeetingEvent)">
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Patches.ZombiePatches.OnRoundStart(MiraAPI.Events.Vanilla.Gameplay.RoundStartEvent)">

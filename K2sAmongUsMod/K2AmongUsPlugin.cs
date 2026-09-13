@@ -18,7 +18,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.13")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.14")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -83,37 +83,34 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
     }
 }
 
-// Buttons Can Be Clicked During Sabotage But Have The Blocking Symbol
-
-// Make Deceiver Only Copy Possibly-In-Game Roles
+// Make Bounty Hunter
 
 // ================ OTHER ================
 
-// Give JOA custom double-vote modifier (that can stack)
+// Have sound on zombie revive (Hook into RpcFullRevive?)
 
 // Make mimic more like neutral ambassador
-
-// Medium but NK? (idea by Jay)
+// [Yurei/Gallu/Spirit] Medium but NK? (idea by Jay)
 
 // Make Zombies Able To Talk As If Dead (Toggleable?)
 
-// Add boo's bounty hunter idea
-// Add Jay's Deceiver Idea
-
-// Cleric can revive the zombie as survivor
+// Cleric can revive the zombie as survivor (option?)
 
 // Make a "Scrubbed" Modifier So People Know Their Mods Were Scrubbed (Visible so long as they have no mods)
 
 // Add Extroverted And Introverted Cooldown Modifiers
 
+// Buttons Can Be Clicked During Sabotage But Have The Blocking Symbol
+
 // =============== FIXES ===============
 /*
- * Zombie Can No Longer Become Spectre
- * Gossip Weight Now Fully Determines The Percentage Of Gossip That Is Crew
- * Modifiers Now Have Proper Colors
- * Deceiver Should No Longer Deceive Impostors
- * (Hopefully) Stopped Roles From Being Deceived After Death
- * Deceiver Counts As An Imp On Game Start For Crew
- * FORBEARING SHOULD NO LONGER WIN WITH CREW (3rd tries a charm!)
- * Lobbies Will No Longer Freak Out After Game 1!!!
+ * Added TMP sprites for all roles
+ * Deceiver Should Only Be Seen As Not-In-Play, POSSIBLE Crew]
+ * Deceiver Can No Longer Show Up In Gossip Info
+ * Zombie Should Now Consistently Die On Meeting Start
+ * ZOMBIE CAN NO LONGER BE SPECTRE!!! (PLEASE WORK THIS TIME!!!)
+ * Zombies will no longer turn into zombies multiple times if revived by zombie revive button
+ * Deceiver Will No Longer Cause An Infinite Loop That Results In A Crash If There's A Deceiver In The Game
+ * Jack Of All Now Has A Custom, Stackable Multivote Modifier
+ * Began Adding Bounty Hunter Role!
 */

@@ -29,16 +29,6 @@ public static class ZombiePatches
 
     /// <inheritdoc/>
     [RegisterEvent(0)]
-    public static void OnMeetingStart(StartMeetingEvent @event)
-    {
-        foreach (PlayerControl player in MiraAPI.Utilities.Helpers.GetAlivePlayers().Where(p => p.Data.Role is ZombieRole && p.AmOwner))
-        {
-            player.RpcSpecialMurder(player, true, true, true, false, false, false, false, false, "Undead");
-        }
-    }
-
-    /// <inheritdoc/>
-    [RegisterEvent(0)]
     public static void OnRoundStart(RoundStartEvent @event)
     {
         if (!MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is ZombieLeaderRole))

@@ -71,7 +71,10 @@ public class ZombieReviveButton : TownOfUsButton
             player.RpcRemoveModifier(modifier.UniqueId);
         }
 
-        player.RpcFullRevive(false, body.TruePosition, RoleId.Get<ZombieRole>(), true);
+        if (player.Data.Role is not ZombieRole)
+            player.RpcFullRevive(false, body.TruePosition, RoleId.Get<ZombieRole>(), true);
+        else
+            player.RpcFullRevive(false, body.TruePosition, RoleId.Get<ZombieRole>(), false);
 
         body.ClearBody();
     }

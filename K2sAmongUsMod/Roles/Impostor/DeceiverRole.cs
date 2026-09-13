@@ -14,6 +14,7 @@ using MiraAPI.Hud;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
+using MiraAPI.Utilities.Assets;
 using System.Xml.Linq;
 using TownOfUs;
 using TownOfUs.Assets;
@@ -53,6 +54,7 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 
     public CustomRoleConfiguration Configuration => new(this)
     {
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Deceiver.LoadAsset(), "K2AmongUs.Roles.Impostor.Deceiver", 1.45f),
         UseVanillaKillButton = true,
         IntroSound = TouAudio.HackedSound,
         Icon = K2RoleIcons.Deceiver
@@ -162,10 +164,20 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 			if(OptionGroupSingleton<DeceiverOptions>.Instance.DeceiverDisplayedAs == DeceiverOptions.DeceiverRoleDisplayed.Investigator)
 				__result = DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<InvestigatorRole>());
 			else
-			{
-				List<RoleBehaviour> crewRoles = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().Where(r => r.IsCrewmate() && r.GetRoleAlignment() != RoleAlignment.CrewmateKilling).ToList();
+            {
+                confuseRole = false;
+                List<RoleBehaviour> allRoles = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().Where(r => r is not IGhostRole && !r.IsCrewmate() && r.GetRoleAlignment() != RoleAlignment.CrewmateKilling).ToList();
+                List<RoleBehaviour> crewRoles = new List<RoleBehaviour>();
+                foreach (RoleBehaviour role in allRoles)
+                {
+                    RoleManager.RoleAssignmentData roleData = CustomRoleUtils.GetAssignData(role.Role);
+                    if (roleData.Chance > 0 && roleData.Count > 0 && CustomRoleUtils.CanSpawnOnCurrentMode(role))
+                    {
+                        crewRoles.Add(role);
+                    }
+                }
 
-				crewRoles.RemoveAll(r => PlayerControl.AllPlayerControls.ToArray().Any(p => p.Data.Role.GetType() == r.GetType()));
+                crewRoles.RemoveAll(r => PlayerControl.AllPlayerControls.ToArray().Any(p => p.Data.Role.GetType() == r.GetType()));
 
 				if(crewRoles.Count > 0)
 				{
@@ -179,6 +191,7 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 				{
                     __result = randomCrewRole;
                 }
+                confuseRole = true;
 			}
 
 		}
@@ -206,9 +219,6 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
         if (!hasGameStarted) return;
         if (PlayerControl.LocalPlayer.Data.Role.IsImpostor() || PlayerControl.LocalPlayer.Data.IsDead || PlayerControl.LocalPlayer.Data.Role is IGhostRole) return;
         if (PlayerControl.LocalPlayer.Data.Role is SnitchRole || PlayerControl.LocalPlayer.Data.Role is InquisitorRole) return;
-
-        if(!confuseRole)
-            Info("Confusing For Deceiver");
 
         confuseRole = true;
     }

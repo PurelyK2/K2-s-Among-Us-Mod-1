@@ -1,10 +1,12 @@
 ﻿using K2AmongUs.Assets;
+using K2AmongUs.Modifiers.Crewmate;
 using K2AmongUs.Options.Roles.Crewmate;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Modifiers.Types;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
+using MiraAPI.Utilities.Assets;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Modifiers;
@@ -47,6 +49,7 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.JackOfAll.LoadAsset(), "K2AmongUs.Roles.Crewmate.JackOfAll", 1.45f),
         IntroSound = TouAudio.DetectiveIntroSound,
         Icon = K2RoleIcons.JackOfAll
     };
@@ -80,19 +83,19 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
         {
             List<BaseModifier> modifiers =
                     ModifierManager.Modifiers
-                    .Where(m => (m is GameModifier
+                    .Where(m => m is GameModifier
                     && (m as GameModifier)?.GetAmountPerGame() > 0
                     && (m as GameModifier)?.GetAssignmentChance() > 0
                     && (m as GameModifier)?.CanSpawnOnCurrentMode() == true
-                    && !player.HasModifier(m.TypeId)
+                    && (!player.HasModifier(m.TypeId))
                     && m is not DeadlyQuotaModifier
                     && m is not AllianceGameModifier
                     && m is not MiniModifier
                     && m is not GiantModifier
                     && (m is not TelepathModifier || player.HasModifier<EgotistModifier>() || player.HasModifier<CrewpostorModifier>())
-                    && (m is not DoubleShotModifier || player.HasModifier<AssassinModifier>()))
+                    && (m is not DoubleShotModifier || player.HasModifier<AssassinModifier>())
                     && (m is not FirstDeadShield)
-                    || m is KnightedModifier
+                    || m is JackOfAllVotes
                 ).ToList();
 
             if(modifiers.Count == 0)
@@ -108,11 +111,34 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
                 BaseModifier modifier;
                 do
                 {
-                    modifier = modifiers[UnityEngine.Random.Range(0, modifiers.Count)];
-                    modifiers.Remove(modifier);
-                } while (player.HasModifier(modifier.TypeId));
+                    if (modifiers.Count == 0)
+                    {
+                        Error("No modifiers to give");
+                        MiraAPI.Utilities.Helpers.CreateAndShowNotification("There Are No Modifiers Left To Give", Color.yellow, new Vector3(0f, 1f, -20f), null, null);
 
-                player.RpcAddModifier(modifier.TypeId, Array.Empty<object>());
+                        return;
+                    }
+
+                    modifiers.Shuffle();
+                    modifier = modifiers[0];
+                    modifiers.Remove(modifier);
+                } while (player.HasModifier(modifier.TypeId) && modifier is not JackOfAllVotes && modifiers.Count > 0);
+
+                if (modifier is JackOfAllVotes)
+                {
+                    JackOfAllVotes? joav = player.GetModifier<JackOfAllVotes>();
+
+                    if(joav == null)
+                    {
+                        player.RpcAddModifier<JackOfAllVotes>();
+                    }
+                    else
+                    {
+                        joav.NumVotes++;
+                    }
+                }
+                else
+                    player.RpcAddModifier(modifier.TypeId, Array.Empty<object>());
             }
         }
         catch(System.Exception e)

@@ -29,5 +29,5 @@ public sealed class GossipOptions : AbstractOptionGroup<GossipRole>
 
     // <inheritdoc/>
     [ModdedNumberOption("Crew Role Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
-    public float CrewWeight { get; set; } = 30;
+    public float CrewWeight { get; set; } = 50;
 }

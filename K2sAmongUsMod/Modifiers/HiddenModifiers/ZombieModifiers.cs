@@ -66,10 +66,11 @@ public sealed class  ZombieAllianceModifier : AllianceGameModifier
     {
         if (MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is ZombieLeaderRole && !p.Data.IsDead))
         {
+            ZombieLeaderRole? leader = MiraAPI.Utilities.Helpers.GetAlivePlayers().First(p => p.Data.Role is ZombieLeaderRole && !p.Data.IsDead).Data.Role as ZombieLeaderRole;
             int numNonZombies = MiraAPI.Utilities.Helpers.GetAlivePlayers().Count(p => !(p.Data.Role is ZombieLeaderRole || p.Data.Role is ZombieRole));
             int numZombies = PlayerControl.AllPlayerControls.ToArray().Count(p => p.Data.Role is ZombieRole || p.Data.Role is ZombieLeaderRole);
 
-            return numZombies > numNonZombies && TownOfUs.Utilities.MiscUtils.KillersAliveCount == 0;
+            return leader?.WinConditionMet() == true;
         }
         return false;
     }

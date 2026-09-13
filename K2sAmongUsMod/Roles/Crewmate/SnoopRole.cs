@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
 using Il2CppInterop.Runtime.Attributes;
+using K2AmongUs.Assets;
 using MiraAPI.Roles;
+using MiraAPI.Utilities.Assets;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Modules.Wiki;
@@ -51,6 +53,7 @@ public sealed class StealthyRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfU
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(TouRoleIcons.Chameleon.LoadAsset(), "K2AmongUs.Roles.Crewmate.Snoop", 1.45f),
         IntroSound = TouAudio.SwooperActivateSound,
         Icon = TouRoleIcons.Chameleon
     };

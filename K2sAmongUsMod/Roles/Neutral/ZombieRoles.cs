@@ -1,12 +1,16 @@
-﻿using K2AmongUs.Assets;
+﻿using HarmonyLib;
+using K2AmongUs.Assets;
 using K2AmongUs.Modifiers.Neutral;
 using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Patches.WinConditions;
+using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Meeting;
 using MiraAPI.GameEnd;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
+using MiraAPI.Utilities.Assets;
 using TownOfUs.Assets;
 using TownOfUs.Events;
 using TownOfUs.Extensions;
@@ -55,6 +59,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Zombie.LoadAsset(), "K2AmongUs.Roles.Neutral.Zombie", 1.45f),
         Icon = K2RoleIcons.Zombie,
         HideSettings = true,
         CanModifyChance = false,
@@ -86,7 +91,6 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
 
         Player.RpcAddModifier<ZombieRevealedModifier>();
         Player.RpcAddModifier<ZombieAllianceModifier>();
-        Player.RpcAddModifier<BasicGhostModifier>();
     }
 
     public bool WinConditionMet()
@@ -123,8 +127,23 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
 
         if(!MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.GetRoleWhenAlive() is ZombieLeaderRole))
         {
-            Player.Data.IsDead = true;
+            Player.RpcSpecialMurder(Player, true, true, true, false, false, false, false, false, "Leaderless");
         }
+    }
+
+    public override void OnMeetingStart()
+    {
+        base.OnMeetingStart();
+        
+        Player.RpcSpecialMurder(Player, true, true, true, false, false, false, false, false, "Undead");
+    }
+
+    [HarmonyPatch(typeof(TouRoleUtils), "CanGetGhostRole", [typeof(PlayerControl)])]
+    [HarmonyPostfix]
+    public static void NoZombieSpectre(ref PlayerControl __instance, ref bool __result)
+    {
+        if (__instance.Data.Role is ZombieRole)
+            __result = false;
     }
 }
 
@@ -170,6 +189,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.ZombieLeader.LoadAsset(), "K2AmongUs.Roles.Neutral.ZombieLeader", 1.45f),
         IntroSound = TouAudio.ScreamIntro,
         Icon = K2RoleIcons.ZombieLeader,
     };
@@ -261,7 +281,8 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
             bool hasZombies = PlayerControl.AllPlayerControls.ToArray().Any(p => p.Data.Role is ZombieRole);
             bool canGetDeadBody = Helpers.GetNearestDeadBodies(Player.transform.position, ShipStatus.Instance.MaxLightRadius * 100, Helpers.CreateFilter(Constants.NotShipMask)).Count > 0;
 
-            return (killersAlive && MiraAPI.Utilities.Helpers.GetAlivePlayers().Count >= 3) || hasZombies || canGetDeadBody;
+            return (killersAlive && MiraAPI.Utilities.Helpers.GetAlivePlayers().Count >= 3) || hasZombies || canGetDeadBody
+                || Helpers.GetAlivePlayers().Any(p => p.Data.Role is SurvivorRole);
         }
     }
 }

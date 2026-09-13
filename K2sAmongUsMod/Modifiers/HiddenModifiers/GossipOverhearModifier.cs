@@ -90,7 +90,7 @@ public sealed class GossipOverhearModifier : BaseModifier
         foreach(RoleBehaviour role in allRoles)
         {
             RoleManager.RoleAssignmentData roleData = CustomRoleUtils.GetAssignData(role.Role);
-            if(roleData.Chance > 0 && roleData.Count > 0 && CustomRoleUtils.CanSpawnOnCurrentMode(role))
+            if(roleData.Chance > 0 && roleData.Count > 0 && CustomRoleUtils.CanSpawnOnCurrentMode(role) && role is not DeceiverRole)
             {
                 possibleRoles.Add(role);
             }

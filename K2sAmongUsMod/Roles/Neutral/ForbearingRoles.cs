@@ -1,19 +1,20 @@
 ﻿using AmongUs.GameOptions;
+using K2AmongUs.Assets;
+using K2AmongUs.Options.Roles.Neutral;
 using MiraAPI.GameOptions;
+using MiraAPI.Modifiers;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
-using K2AmongUs.Options.Roles.Neutral;
+using MiraAPI.Utilities.Assets;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
+using TownOfUs.Roles.Crewmate;
 using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
-using TownOfUs.Roles.Crewmate;
-using MiraAPI.Modifiers;
-using K2AmongUs.Assets;
 
 namespace K2AmongUs.Roles.Neutral;
 
@@ -33,6 +34,7 @@ public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
     public CustomRoleConfiguration Configuration => new(this)
     {
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Forbearing.LoadAsset(), "K2AmongUs.Roles.Neutral.Forbearing", 1.45f),
         IntroSound = TouAudio.SinisterIntro,
         Icon = K2RoleIcons.Forbearing,
         CanUseVent = OptionGroupSingleton<ForbearingOptions>.Instance.ForbearingCanVent

@@ -1,10 +1,12 @@
 ﻿using Il2CppInterop.Runtime.Attributes;
+using K2AmongUs.Assets;
 using K2AmongUs.Modifiers.Neutral;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.Modifiers;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
+using MiraAPI.Utilities.Assets;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Modifiers;
@@ -61,6 +63,7 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(TouRoleIcons.Infestor.LoadAsset(), "K2AmongUs.Roles.Neutral.Scrubber", 1.45f),
         IntroSound = TouAudio.JanitorCleanSound,
         Icon = TouRoleIcons.Infestor
     };

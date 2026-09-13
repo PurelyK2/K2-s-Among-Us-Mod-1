@@ -1,6 +1,10 @@
 ﻿using Il2CppInterop.Runtime.Attributes;
+using K2AmongUs.Assets;
+using K2AmongUs.Options.Roles.Crewmate;
+using MiraAPI.GameOptions;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
+using MiraAPI.Utilities.Assets;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Modules;
@@ -8,9 +12,6 @@ using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
 using TownOfUs.Utilities;
 using UnityEngine;
-using K2AmongUs.Options.Roles.Crewmate;
-using MiraAPI.GameOptions;
-using K2AmongUs.Assets;
 
 namespace K2AmongUs.Roles.Crewmate;
 
@@ -77,6 +78,7 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Gossip.LoadAsset(), "K2AmongUs.Roles.Crewmate.Gossip", 1.45f),
         IntroSound = TouAudio.DetectiveIntroSound,
         Icon = K2RoleIcons.Gossip
     };
