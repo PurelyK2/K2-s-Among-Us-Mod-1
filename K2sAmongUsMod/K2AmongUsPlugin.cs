@@ -85,6 +85,10 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // Add Lower Cooldown To Bounty Hunter Stuff
 
+// Give Bounty Hunter A Win Condition
+
+// GOSSIP CAN GIVE BAD INFO (Ghostwalkers, Gossip (unless gossip count >= 2), etc.)
+
 // ================ OTHER ================
 
 // Make README pretty
@@ -106,8 +110,7 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // =============== FIXES ===============
 /*
- * Fixed Gossip Not Working Bug
- * FORBEARING SHOULD NO LONGER WIN WITH CREW!!! (FINAL!)
- * Deceiver Will No Longer Massively Lag The Game For Crewmates
- * Bounty Hunter Has Been Added As A Playable Role
+ * Traitor Should Now Be Unable To Be Selected While Deceiver Is Alive
+ * Bounty Hunter Now Shows Result As A Notification For The Bounty Target's Killer
+ * Bounty Hunter Target Can No Longer Vent
 */

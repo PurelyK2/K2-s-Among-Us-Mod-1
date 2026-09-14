@@ -19,6 +19,7 @@ using System.Xml.Linq;
 using TownOfUs;
 using TownOfUs.Assets;
 using TownOfUs.Buttons.Crewmate;
+using TownOfUs.Events.Impostor;
 using TownOfUs.Extensions;
 using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Game.Assailant;
@@ -143,6 +144,19 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 
     [HarmonyPatch(typeof(TownOfUs.Utilities.Extensions), "IsImpostorAligned", [typeof(PlayerControl)])]
     public static class DeceiverIsImpostorPatch
+    {
+        public static void Prefix()
+        {
+            confuseRole = false;
+        }
+        public static void Postfix()
+        {
+            ReConfuse();
+        }
+    }
+
+    [HarmonyPatch(typeof(TraitorEvents), "RoundStartEventHandler", [typeof(RoundStartEvent)])]
+    public static class TraitorPickedPatch
     {
         public static void Prefix()
         {

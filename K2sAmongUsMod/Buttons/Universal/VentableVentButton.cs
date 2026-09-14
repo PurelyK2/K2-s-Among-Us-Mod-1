@@ -86,5 +86,4 @@ public sealed class VentableVentButton : TownOfUsTargetButton<Vent>
 			Target.SetButtons(false);
         }
     }
-
 }

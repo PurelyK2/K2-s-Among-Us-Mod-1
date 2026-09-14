@@ -123,4 +123,6 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 
         targetedPlayer.RpcAddModifier<BountyTargetModifier>();
     }
+
+    public int NumBountiesCollected;
 }
