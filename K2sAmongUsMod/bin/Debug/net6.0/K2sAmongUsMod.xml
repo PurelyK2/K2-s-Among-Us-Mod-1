@@ -748,6 +748,9 @@
         <member name="M:K2AmongUs.Patches.ZombiePatches.OnRoundStart(MiraAPI.Events.Vanilla.Gameplay.RoundStartEvent)">
             <inheritdoc/>
         </member>
+        <member name="M:K2AmongUs.Patches.ZombiePatches.OnMeetingStart(MiraAPI.Events.Vanilla.Meeting.StartMeetingEvent)">
+            <inheritdoc/>
+        </member>
         <member name="T:K2AmongUs.Patches.WinConditions.ZombieGameOver">
             <inheritdoc/>
         </member>

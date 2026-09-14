@@ -18,7 +18,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.14")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.15")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -83,9 +83,11 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
     }
 }
 
-// Make Bounty Hunter
+// Add Lower Cooldown To Bounty Hunter Stuff
 
 // ================ OTHER ================
+
+// Make README pretty
 
 // Have sound on zombie revive (Hook into RpcFullRevive?)
 
@@ -104,13 +106,8 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // =============== FIXES ===============
 /*
- * Added TMP sprites for all roles
- * Deceiver Should Only Be Seen As Not-In-Play, POSSIBLE Crew]
- * Deceiver Can No Longer Show Up In Gossip Info
- * Zombie Should Now Consistently Die On Meeting Start
- * ZOMBIE CAN NO LONGER BE SPECTRE!!! (PLEASE WORK THIS TIME!!!)
- * Zombies will no longer turn into zombies multiple times if revived by zombie revive button
- * Deceiver Will No Longer Cause An Infinite Loop That Results In A Crash If There's A Deceiver In The Game
- * Jack Of All Now Has A Custom, Stackable Multivote Modifier
- * Began Adding Bounty Hunter Role!
+ * Fixed Gossip Not Working Bug
+ * FORBEARING SHOULD NO LONGER WIN WITH CREW!!! (FINAL!)
+ * Deceiver Will No Longer Massively Lag The Game For Crewmates
+ * Bounty Hunter Has Been Added As A Playable Role
 */

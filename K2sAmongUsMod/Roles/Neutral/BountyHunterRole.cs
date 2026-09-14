@@ -1,9 +1,9 @@
-﻿/*
-using AmongUs.GameOptions;
+﻿using AmongUs.GameOptions;
 using HarmonyLib;
 using K2AmongUs.Assets;
+using K2AmongUs.Modifiers.Crewmate;
 using K2AmongUs.Options.Roles.Neutral;
-using K2sAmongUsMod.Modifiers.HiddenModifiers;
+using K2AmongUs.Modifiers;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
@@ -21,6 +21,7 @@ using TownOfUs.Roles.Crewmate;
 using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace K2AmongUs.Roles.Neutral;
 
@@ -45,50 +46,30 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     public Color RoleColor => new Color32(10, 47, 14, byte.MaxValue);
 
     #region Meeting Stuff
-    private MeetingMenu? _meetingMenu;
-    private NetworkedPlayerInfo? _selectedPlr;
-    public override void OnRoleSet()
-    {
-        base.OnRoleSet();
-
-        if (Player.AmOwner)
-        {
-            var classic = LegacyAssets.IsLegacy;
-            _meetingMenu = new MeetingMenu(
-                Player.Data.Role,
-                Click,
-                MeetingAbilityType.Toggle,
-                classic ? LegacyAssets.ImitateSelectSprite : TouAssets.ImitateSelectSprite,
-                classic ? LegacyAssets.ImitateDeselectSprite : TouAssets.ImitateDeselectSprite,
-                IsExempt,
-                Color.white)
-            {
-                Position = new Vector3(-0.40f, 0f, -3f)
-            };
-        }
-    }
+    private MeetingMenu? meetingMenu;
+    private NetworkedPlayerInfo? selectedPlr;
     public override void OnMeetingStart()
     {
-        if (!Player.IsCrewmate())
+        meetingMenu = new MeetingMenu(
+            Player.Data.Role,
+            Click,
+            MeetingAbilityType.Toggle,
+            K2Assets.BountyTarget,
+            TouAssets.Guess,
+            IsExempt,
+            Color.white)
         {
-            Helpers.GetAlivePlayers().ForEach(delegate (PlayerControl player)
-            {
-                if(player.HasModifier<BountyTargetModifier>())
-                {
-                    player.RemoveModifier<BountyTargetModifier>();
-                }
-            });
-            return;
-        }
+            Position = new Vector3(-0.40f, 0f, -3f)
+        };
 
         var meeting = MeetingHud.Instance;
         if (Player.AmOwner && meeting != null)
         {
-            _meetingMenu!.GenButtons(meeting,
+            meetingMenu.GenButtons(meeting,
                 Player.AmOwner && !Player.HasDied() && !Player.HasModifier<JailedModifier>());
-            if (_selectedPlr != null)
+            if (selectedPlr != null)
             {
-                _meetingMenu!.Actives[_selectedPlr.PlayerId] = true;
+                meetingMenu.Actives[selectedPlr.PlayerId] = true;
             }
         }
     }
@@ -97,40 +78,49 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     {
         if (Player.AmOwner)
         {
-            _meetingMenu!.HideButtons();
+            meetingMenu?.HideButtons();
         }
+
+        AssignBountyTarget(selectedPlr);
     }
 
     public void Click(PlayerVoteArea voteArea, MeetingHud __)
     {
         var player = GameData.Instance.GetPlayerById(voteArea.PlayerId);
 
-        if (_selectedPlr == player)
+        if (selectedPlr == player)
         {
-            _selectedPlr = null;
-            _meetingMenu!.Actives[voteArea.PlayerId] = false;
+            selectedPlr = null;
+            meetingMenu?.Actives[voteArea.PlayerId] = false;
             return;
         }
 
-        if (_selectedPlr != null)
+        if (selectedPlr != null)
         {
-            _meetingMenu!.Actives[_selectedPlr.PlayerId] = false;
-            _selectedPlr = null;
+            meetingMenu?.Actives[selectedPlr.PlayerId] = false;
+            selectedPlr = null;
         }
 
-        _meetingMenu!.Actives[voteArea.PlayerId] = true;
-        _selectedPlr = player;
+        meetingMenu?.Actives[voteArea.PlayerId] = true;
+        selectedPlr = player;
     }
 
     private bool IsExempt(PlayerVoteArea voteArea)
     {
-        var player = GameData.Instance.GetPlayerById(voteArea.PlayerId);
-        if (Player.Data.IsDead || player == null || Player.PlayerId == voteArea.PlayerId || voteArea.AmDead)
-        {
-            return true;
-        }
         return false;
     }
     #endregion
+
+    static void AssignBountyTarget(NetworkedPlayerInfo player)
+    {
+        PlayerControl? targetedPlayer = PlayerControl.AllPlayerControls.ToArray().First(p => p.Data.PlayerId == player?.PlayerId);
+
+        if(targetedPlayer == null)
+        {
+            Error("No Bounty Target");
+            return;
+        }
+
+        targetedPlayer.RpcAddModifier<BountyTargetModifier>();
+    }
 }
-*/

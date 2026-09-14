@@ -42,4 +42,16 @@ public static class ZombiePatches
             player.RpcBasicRevive();
         }
     }
+
+    /// <inheritdoc/>
+    [RegisterEvent(0)]
+    public static void OnMeetingStart(StartMeetingEvent @event)
+    {
+        foreach (PlayerControl player in PlayerControl.AllPlayerControls.ToArray().Where(p => p.Data.Role is ZombieRole && p.AmOwner))
+        {
+            Info("Killing Zombie: " + player.Data.PlayerName);
+
+            player.RpcSelfMurder(player, player, true, true, false, false, false, false, "Undead");
+        }
+    }
 }

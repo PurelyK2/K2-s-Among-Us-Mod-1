@@ -11,6 +11,7 @@ using TMPro;
 using TownOfUs.Modifiers.Crewmate;
 using TownOfUs.Roles.Crewmate;
 using TownOfUs.Roles;
+using TownOfUs.Extensions;
 
 namespace K2AmongUs.Modifiers.Crewmate;
 
@@ -81,62 +82,79 @@ public sealed class GossipOverhearModifier : BaseModifier
     }
 
     /// <inheritdoc/>
-    public static RoleBehaviour[] GenerateGossipRoles(PlayerControl player)
+    public static List<RoleBehaviour> GenerateGossipRoles(PlayerControl player)
     {
         int randRolesCount = (int)OptionGroupSingleton<GossipOptions>.Instance.GossipRoles;
+        List<RoleBehaviour> possibleRolesList = new List<RoleBehaviour>();
 
-        List<RoleBehaviour> allRoles = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().Where(r => r is not IGhostRole).ToList();
-        List<RoleBehaviour> possibleRoles = new List<RoleBehaviour>();
-        foreach(RoleBehaviour role in allRoles)
+        List<RoleBehaviour> allRoles = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().Where(delegate (RoleBehaviour r)
         {
-            RoleManager.RoleAssignmentData roleData = CustomRoleUtils.GetAssignData(role.Role);
-            if(roleData.Chance > 0 && roleData.Count > 0 && CustomRoleUtils.CanSpawnOnCurrentMode(role) && role is not DeceiverRole)
-            {
-                possibleRoles.Add(role);
-            }
-        }
+            RoleManager.RoleAssignmentData roleData = CustomRoleUtils.GetAssignData(r.Role);
 
+            if (roleData.Count == 0 || roleData.Chance == 0) return false; //Only If It Can Currenlty Be In The Game
+            if (!CustomRoleUtils.CanSpawnOnCurrentMode(r)) return false; //Only If It Can Spawn On The Current Mode
+            if (r is DeceiverRole) return false; //Can't Be A Role That Logicall Doesn't Make Sense
 
-        List<RoleBehaviour> randomRolesList = new List<RoleBehaviour>();
+            return true; //Will Be Ok Here
+        }).ToList();
 
         if (player.HasModifier<ImitatorCacheModifier>())
         {
-            RoleBehaviour imitatorRole = possibleRoles.First(r => r is ImitatorRole);
-            randomRolesList.Add(imitatorRole);
-            possibleRoles.Remove(imitatorRole);
+            possibleRolesList.Add(allRoles.First(r => r is ImitatorRole));
         }
         else
         {
-            possibleRoles.RemoveAll(role => role.GetType() == player.GetRoleWhenAlive().GetType());
-            randomRolesList.Add(player.Data.Role);
+            possibleRolesList.Add(player.Data.Role);
         }
 
-        for(int i = 0; i < randRolesCount; i++)
+        allRoles.RemoveAll(r => possibleRolesList.Any(role => role.GetRoleName() == r.GetRoleName()));
+
+        for (int i = 0; i < randRolesCount; i++)
         {
-            if(possibleRoles.Count == 0)
-            {
-                Error("No Roles For Gossip To Add");
-                break;
-            }
+            List<RoleBehaviour> getableRoles = new List<RoleBehaviour>();
 
-            List<RoleBehaviour> thesePossibleRoles = possibleRoles;
-
-            //Weighted To Crewmate
             if(UnityEngine.Random.Range(0, 101) <= OptionGroupSingleton<GossipOptions>.Instance.CrewWeight)
             {
-                thesePossibleRoles.RemoveAll(r => !r.IsCrewmate());
+                getableRoles = allRoles.Where(r => r.IsCrewmate()).ToList();
+
+                if (getableRoles.Count == 0)
+                {
+                    Error("No Roles To Get For Gossip! (Crewmate)");
+
+                    getableRoles = allRoles;
+                }
             }
             else
             {
-                thesePossibleRoles.RemoveAll(r => r.IsCrewmate());
+                getableRoles = allRoles.Where(r => !r.IsCrewmate()).ToList();
+
+                if (getableRoles.Count == 0)
+                {
+                    Error("No Roles To Get For Gossip! (Non-Crew)");
+
+                    getableRoles = allRoles;
+                }
             }
 
-            RoleBehaviour newRole = thesePossibleRoles[UnityEngine.Random.Range(0, possibleRoles.Count)];
+            if(getableRoles.Count == 0)
+            {
+                Error("No Roles To Get For Gossip! (Mid-Picks)");
+                break;
+            }
 
-            possibleRoles.Remove(newRole);
-            randomRolesList.Add(newRole);
+            getableRoles.Shuffle();
+            RoleBehaviour randomRole = getableRoles[0];
+
+            allRoles.RemoveAll(r => r.GetRoleName() == randomRole.GetRoleName());
+
+            possibleRolesList.Add(randomRole);
         }
-        
-        return randomRolesList.ToArray();
+
+        if (possibleRolesList.Count == 0)
+        {
+            Error("No Roles To Get For Gossip!");
+        }
+
+        return possibleRolesList;
     }
 }

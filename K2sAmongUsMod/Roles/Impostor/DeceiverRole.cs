@@ -34,6 +34,7 @@ using UnityEngine;
 //Note: This Role Was Suggested By: ‧₊˚✧ 𝒥𝒶𝓎 :3 ✧˚₊‧ (Discord)
 public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, ICrewVariant
 {
+    public RoleBehaviour randomizedRole;
     public static bool confuseRole;
     public static bool hasGameStarted;
 
@@ -78,6 +79,17 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
         }
     }
 
+    [RegisterEvent(0)]
+    public static void OnRoundStart(RoundStartEvent @event)
+    {
+        confuseRole = false;
+        foreach(PlayerControl player in Helpers.GetAlivePlayers().Where(p => p.Data.Role is DeceiverRole))
+        {
+            if(player.Data.Role is DeceiverRole deceiver)
+                deceiver.randomizedRole = RandomizeRole();
+        }
+        confuseRole = true;
+    }
     [RegisterEvent(0)]
     public static void OnDeathEvent(AfterMurderEvent @event)
     {
@@ -165,35 +177,9 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 				__result = DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<InvestigatorRole>());
 			else
             {
-                confuseRole = false;
-                List<RoleBehaviour> allRoles = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().Where(r => r is not IGhostRole && !r.IsCrewmate() && r.GetRoleAlignment() != RoleAlignment.CrewmateKilling).ToList();
-                List<RoleBehaviour> crewRoles = new List<RoleBehaviour>();
-                foreach (RoleBehaviour role in allRoles)
-                {
-                    RoleManager.RoleAssignmentData roleData = CustomRoleUtils.GetAssignData(role.Role);
-                    if (roleData.Chance > 0 && roleData.Count > 0 && CustomRoleUtils.CanSpawnOnCurrentMode(role))
-                    {
-                        crewRoles.Add(role);
-                    }
-                }
-
-                crewRoles.RemoveAll(r => PlayerControl.AllPlayerControls.ToArray().Any(p => p.Data.Role.GetType() == r.GetType()));
-
-				if(crewRoles.Count > 0)
-				{
-                    __result = DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<InvestigatorRole>());
-					return;
-                }
-
-				RoleBehaviour randomCrewRole = crewRoles[UnityEngine.Random.Range(0, crewRoles.Count)];
-
-				if(randomCrewRole != null )
-				{
-                    __result = randomCrewRole;
-                }
-                confuseRole = true;
+                if(__result is DeceiverRole deceiver && deceiver.randomizedRole != null)
+                    __result = deceiver.randomizedRole;
 			}
-
 		}
 	}
 
@@ -221,5 +207,35 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
         if (PlayerControl.LocalPlayer.Data.Role is SnitchRole || PlayerControl.LocalPlayer.Data.Role is InquisitorRole) return;
 
         confuseRole = true;
+    }
+
+    static RoleBehaviour RandomizeRole()
+    {
+        List<RoleBehaviour> allRoles = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().Where(r => r is not IGhostRole && r.IsCrewmate() && r.GetRoleAlignment() != RoleAlignment.CrewmateKilling).ToList();
+        List<RoleBehaviour> crewRoles = new List<RoleBehaviour>();
+        foreach (RoleBehaviour role in allRoles)
+        {
+            RoleManager.RoleAssignmentData roleData = CustomRoleUtils.GetAssignData(role.Role);
+            if (roleData.Chance > 0 && roleData.Count > 0 && CustomRoleUtils.CanSpawnOnCurrentMode(role))
+            {
+                crewRoles.Add(role);
+            }
+        }
+
+        crewRoles.RemoveAll(r => PlayerControl.AllPlayerControls.ToArray().Any(p => p.Data.Role.GetType() == r.GetType()));
+
+        if (crewRoles.Count == 0)
+        {
+            return DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<InvestigatorRole>());
+        }
+
+        RoleBehaviour randomCrewRole = crewRoles[UnityEngine.Random.Range(0, crewRoles.Count)];
+
+        if (randomCrewRole != null)
+        {
+            return randomCrewRole;
+        }
+
+        return DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<DeceiverRole>());
     }
 }

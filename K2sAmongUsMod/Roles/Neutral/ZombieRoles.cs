@@ -134,8 +134,8 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     public override void OnMeetingStart()
     {
         base.OnMeetingStart();
-        
-        Player.RpcSpecialMurder(Player, true, true, true, false, false, false, false, false, "Undead");
+
+        Player.RpcSelfMurder(Player, Player, true, true, false, false, false, false, "Undead");
     }
 
     [HarmonyPatch(typeof(TouRoleUtils), "CanGetGhostRole", [typeof(PlayerControl)])]

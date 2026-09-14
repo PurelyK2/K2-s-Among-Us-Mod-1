@@ -63,9 +63,9 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(TouRoleIcons.Infestor.LoadAsset(), "K2AmongUs.Roles.Neutral.Scrubber", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Scrubber.LoadAsset(), "K2AmongUs.Roles.Neutral.Scrubber", 1.45f),
         IntroSound = TouAudio.JanitorCleanSound,
-        Icon = TouRoleIcons.Infestor
+        Icon = K2RoleIcons.Scrubber
     };
 
     public void Update()
