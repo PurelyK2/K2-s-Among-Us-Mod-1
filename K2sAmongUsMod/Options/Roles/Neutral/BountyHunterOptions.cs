@@ -13,6 +13,9 @@ public sealed class BountyHunterOptions : AbstractOptionGroup<BountyHunterRole>
 {
     public override string GroupName => "Bounty Hunter Options";
 
+    [ModdedNumberOption("Bounties To Win", 1f, 5f, 1f)]
+    public float BountiesToWin { get; set; } = 3;
+
     [ModdedNumberOption("Faction Modifier Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
     public float randFactMod { get; set; } = 10f;
     [ModdedNumberOption("Universal Modifier Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]

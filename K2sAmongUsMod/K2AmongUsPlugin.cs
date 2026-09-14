@@ -85,8 +85,6 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // Add Lower Cooldown To Bounty Hunter Stuff
 
-// Give Bounty Hunter A Win Condition
-
 // GOSSIP CAN GIVE BAD INFO (Ghostwalkers, Gossip (unless gossip count >= 2), etc.)
 
 // ================ OTHER ================
@@ -97,6 +95,7 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // Make mimic more like neutral ambassador
 // [Yurei/Gallu/Spirit] Medium but NK? (idea by Jay)
+// Make CK role that kills everyone in a radius when they die
 
 // Make Zombies Able To Talk As If Dead (Toggleable?)
 
@@ -113,4 +112,7 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
  * Traitor Should Now Be Unable To Be Selected While Deceiver Is Alive
  * Bounty Hunter Now Shows Result As A Notification For The Bounty Target's Killer
  * Bounty Hunter Target Can No Longer Vent
+ * Bounty Hunter Now Has A Win Condition
+ * Bounty Hunter Can No Longer Target Dead
+ * Bounty Hunter Can No Longer Do Tasks
 */

@@ -1,30 +1,39 @@
 ﻿using AmongUs.GameOptions;
 using HarmonyLib;
 using K2AmongUs.Assets;
+using K2AmongUs.Modifiers;
 using K2AmongUs.Modifiers.Crewmate;
 using K2AmongUs.Options.Roles.Neutral;
-using K2AmongUs.Modifiers;
+using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Meeting;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using MiraAPI.Utilities.Assets;
+using TownOfUs;
 using TownOfUs.Assets;
 using TownOfUs.Events;
 using TownOfUs.Extensions;
 using TownOfUs.Modifiers.Crewmate;
 using TownOfUs.Modules;
+using TownOfUs.Modules.Components;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Roles.Crewmate;
+using TownOfUs.Options.Roles.Neutral;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Crewmate;
 using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using System.Collections;
+using MiraAPI.Events.Vanilla.Gameplay;
+using Reactor.Utilities;
+using TownOfUs.Modifiers.Neutral;
 
 namespace K2AmongUs.Roles.Neutral;
 
+// I DON'T REMEMBER WHO GAVE ME THIS IDEA!!! :sob:
 public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
     public string RoleName => "Bounty Hunter";
@@ -81,7 +90,8 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
             meetingMenu?.HideButtons();
         }
 
-        AssignBountyTarget(selectedPlr);
+        if(selectedPlr?.IsDead == false)
+            AssignBountyTarget(selectedPlr);
     }
 
     public void Click(PlayerVoteArea voteArea, MeetingHud __)
@@ -107,7 +117,7 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 
     private bool IsExempt(PlayerVoteArea voteArea)
     {
-        return false;
+        return voteArea.AmDead || voteArea.GetPlayer().AmOwner;
     }
     #endregion
 
@@ -123,6 +133,25 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 
         targetedPlayer.RpcAddModifier<BountyTargetModifier>();
     }
+    public override bool CanUse(IUsable usable)
+    {
+        if (!GameManager.Instance.LogicUsables.CanUse(usable, Player))
+        {
+            return false;
+        }
+
+        var console = usable.TryCast<Console>()!;
+        return console == null || console.AllowImpostor;
+    }
 
     public int NumBountiesCollected;
+    public bool WinConditionMet()
+    {
+        return NumBountiesCollected >= (int)OptionGroupSingleton<BountyHunterOptions>.Instance.BountiesToWin;
+    }
+
+    public override bool DidWin(GameOverReason gameOverReason)
+    {
+        return WinConditionMet();
+    }
 }
