@@ -19,6 +19,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TownOfUs.Assets;
+using TownOfUs.Events;
 using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Game;
 using TownOfUs.Modifiers.Game.Assailant;
@@ -32,7 +33,7 @@ using UnityEngine;
 
 namespace K2AmongUs.Modifiers;
 
-public sealed class BountyTargetModifier : BaseModifier
+public sealed class BountyTargetModifier : AllianceGameModifier
 {
     public override string ModifierName => "Bounty Target";
     public override string GetDescription()
@@ -81,6 +82,11 @@ public sealed class BountyTargetModifier : BaseModifier
         Info("Noticed Player Death");
         if (@event.Target.HasModifier<BountyTargetModifier>())
             GivePlayerBonus(@event.Source, @event.Target);
+    }
+
+    public override int GetAssignmentChance()
+    {
+        return 0;
     }
 }
 public sealed class BountyArrowModifier(PlayerControl owner, Color color, float update) : ArrowTargetModifier(owner, color, update)
@@ -337,6 +343,15 @@ public sealed class BountyRewardModifier : TouGameModifier
         {
             MiraAPI.Utilities.Helpers.CreateAndShowNotification("Don't Even Think About it...", UnityEngine.Color.red, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
             return !PlayerControl.LocalPlayer.HasModifier<BountyTargetModifier>();
+        }
+    }
+
+    [RegisterEvent(0)]
+    public static void OnEndGameEvent(GameEndEvent __)
+    {
+        foreach(PlayerControl player in MiraAPI.Utilities.Helpers.GetAlivePlayers().Where(p => p.HasModifier<BountyTargetModifier>()))
+        {
+            player.RpcRemoveModifier<BountyTargetModifier>();
         }
     }
 }

@@ -94,6 +94,8 @@ public sealed class GossipOverhearModifier : BaseModifier
             if (roleData.Count == 0 || roleData.Chance == 0) return false; //Only If It Can Currenlty Be In The Game
             if (!CustomRoleUtils.CanSpawnOnCurrentMode(r)) return false; //Only If It Can Spawn On The Current Mode
             if (r is DeceiverRole) return false; //Can't Be A Role That Logicall Doesn't Make Sense
+            if (r is IGhostRole) return false; //No Ghost Roles
+            if (r is GossipRole && roleData.Count < 2) return false; //No Gossip Unless Enough Gossips
 
             return true; //Will Be Ok Here
         }).ToList();

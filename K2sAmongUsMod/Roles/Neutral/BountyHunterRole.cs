@@ -90,7 +90,7 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
             meetingMenu?.HideButtons();
         }
 
-        if(selectedPlr?.IsDead == false)
+        if(selectedPlr != null && !selectedPlr.IsDead)
             AssignBountyTarget(selectedPlr);
     }
 

@@ -18,7 +18,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.15")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.16")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -85,17 +85,15 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // Add Lower Cooldown To Bounty Hunter Stuff
 
-// GOSSIP CAN GIVE BAD INFO (Ghostwalkers, Gossip (unless gossip count >= 2), etc.)
-
 // ================ OTHER ================
 
 // Make README pretty
 
 // Have sound on zombie revive (Hook into RpcFullRevive?)
 
+// Make Neutral Modifier To Win With Crew (Idea By Max)
 // Make mimic more like neutral ambassador
 // [Yurei/Gallu/Spirit] Medium but NK? (idea by Jay)
-// Make CK role that kills everyone in a radius when they die
 
 // Make Zombies Able To Talk As If Dead (Toggleable?)
 
@@ -115,4 +113,8 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
  * Bounty Hunter Now Has A Win Condition
  * Bounty Hunter Can No Longer Target Dead
  * Bounty Hunter Can No Longer Do Tasks
+ * Gossip Will No Longer Give Ghost Roles Or Illogically Give Gossip
+ * Bounty Hunter Target Can Now Be Killed By Crew Killing Without Consequence
+ * Bounty Hunter Target Can Now Defend Themself As Crew Killing Without Consequence
+ * Bounty Will No Longer Be Able To Be Placed On Dead Targets
 */
