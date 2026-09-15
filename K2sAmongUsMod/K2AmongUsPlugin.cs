@@ -91,9 +91,9 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // Have sound on zombie revive (Hook into RpcFullRevive?)
 
-// Make Neutral Modifier To Win With Crew (Idea By Max)
+// Make Pacifist, A Neutral Modifier To Win With Crew (Idea By Max)
 // Make mimic more like neutral ambassador
-// [Yurei/Gallu/Spirit] Medium but NK? (idea by Jay)
+// [Yurei/Gallu] Medium but NK? (idea by Jay)
 
 // Make Zombies Able To Talk As If Dead (Toggleable?)
 
@@ -107,14 +107,5 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // =============== FIXES ===============
 /*
- * Traitor Should Now Be Unable To Be Selected While Deceiver Is Alive
- * Bounty Hunter Now Shows Result As A Notification For The Bounty Target's Killer
- * Bounty Hunter Target Can No Longer Vent
- * Bounty Hunter Now Has A Win Condition
- * Bounty Hunter Can No Longer Target Dead
- * Bounty Hunter Can No Longer Do Tasks
- * Gossip Will No Longer Give Ghost Roles Or Illogically Give Gossip
- * Bounty Hunter Target Can Now Be Killed By Crew Killing Without Consequence
- * Bounty Hunter Target Can Now Defend Themself As Crew Killing Without Consequence
- * Bounty Will No Longer Be Able To Be Placed On Dead Targets
+ * Added Pacifist Modifier
 */
