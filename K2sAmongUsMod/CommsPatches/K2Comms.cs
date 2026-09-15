@@ -15,7 +15,7 @@ internal static class PerfectCommsVoiceIntegration
     [MethodImpl(MethodImplOptions.NoInlining)]
     internal static void Register()
     {
-        //PerfectCommsApi.RegisterVoiceRule(Mod, ctx => ZombieComms.ZombieVoiceRule(ctx));
+        PerfectCommsApi.RegisterVoiceRule(Mod, ctx => ZombieComms.ZombieVoiceRule(ctx));
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]

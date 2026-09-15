@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AmongUs.GameOptions;
+using HarmonyLib;
 using K2AmongUs.Assets;
 using K2AmongUs.Modifiers.Neutral;
 using K2AmongUs.Options.Roles.Neutral;
@@ -11,8 +12,10 @@ using MiraAPI.Modifiers;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using MiraAPI.Utilities.Assets;
+using Reactor.Utilities;
 using TownOfUs.Assets;
 using TownOfUs.Events;
+using TownOfUs.Events.TouEvents;
 using TownOfUs.Extensions;
 using TownOfUs.Interfaces;
 using TownOfUs.Modifiers;
@@ -26,6 +29,8 @@ using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using TownOfUs.Utilities.Appearances;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 namespace K2AmongUs.Roles.Neutral;
 
@@ -131,19 +136,32 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
         }
     }
 
-    public override void OnMeetingStart()
-    {
-        base.OnMeetingStart();
-
-        Player.RpcSelfMurder(Player, Player, true, true, false, false, false, false, "Undead");
-    }
-
     [HarmonyPatch(typeof(TouRoleUtils), "CanGetGhostRole", [typeof(PlayerControl)])]
     [HarmonyPostfix]
     public static void NoZombieSpectre(ref PlayerControl __instance, ref bool __result)
     {
         if (__instance.Data.Role is ZombieRole)
             __result = false;
+    }
+
+    [RegisterEvent(0)]
+    public static void StartOfMeetingEvent(StartMeetingEvent @event)
+    {
+        foreach(PlayerControl player in Helpers.GetAlivePlayers().Where(p => p.Data.Role is ZombieRole))
+        {
+            player.RpcSpecialMurder(player, true, true, true, false, false, false, false, false, "Undead");
+        }
+    }
+
+    [HarmonyPatch(typeof(MiscTouRpcs), "RpcFullRevive", [ typeof(PlayerControl), typeof(bool), typeof(Vector2), typeof(ushort), typeof(ushort), typeof(bool) ])]
+    [HarmonyPostfix]
+    public static void SoundAndVisualOnRevive(ref PlayerControl player)
+    {
+        if(player.AmOwner && player.Data.Role is ZombieRole)
+        {
+            Coroutines.Start(MiscUtils.CoFlash(new Color32(84, 192, 113, byte.MaxValue)));
+            TouAudio.PlaySound(TouAudio.AltruistReviveSound);
+        }
     }
 }
 
@@ -214,12 +232,32 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 
         if(bodiesInRange.Count > 0)
         {
+            for(int i = bodiesInRange.Count - 1; i >= 0; i--)
+            {
+                var body = bodiesInRange[i];
+
+                if(MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.PlayerId == body.ParentId))
+                {
+                    body.ClearBody();
+                }
+            }
+
             if(timer <= 0)
             {
                 PlayerControl player = MiscUtils.PlayerById(bodiesInRange[0].ParentId);
 
-                player.RpcFullRevive(false, bodiesInRange[0].TruePosition, RoleId.Get<ZombieRole>(), false);
-                bodiesInRange[0].ClearBody();
+
+                ReviveUtilities.RevivePlayer(
+                    reviver: Player,
+                    revived: MiscUtils.PlayerById(bodiesInRange[0].ParentId),
+                    position: bodiesInRange[0].TruePosition,
+                    roleWhenAlive: DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<ZombieRole>()),
+                    flashColor: RoleColor,
+                    revivedOwnerNotificationText: "You Are Now A Zombie",
+                    reviverOwnerNotificationText: "You Have Successfully Revived A Player... Kinda",
+                    notificationIcon: K2RoleIcons.Zombie.LoadAsset()
+                );
+
                 timer = OptionGroupSingleton<ZombieOptions>.Instance.ZombieReviveTimer;
             }
             else

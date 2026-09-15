@@ -1,19 +1,26 @@
-using MiraAPI.Keybinds;
-using MiraAPI.Utilities.Assets;
+using K2AmongUs.Modifiers.Neutral;
 using K2AmongUs.Roles.Neutral;
+using MiraAPI.Events;
+using MiraAPI.Keybinds;
+using MiraAPI.Modifiers;
+using MiraAPI.Roles;
+using MiraAPI.Utilities;
+using MiraAPI.Utilities.Assets;
+using Reactor.Networking.Attributes;
+using Reactor.Utilities;
 using TownOfUs.Assets;
 using TownOfUs.Buttons;
-using TownOfUs.Utilities;
-using UnityEngine;
-using MiraAPI.Utilities;
-using MiraAPI.Modifiers;
-using TownOfUs.Modules;
-using MiraAPI.Roles;
-using TownOfUs.Networking;
+using TownOfUs.Events.TouEvents;
 using TownOfUs.Modifiers.Game.Crewmate;
-using K2AmongUs.Modifiers.Neutral;
-using TownOfUs.Utilities.Appearances;
+using TownOfUs.Modules;
+using TownOfUs.Modules.TimeLord;
+using TownOfUs.Networking;
 using TownOfUs.Roles.Impostor;
+using TownOfUs.Utilities;
+using TownOfUs.Utilities.Appearances;
+using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 namespace K2AmongUs.Buttons.Neutral;
 
@@ -75,7 +82,5 @@ public class ZombieReviveButton : TownOfUsButton
             player.RpcFullRevive(false, body.TruePosition, RoleId.Get<ZombieRole>(), true);
         else
             player.RpcFullRevive(false, body.TruePosition, RoleId.Get<ZombieRole>(), false);
-
-        body.ClearBody();
     }
 }

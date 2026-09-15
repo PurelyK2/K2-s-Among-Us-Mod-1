@@ -18,7 +18,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.16")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.17")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -82,20 +82,14 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
         PerfectCommsVoiceIntegration.Register();
     }
 }
-
 // Add Lower Cooldown To Bounty Hunter Stuff
 
 // ================ OTHER ================
 
 // Make README pretty
 
-// Have sound on zombie revive (Hook into RpcFullRevive?)
-
-// Make Pacifist, A Neutral Modifier To Win With Crew (Idea By Max)
 // Make mimic more like neutral ambassador
 // [Yurei/Gallu] Medium but NK? (idea by Jay)
-
-// Make Zombies Able To Talk As If Dead (Toggleable?)
 
 // Cleric can revive the zombie as survivor (option?)
 
@@ -107,5 +101,10 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // =============== FIXES ===============
 /*
- * Added Pacifist Modifier
+ * Zombies Will No Longer Leave Bodies After Being Revived
+ * Zombies Will No Longer Crash The Game At Meeting Called
+ * Zombies Will Consistently Die On Meeting Start
+ * Zombies Will Now Get A Flash On Their Screen When They're Revived
+ * Zombies Should Now Talk Like Dead When Using Perfect Comms
+ * Pacifist Now Has A Temporary Role Icon
 */

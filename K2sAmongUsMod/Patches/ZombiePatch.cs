@@ -5,6 +5,7 @@ using MiraAPI.Events.Vanilla.Meeting;
 using K2AmongUs.Roles.Neutral;
 using TownOfUs.Networking;
 using Il2CppSystem.Web.Util;
+using HarmonyLib;
 
 namespace K2AmongUs.Patches;
 
@@ -52,6 +53,35 @@ public static class ZombiePatches
             Info("Killing Zombie: " + player.Data.PlayerName);
 
             player.RpcSelfMurder(player, player, true, true, false, false, false, false, "Undead");
+        }
+    }
+
+    [HarmonyPatch(typeof(ChatController), "AddChat", [typeof(PlayerControl), typeof(string), typeof(bool)])]
+    public static class ZombiesChatPatch
+    {
+        public static void Prefix(ref PlayerControl sourcePlayer)
+        {
+            if (sourcePlayer.Data.Role is ZombieRole)
+            {
+                sourcePlayer.Data.IsDead = true;
+            }
+            if (PlayerControl.LocalPlayer.Data.Role is ZombieRole)
+            {
+                PlayerControl.LocalPlayer.Data.IsDead = true;
+            }
+        }
+
+        //Only Do Postfix If You Somehow Send A Chat Outside Of A Meeting
+        public static void Postfix(ref PlayerControl sourcePlayer)
+        {
+            if (sourcePlayer.Data.Role is ZombieRole && MeetingHud.Instance == null)
+            {
+                sourcePlayer.Data.IsDead = false;
+            }
+            if (PlayerControl.LocalPlayer.Data.Role is ZombieRole && MeetingHud.Instance == null)
+            {
+                PlayerControl.LocalPlayer.Data.IsDead = false;
+            }
         }
     }
 }
