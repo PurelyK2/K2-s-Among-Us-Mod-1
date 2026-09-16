@@ -18,7 +18,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.17")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "0.1.18")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -84,12 +84,17 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 }
 // Add Lower Cooldown To Bounty Hunter Stuff
 
+// Make Scrubber Use RPCs and TownOfUs.Utilities.MiscUtils.GetPlayerWithModifier<BaseModifier>().Any(m => !m.HideOnUi);
+
+// FORBEARING STILL WINS WITH CREW!?! :sob:
+
 // ================ OTHER ================
 
 // Make README pretty
 
 // Make mimic more like neutral ambassador
 // [Yurei/Gallu] Medium but NK? (idea by Jay)
+// Add Light Blade's Semi-Transparent Modifier
 
 // Cleric can revive the zombie as survivor (option?)
 
@@ -101,10 +106,5 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 
 // =============== FIXES ===============
 /*
- * Zombies Will No Longer Leave Bodies After Being Revived
- * Zombies Will No Longer Crash The Game At Meeting Called
- * Zombies Will Consistently Die On Meeting Start
- * Zombies Will Now Get A Flash On Their Screen When They're Revived
- * Zombies Should Now Talk Like Dead When Using Perfect Comms
- * Pacifist Now Has A Temporary Role Icon
+ * Removed Pacifist
 */
