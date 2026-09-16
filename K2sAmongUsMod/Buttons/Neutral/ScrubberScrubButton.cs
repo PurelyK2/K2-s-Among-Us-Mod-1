@@ -11,6 +11,7 @@ using TownOfUs.Assets;
 using TownOfUs.Buttons;
 using TownOfUs.Utilities;
 using UnityEngine;
+using K2AmongUs.Assets;
 
 namespace K2AmongUs.Buttons.Crewmate;
 
@@ -26,7 +27,7 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
     /// <inheritdoc/>
     public override float Cooldown => Math.Clamp(OptionGroupSingleton<ScrubberOptions>.Instance.ScrubCooldown, 5f, 120f);
     /// <inheritdoc/>
-    public override LoadableAsset<Sprite> Sprite => TouRoleIcons.Amnesiac;
+    public override LoadableAsset<Sprite> Sprite => K2RoleIcons.Scrubber;
 
     /// <inheritdoc/>
     public override void CreateButton(Transform parent)
@@ -40,22 +41,13 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
     {
         return PlayerControl.LocalPlayer.GetClosestLivingPlayer(true, Distance);
     }
-
-    /// <inheritdoc/>
-    public override void ClickHandler()
-    {
-        if (!this.CanClick())
-        {
-            return;
-        }
-        this.OnClick();
-    }
 	
     /// <inheritdoc/>
     public override bool CanUse()
     {
-        return base.CanUse() && !Target.HasModifier<ScrubberScrubModifier>();
+        return base.CanUse() && Target.HasModifier<BaseModifier>();
     }
+
     /// <inheritdoc/>
     protected override void OnClick()
     {
@@ -65,9 +57,9 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
             return;
         }
 
-        if(Role.Player.AmOwner)
+        if (Role.Player.AmOwner)
         {
-            Target.RpcAddModifier<ScrubberScrubModifier>();
+            ScrubberRole.RpcScrubModifiers(Role.Player, Target);
             ResetCooldownAndOrEffect();
         }
     }

@@ -83,7 +83,7 @@ public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
         var aliveCount = Helpers.GetAlivePlayers().Count;
         var killersAlive = MiscUtils.KillersAliveCount;
 
-        return aliveCount <= killersAlive && killersAlive == 1;
+        return aliveCount <= 2 && killersAlive == 1;
     }
     public override bool DidWin(GameOverReason gameOverReason)
     {

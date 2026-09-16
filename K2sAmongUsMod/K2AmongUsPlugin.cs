@@ -82,9 +82,12 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
         PerfectCommsVoiceIntegration.Register();
     }
 }
-// Add Lower Cooldown To Bounty Hunter Stuff
 
-// Make Scrubber Use RPCs and TownOfUs.Utilities.MiscUtils.GetPlayerWithModifier<BaseModifier>().Any(m => !m.HideOnUi);
+public enum K2RpcCalls : uint
+{
+    ScrubModifiers = 0
+}
+// Add Lower Cooldown To Bounty Hunter Stuff
 
 // FORBEARING STILL WINS WITH CREW!?! :sob:
 
@@ -107,4 +110,10 @@ public partial class K2AmongUsPlugin : BasePlugin, IMiraPlugin
 // =============== FIXES ===============
 /*
  * Removed Pacifist
+ * Changed Blind To Universal Utility
+ * Removed All Universal Visibility Modifiers From Jack Of All
+ * Fixed Scrubber Win Condition To Check More Reliably
+ * Made Scrubber Work Better
+ * Changed Scrubber Scrub Button Icon
+ * FORBEARING SHOULD NO LONGER WIN WITH CREW!!! (FINAL-FINAL!!!)
 */

@@ -7,6 +7,7 @@ using MiraAPI.Modifiers;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
 using MiraAPI.Utilities.Assets;
+using Reactor.Networking.Attributes;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Modifiers;
@@ -72,12 +73,11 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     {
         if (Player == null || Player.Data.IsDead || didWin || !Player.AmOwner) return;
 
-        didWin = !MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => !p.HasModifier<ScrubberScrubModifier>() && p.Data.Role is not ScrubberRole);
+        didWin = !ModifierUtils.GetPlayersWithModifier<BaseModifier>().Where(p => !p.Data.IsDead && p.Data.Role is not ScrubberRole).Any(p => p.GetModifiers<BaseModifier>().Any(m => !m.HideOnUi));
 
         if(didWin)
         {
-            Info("Scrubber Should Win");
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The world has been cleansed of impurities, the only thing left to cleanse is yourself...", Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Bait.LoadAsset());
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The world has been cleansed of impurities, the only thing left to cleanse is yourself...", Color.white, new Vector3(0f, 1f, -20f), null, K2RoleIcons.Scrubber.LoadAsset());
         }
     }
 
@@ -96,30 +96,16 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
             Player.AddModifier<BasicGhostModifier>();
         }
     }
-
-    public bool CheckDidWin()
+    public bool WinConditionMet()
     {
-        if (didWin) return true;
-
-        didWin = !MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => !p.HasModifier<ScrubberScrubModifier>() && p.Data.Role is not ScrubberRole);
-        
         return didWin;
     }
 
-    public bool GetDidWin()
-    {
-        return CheckDidWin();
-    }
-    public bool WinConditionMet()
-    {
-        return CheckDidWin();
-    }
-
-    public bool MetWinCon => CheckDidWin();
+    public bool MetWinCon => didWin;
 
     public override bool DidWin(GameOverReason gameOverReason)
     {
-        return CheckDidWin();
+        return WinConditionMet();
     }
 
     /// <inheritdoc/>
@@ -143,5 +129,23 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
 
         if(PlayerControl.LocalPlayer.Data.Role is ScrubberRole scrubber)
             scrubber.OnRoundStart();
+    }
+
+    [MethodRpc((uint) K2RpcCalls.ScrubModifiers)]
+    public static void RpcScrubModifiers(PlayerControl scrubber, PlayerControl scrubbedPlayer)
+    {
+        foreach (BaseModifier modifier in scrubbedPlayer.GetModifiers<BaseModifier>().Where(m => !m.HideOnUi))
+        {
+            scrubbedPlayer.RemoveModifier(modifier);
+        }
+
+        if (scrubbedPlayer.AmOwner)
+        {
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("Your Modifiers Have Been Scrubbed", Color.white, new Vector3(0f, 1f, -20f), null, K2RoleIcons.Scrubber.LoadAsset());
+        }
+        if (scrubber.AmOwner)
+        {
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Have Successfully Scrubbed " + scrubbedPlayer.Data.PlayerName + "'s Modifiers", Color.white, new Vector3(0f, 1f, -20f), null, K2RoleIcons.Scrubber.LoadAsset());
+        }
     }
 }

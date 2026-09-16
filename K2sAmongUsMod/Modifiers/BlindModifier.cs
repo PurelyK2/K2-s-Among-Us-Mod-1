@@ -42,7 +42,7 @@ public sealed class BlindModifier : TouGameModifier, IWikiDiscoverable
         return GetDescription() + MiscUtils.AppendOptionsText(base.GetType());
     }
     /// <inheritdoc/>
-    public override ModifierFaction FactionType => ModifierFaction.UniversalVisibility;
+    public override ModifierFaction FactionType => ModifierFaction.UniversalUtility;
 
     /// <inheritdoc/>
     public override int GetAssignmentChance()

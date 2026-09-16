@@ -64,9 +64,6 @@
         <member name="M:K2AmongUs.Buttons.Crewmate.ScrubberScrubButton.GetTarget">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.Crewmate.ScrubberScrubButton.ClickHandler">
-            <inheritdoc/>
-        </member>
         <member name="M:K2AmongUs.Buttons.Crewmate.ScrubberScrubButton.CanUse">
             <inheritdoc/>
         </member>
@@ -527,15 +524,6 @@
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Modifiers.Crewmate.StealthySwoopModifier.OnDeactivate">
-            <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.Modifiers.Neutral.ScrubberScrubModifier">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.Modifiers.Neutral.ScrubberScrubModifier.ModifierName">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.Modifiers.Neutral.ScrubberScrubModifier.OnMeetingStart">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Modifiers.Neutral.ZombieRevealedModifier">
