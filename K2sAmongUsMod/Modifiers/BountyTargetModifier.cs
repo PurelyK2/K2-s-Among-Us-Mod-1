@@ -43,7 +43,15 @@ public sealed class BountyTargetModifier : AllianceGameModifier
 
     public override void OnActivate()
     {
-        if(Player.AmOwner)
+        base.OnActivate();
+
+        if (Player.Data.IsDead || !MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is BountyHunterRole))
+        {
+            ModifierComponent.RemoveModifier(this);
+            return;
+        }
+
+        if (Player.AmOwner)
         {
             MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On You...", UnityEngine.Color.gray, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
         }
@@ -52,7 +60,17 @@ public sealed class BountyTargetModifier : AllianceGameModifier
             MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On " + Player.Data.PlayerName + "'s Head.\nKill Them To Get A Reward!", UnityEngine.Color.red, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
             Player.AddModifier<BountyArrowModifier>(PlayerControl.LocalPlayer, Player.Data.Color, 0f);
         }
+    }
 
+    public void Update()
+    {
+        if (Player.Data.IsDead || !MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is BountyHunterRole))
+        {if (ShouldGetBountyNotif(PlayerControl.LocalPlayer))
+        {
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Bounty Hunter Has Died, They Can No Longer Give A Reward...", UnityEngine.Color.red, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+        
+            ModifierComponent.RemoveModifier(this);
+        }
     }
 
     public override void OnMeetingStart()
@@ -63,7 +81,7 @@ public sealed class BountyTargetModifier : AllianceGameModifier
 
     static bool ShouldGetBountyNotif(PlayerControl player)
     {
-        return player.Data.Role.GetRoleAlignment() == TownOfUs.Roles.RoleAlignment.CrewmateKilling || !player.Data.Role.IsCrewmate();
+        return player.Data.Role.GetRoleAlignment() == TownOfUs.Roles.RoleAlignment.CrewmateKilling || !player.Data.Role.IsCrewmate() || player.Data.IsDead;
     }
     static void GivePlayerBonus(PlayerControl player, PlayerControl target)
     {
@@ -341,7 +359,8 @@ public sealed class BountyRewardModifier : TouGameModifier
     {
         public static bool Prefix()
         {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("Don't Even Think About it...", UnityEngine.Color.red, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+            if(PlayerControl.LocalPlayer.HasModifier<BountyTargetModifier>())
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("Don't Even Think About it...", UnityEngine.Color.red, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
             return !PlayerControl.LocalPlayer.HasModifier<BountyTargetModifier>();
         }
     }

@@ -1,7 +1,9 @@
+using HarmonyLib;
 using K2AmongUs.Assets;
 using K2AmongUs.Options.Modifiers.Game.Universal;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
+using MiraAPI.Roles;
 using MiraAPI.Utilities.Assets;
 using TownOfUs.Assets;
 using TownOfUs.Modifiers;

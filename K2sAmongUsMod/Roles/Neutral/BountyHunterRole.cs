@@ -42,7 +42,7 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     public string RoleDescription => "Chose Who Dies";
     public string RoleLongDescription => "Pick A Person To Be Targeted Next Round And Get The Evils To Kill Them";
     public string GetAdvancedDescription() { return "During The Meeting, Pick A Person To Be Targeted Next Round. If The Targeted Person Is Killed, Their Killer Gets A Predetermined \"Reward\".\n" + TownOfUs.Utilities.MiscUtils.AppendOptionsText(base.GetType()); }
-    public RoleAlignment RoleAlignment => RoleAlignment.NeutralEvil;
+    public RoleAlignment RoleAlignment => RoleAlignment.NeutralOutlier;
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
 
     public CustomRoleConfiguration Configuration => new(this)

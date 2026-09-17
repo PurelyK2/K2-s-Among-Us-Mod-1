@@ -11,3 +11,4 @@ C:\Users\K2\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmong
 C:\Users\K2\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\refint\K2sAmongUsMod.dll
 C:\Users\K2\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\K2sAmongUsMod.xml
 C:\Users\K2\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\ref\K2sAmongUsMod.dll
+C:\Users\K2\Documents\All K2's Stuff\Among Us Stuff\K2's Among Us Mod 1\K2sAmongUsMod\obj\Debug\net6.0\K2sAmong.4720D82D.Up2Date
