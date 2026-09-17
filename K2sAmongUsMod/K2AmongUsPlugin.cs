@@ -109,8 +109,4 @@ public enum K2RpcCalls : uint
 
 // =============== FIXES ===============
 /*
- * Bounty Hunter Is Now Neutral Outlier
- * Fixed Flipped Boolean In Jack Of All
- * Venting No Longer Always Shows The Bounty Hunter Target Vent Warning
- * Bounty Target No Longer Exists If The Bounty Hunter Dies
 */
