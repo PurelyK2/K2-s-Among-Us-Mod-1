@@ -65,9 +65,9 @@ public sealed class BountyTargetModifier : AllianceGameModifier
     public void Update()
     {
         if (Player.Data.IsDead || !MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is BountyHunterRole))
-        {if (ShouldGetBountyNotif(PlayerControl.LocalPlayer))
         {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Bounty Hunter Has Died, They Can No Longer Give A Reward...", UnityEngine.Color.red, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+            if (ShouldGetBountyNotif(PlayerControl.LocalPlayer))
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Bounty Hunter Has Died, They Can No Longer Give A Reward...", UnityEngine.Color.red, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
         
             ModifierComponent.RemoveModifier(this);
         }
