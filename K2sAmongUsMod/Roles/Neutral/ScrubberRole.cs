@@ -68,31 +68,17 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
         IntroSound = TouAudio.JanitorCleanSound,
         Icon = K2RoleIcons.Scrubber
     };
-
-    public void Update()
+    public void OnRoundStart()
     {
         if (Player == null || Player.Data.IsDead || didWin || !Player.AmOwner) return;
 
         didWin = !ModifierUtils.GetPlayersWithModifier<BaseModifier>().Where(p => !p.Data.IsDead && p.Data.Role is not ScrubberRole).Any(p => p.GetModifiers<BaseModifier>().Any(m => !m.HideOnUi));
 
-        if(didWin)
+        if (didWin)
         {
             MiraAPI.Utilities.Helpers.CreateAndShowNotification("The world has been cleansed of impurities, the only thing left to cleanse is yourself...", Color.white, new Vector3(0f, 1f, -20f), null, K2RoleIcons.Scrubber.LoadAsset());
-        }
-    }
-
-    public void OnRoundStart()
-    {
-        if(Player.AmOwner && didWin)
-        {
-            /*
-            PlayerStats stats = GameHistory.PlayerStats[Player.PlayerId];
-            stats.DeathString =  "Cleansed";
-            stats.DiedThisRound = false;
-            stats.PlayerState = StoredPlayerState.Dead;
-            stats.LockDeathInfo = true;
-            */
-            Player.Exiled();
+        
+            Player.RpcPlayerExile();
             Player.AddModifier<BasicGhostModifier>();
         }
     }

@@ -139,6 +139,14 @@ public sealed class BountyArrowModifier(PlayerControl owner, Color color, float 
 
         base.OnDeath(reason);
     }
+
+    public void Update()
+    {
+        if(Player.Data.IsDead)
+        {
+            ModifierComponent.RemoveModifier(this);
+        }
+    }
 }
 
 public sealed class BountyRewardModifier : TouGameModifier

@@ -18,7 +18,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "1.0.0")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "1.0.1")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -109,4 +109,7 @@ public enum K2RpcCalls : uint
 
 // =============== FIXES ===============
 /*
+ * Fixed Bounty Hunter Target Keeping Arrow After Death If They Died In The Meeting
+ * SCRUBBER SHOULD NO LONGER WIN AT THE INCORRECT TIME!!!
+ * If Scrubber Wins And Dies, They Should No Longer Be Alive For Anyone Else
 */
