@@ -70,7 +70,7 @@ public sealed class OverhearButton : TownOfUsRoleButton<GossipRole, PlayerContro
             Target.AddModifier(gossipModifier);
         }
 
-        string notifyString = "You are overhearing " + Target.Data.PlayerName + ".\nYou will " + (OptionGroupSingleton<GossipOptions>.Instance.ShowGossip ? "tell everyone" : "learn") + "something about them next meeting.";
+        string notifyString = "You are overhearing " + Target.Data.PlayerName + ".\nYou will " + (OptionGroupSingleton<GossipOptions>.Instance.ShowGossip ? "tell everyone" : "learn") + " something about them next meeting.";
         MiraAPI.Utilities.Helpers.CreateAndShowNotification(notifyString, Color.yellow, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());
     }
 }

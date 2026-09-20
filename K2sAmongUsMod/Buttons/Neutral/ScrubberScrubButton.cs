@@ -1,17 +1,18 @@
+using K2AmongUs.Assets;
 using K2AmongUs.Modifiers.Neutral;
+using K2AmongUs.Options.Roles.Neutral;
+using K2AmongUs.Roles.Neutral;
 using MiraAPI.GameOptions;
 using MiraAPI.Hud;
 using MiraAPI.Keybinds;
 using MiraAPI.Modifiers;
 using MiraAPI.Utilities.Assets;
 using Reactor.Utilities;
-using K2AmongUs.Options.Roles.Neutral;
-using K2AmongUs.Roles.Neutral;
 using TownOfUs.Assets;
 using TownOfUs.Buttons;
+using TownOfUs.Options.Roles.Crewmate;
 using TownOfUs.Utilities;
 using UnityEngine;
-using K2AmongUs.Assets;
 
 namespace K2AmongUs.Buttons.Crewmate;
 
@@ -56,6 +57,11 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
             Error("Cleanser Cleanse: Target is null");
             return;
         }
+    }
+
+    public override void OnEffectEnd()
+    {
+        base.OnEffectEnd();
 
         if (Role.Player.AmOwner)
         {
@@ -63,4 +69,5 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
             ResetCooldownAndOrEffect();
         }
     }
+    public override float EffectDuration => 5;
 }

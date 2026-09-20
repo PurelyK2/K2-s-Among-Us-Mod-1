@@ -18,7 +18,7 @@ using UnityEngine;
 namespace K2AmongUs;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "1.0.1")]
+[BepInAutoPlugin("com.K2sAmongUs.mod", "K2sAmongUsMod", "1.0.2")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -87,21 +87,19 @@ public enum K2RpcCalls : uint
 {
     ScrubModifiers = 0
 }
+
 // Add Lower Cooldown To Bounty Hunter Stuff
 
 // Deceiver Shows As Winner For Deceived People
+
+// Disable Person With Bounty From Calling Meeting
 
 // ================ OTHER ================
 
 // Make README pretty
 
 // Make mimic more like neutral ambassador
-// [Yurei/Gallu] Medium but NK? (idea by Jay)
 // Add Light Blade's Semi-Transparent Modifier
-
-// Cleric can revive the zombie as survivor (option?)
-
-// Make a "Scrubbed" Modifier So People Know Their Mods Were Scrubbed (Visible so long as they have no mods)
 
 // Add Extroverted And Introverted Cooldown Modifiers
 
@@ -109,7 +107,6 @@ public enum K2RpcCalls : uint
 
 // =============== FIXES ===============
 /*
- * Fixed Bounty Hunter Target Keeping Arrow After Death If They Died In The Meeting
- * SCRUBBER SHOULD NO LONGER WIN AT THE INCORRECT TIME!!!
- * If Scrubber Wins And Dies, They Should No Longer Be Alive For Anyone Else
+ * Scrubber Now Has A Delay On Scrub
+ * Fixed Gossip Spelling Error
 */
