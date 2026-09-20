@@ -1,0 +1,1 @@
+global using static Reactor.Utilities.Logger<K2AmongUs.K2AmongUsPlugin>;
